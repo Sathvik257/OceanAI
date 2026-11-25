@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "ingest",
+  "started_utc": "2026-11-25T14:19:55.633631+00:00",
+  "error": "The local execution session ended before this run completed. Preserved as incomplete development evidence."
+}

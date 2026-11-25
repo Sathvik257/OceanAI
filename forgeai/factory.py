@@ -207,22 +207,25 @@ def build(model, brief, documents, output, interactive=False, max_iterations=3):
             target = out / 'documents' / entry['source']
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(Path(documents) / entry['source'], target)
-        for name in ['brief', 'coverage_extract', 'groundability', 'questions', 'generate', 'eval', 'answer', 'tool_plan', 'judge', 'critic']:
+        for name in ['brief', 'coverage_extract', 'groundability', 'questions', 'generate', 'eval_question', 'answer', 'tool_plan', 'judge', 'critic']:
             target = out / 'prompts' / (name + '.txt')
             target.parent.mkdir(exist_ok=True)
             target.write_text(prompt(name), encoding='utf-8')
         print('Intake and groundability assessment', flush=True)
         state['stage'] = 'intake'
+        save(out / 'state.json', state)
         req = intake(model, brief, corpus, interactive)
         save(out / 'requirements.json', req)
         print(f"Groundability: {len(req['gaps'])} gap(s) flagged", flush=True)
         if not any(c['supported'] for c in req['coverage']):
             raise ValueError('No requested topic has verified source references; supply supporting documents')
         state['stage'] = 'definition'
+        save(out / 'state.json', state)
         definition = make_definition(model, req, corpus)
         save(out / 'agent.json', definition)
         print('Generating and validating the frozen evaluation suite', flush=True)
         state['stage'] = 'eval_generation'
+        save(out / 'state.json', state)
         suite = generate_evals(model, req, corpus)
         save(out / 'evals.json', suite)
         dev = [c for c in suite['cases'] if c['split'] == 'development']

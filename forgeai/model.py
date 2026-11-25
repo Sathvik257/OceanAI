@@ -88,7 +88,7 @@ class LocalModel:
             else:
                 url = self.endpoint + '/api/chat'
                 payload = {'model': self.model, 'messages': messages, 'stream': False, 'format': constrained_schema(example, data),
-                           'options': {'temperature': 0, 'seed': 42, 'num_predict': max_output, 'num_ctx': 8192}}
+                           'options': {'temperature': 0, 'seed': 42, 'num_predict': max_output, 'num_ctx': 6144}}
             record = {'stage': stage, 'attempt': attempt+1, 'request': payload}
             begin = time.monotonic()
             try:

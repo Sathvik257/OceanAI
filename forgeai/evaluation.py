@@ -1,8 +1,11 @@
 """Generated tests with source validation and a frozen holdout."""
 import random
+import re
+import math
 from collections import Counter
 
-from .contracts import CASE, JUDGMENT, prompt
+from .contracts import JUDGMENT, prompt
+from .corpus import tokens
 from .storage import digest, normalize
 from .model import ModelOutputError
 
@@ -29,52 +32,112 @@ def validate_case(case, chunks):
         raise ValueError('Multi-document case must cite two distinct documents')
 
 
+def fact_candidates(chunks):
+    """Sample verbatim facts before asking the model to write questions, not answers."""
+    by_source, seen = {}, set()
+    for chunk in chunks:
+        csv = chunk['source'].lower().endswith('.csv')
+        pieces = [chunk['text']] if csv else re.split(r'(?<=[.!?])\s+', chunk['text'])
+        for quote in pieces:
+            text = normalize(quote)
+            if text in seen or len(quote.split()) < 5:
+                continue
+            if not csv and (len(quote.split()) > 65 or '#' in quote or not quote[0].isupper()):
+                continue
+            if any(word in text for word in ('synthetic', 'fictional', 'demonstration', 'effective 1', 'not a real',
+                                              'assistant', 'not provided', 'not supplied', 'not specified', 'do not establish')):
+                continue
+            if not csv and (re.search(r'\b(this|these|those|they|such)\b', text)
+                            or re.search(r'\b(?:do|does) not (?:define|specify|provide)\b', text)
+                            or re.search(r'\bno\b.+\bpolicy\b.+\bincluded\b', text)):
+                continue
+            seen.add(text)
+            by_source.setdefault(chunk['source'], []).append({'chunk_id': chunk['id'], 'quote': quote, 'source': chunk['source']})
+    # Round-robin sources after a seeded shuffle avoids always testing the first paragraphs.
+    rng, result = random.Random(42), []
+    for facts in by_source.values():
+        rng.shuffle(facts)
+    while any(by_source.values()):
+        for facts in by_source.values():
+            if facts:
+                result.append(facts.pop())
+    return result
+
+
+def cross_document_pairs(facts):
+    term_sets = [set(tokens(f['quote'] + ' ' + f['source'])) for f in facts]
+    df = Counter(t for terms in term_sets for t in terms)
+    pairs = []
+    for i, a in enumerate(facts):
+        for j in range(i+1, len(facts)):
+            if a['source'] == facts[j]['source']:
+                continue
+            common = term_sets[i] & term_sets[j]
+            similarity = len(common) / max(1, len(term_sets[i] | term_sets[j]))
+            numbers_a = set(re.findall(r'\d+', a['quote']))
+            numbers_b = set(re.findall(r'\d+', facts[j]['quote']))
+            if similarity > .65 and numbers_a == numbers_b:
+                continue  # Two restatements of one fact do not require two documents.
+            weight = sum(math.log(1 + len(facts)/df[t]) for t in common)
+            pairs.append((weight, i, j))
+    pairs.sort(key=lambda x: (-x[0], x[1], x[2]))
+    chosen, used = [], set()
+    for _, i, j in pairs:
+        if i in used or j in used:
+            continue
+        chosen.append([facts[i], facts[j]])
+        used.update((i, j))
+        if len(chosen) == 4:
+            return chosen
+    raise ValueError('Not enough distinct cross-document fact pairs for four tests')
+
+
 def generate_evals(model, requirements, corpus):
     chunks = corpus['chunks']
-    if len({c['source'] for c in chunks}) < 2:
-        raise ValueError('At least two readable source documents are required for cross-document evaluations')
-    accepted, rejected = [], []
-    rng = random.Random(42)
-    schedule = [('answerable', 4), ('answerable', 4), ('answerable', 4),
-                ('multi_document', 4), ('out_of_scope', 4), ('ambiguous', 4)]
-    for batch, (kind, target) in enumerate(schedule):
-        batch_cases = []
-        # Spread excerpts across documents; avoid stuffing the entire corpus into a small context.
-        rotated = chunks[(batch * 3) % len(chunks):] + chunks[:(batch * 3) % len(chunks)]
-        evidence, sources = [], set()
-        for c in rotated:
-            if c['source'] not in sources:
-                evidence.append(c)
-                sources.add(c['source'])
-        evidence += [c for c in rotated if c not in evidence]
-        evidence = evidence[:8]
+    facts = fact_candidates(chunks)
+    if len({f['source'] for f in facts}) < 2 or len(facts) < 12:
+        raise ValueError('Provide at least two readable documents with twelve distinct factual statements for this evaluation suite')
+    index = {c['id']: c for c in chunks}
+    seeds = [('answerable', [f]) for f in facts[:12]]
+    seeds += [('multi_document', pair) for pair in cross_document_pairs(facts)]
+    seeds += [('out_of_scope', []) for _ in range(4)]
+    seeds += [('ambiguous', [facts[i]]) for i in range(4)]
+    accepted, rejected, arithmetic = [], [], 0
+    refusals = requirements['must_refuse'] or ['Requests unrelated to ' + requirements['scope']]
+    for position, (kind, targets) in enumerate(seeds):
+        task = 'Write one precise question about the target facts.'
+        if kind == 'out_of_scope':
+            task = 'Ask for this prohibited or unsupported capability: ' + refusals[(position-16) % len(refusals)]
+        if kind == 'ambiguous':
+            task = 'Write an under-specified question: omit a critical item, booking, quantity unit, or referent so clarification is necessary.'
+        if kind == 'answerable' and targets[0]['source'].endswith('.csv') and 'price' in targets[0]['quote'].lower() and 'calculat' in requirements['brief'].lower() and arithmetic < 2:
+            arithmetic += 1
+            task = f'Ask for an item subtotal for {arithmetic+1} catalogue sales units of this exact item, excluding tax and shipping. Do not reveal its unit price or the answer.'
+        print(f'  Generating E{position+1:02d}: {kind}', flush=True)
         for attempt in range(3):
             try:
-                result = model.ask('eval-generation', prompt('eval'),
-                                   {'requirements': requirements, 'kind': kind, 'count': target-len(batch_cases),
-                                    'evidence': evidence, 'existing_questions': [c['question'] for c in accepted+batch_cases],
-                                    'validation_feedback': rejected[-3:]}, {'cases': [CASE]}, 2200)
-            except ModelOutputError as exc:
-                rejected.append({'question': '', 'reason': str(exc)})
-                continue
-            for case in result['cases']:
-                try:
-                    if case['kind'] != kind:
-                        raise ValueError('Wrong requested kind')
-                    validate_case(case, chunks)
-                    if normalize(case['question']) in {normalize(c['question']) for c in accepted+batch_cases}:
-                        raise ValueError('Duplicate question')
-                    batch_cases.append(case)
-                except ValueError as exc:
-                    rejected.append({'question': case.get('question', ''), 'reason': str(exc)})
-                if len(batch_cases) == target:
-                    break
-            if len(batch_cases) == target:
+                result = model.ask('eval-question', prompt('eval_question'),
+                                   {'scope': requirements['scope'], 'kind': kind, 'task': task,
+                                    'target_facts': targets, 'source_context': [index[t['chunk_id']] for t in targets],
+                                    'avoid_questions': [c['question'] for c in accepted],
+                                    'validation_feedback': rejected[-2:]}, {'question': ''}, 180)
+                case = {'question': result['question'], 'kind': kind,
+                        'expected_status': {'answerable': 'answered', 'multi_document': 'answered', 'out_of_scope': 'refused', 'ambiguous': 'clarify'}[kind],
+                        'facts': [dict(f) for f in targets] if kind in {'answerable', 'multi_document'} else []}
+                validate_case(case, chunks)
+                if normalize(case['question']) in {normalize(c['question']) for c in accepted}:
+                    raise ValueError('Duplicate question; use the new target fact and a different question')
+                accepted.append(case)
                 break
-        if len(batch_cases) < target:
-            raise RuntimeError(f'Evaluation generation failed: only {len(batch_cases)}/{target} valid {kind} cases; do not claim completion')
-        accepted += batch_cases
+            except (ModelOutputError, ValueError) as exc:
+                rejected.append({'position': position+1, 'reason': str(exc)})
+        else:
+            raise RuntimeError(f'Could not generate a valid distinct question for E{position+1:02d}')
+        if model.audit:
+            from .storage import save
+            save(model.audit.parent / 'evals.draft.json', {'cases': accepted, 'complete': False, 'rejected': rejected})
     # One holdout per batch, stratified by kind; optimizer never sees holdout outcomes.
+    rng = random.Random(42)
     for start in range(0, len(accepted), 4):
         holdout = rng.randrange(start, start+4)
         for i in range(start, start+4):
@@ -82,6 +145,7 @@ def generate_evals(model, requirements, corpus):
     for i, case in enumerate(accepted):
         case['id'] = f'E{i+1:02d}'
     return {'cases': accepted, 'rejected_generation_cases': rejected, 'sha256': digest(accepted),
+            'generation_method': 'Local-model questions over distinct automatically sampled verbatim facts; case categories fixed before generation.',
             'warning': 'Source quotes are verified; semantic validity of model-generated questions and labels still needs human review.'}
 
 

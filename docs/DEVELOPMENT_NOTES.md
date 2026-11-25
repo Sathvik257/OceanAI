@@ -27,3 +27,9 @@ The laptop's Intel Iris Xe GPU supports the portable Vulkan backend. A short ben
 The older 3B judge rejected a correct answer at an inclusive threshold: exactly 24 hours qualifies under an "at least 24 hours" cancellation rule. The newer Qwen3 4B model initially returned the correct booleans but a contradictory explanation on that probe. The judge contract was changed to explain the comparison before emitting verdicts, and the rubric now explicitly evaluates the exact question rather than a stronger claim the answer never made.
 
 The added-invention probe's correctness label was clarified from "contains the expected fact" to "the whole answer is correct", consistent with the final rubric's rejection of unsupported additions. The original audit and label are retained under `experiments/judge-calibration-4b-initial/`. The final audit agrees with all five labeled probes. These are development diagnostics used to improve the rubric, not independent test accuracy. The final agent holdout is separate.
+
+## Evaluation generation: repeated broad questions
+
+The first 4B workshop run reached evaluation generation, but repeated broad questions about the same topics despite duplicate feedback. The validator stopped instead of pretending the required suite existed. That run is preserved under `experiments/batch-evals-workshop/`; the accompanying coastal run was interrupted when its execution session ended.
+
+The replacement generator samples distinct verbatim facts from all source documents first, then asks the local model for one focused question per fact or cross-document fact pair. The code supplies the source references and expected quotations directly from the corpus. The model still writes every question. This reduces copied answer-key errors, discourages repetitive tests, and substantially reduces the amount of text the small model must generate. Draft suites are checkpointed and still never count as complete evaluations.

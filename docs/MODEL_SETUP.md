@@ -8,7 +8,7 @@ The reference runtime is llama.cpp with Qwen3-4B-Instruct-2507, using Unsloth's 
 - Downloaded file SHA-256: `3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597`
 - Runtime source: https://github.com/ggml-org/llama.cpp/releases/tag/b12722
 - Windows runtime archives: `llama-b12722-bin-win-cpu-x64.zip` (fallback) and `llama-b12722-bin-win-vulkan-x64.zip` (reference run).
-- Server parameters: context 8192, six CPU threads, one inference slot, GPU layers 99 on Intel Iris Xe through Vulkan, loopback-only port 8080, alias `qwen3-4b-instruct-2507`.
+- Reference demo server parameters: context 6144, batch and microbatch 128, six CPU threads, one inference slot, GPU layers 99 on Intel Iris Xe through Vulkan, loopback-only port 8080, alias `qwen3-4b-instruct-2507`. The earlier diagnostic runs used context 8192 and default batch allocation; the smaller allocation reduces laptop memory pressure without changing model weights.
 - Generation parameters: temperature 0, seed 42, JSON-schema-constrained output and per-stage output caps.
 
 These settings improve repeatability but do not guarantee identical outputs across runtime versions or hardware. The raw request and response are retained for every recorded call. Qwen weights have their own license; consult the model repository before redistribution or use beyond this exercise.

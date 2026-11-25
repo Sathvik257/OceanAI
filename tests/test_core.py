@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from forgeai.agent import evidence_errors, Agent
 from forgeai.corpus import ingest, retrieve
-from forgeai.evaluation import validate_case, summarize, score_case
+from forgeai.evaluation import validate_case, summarize, score_case, fact_candidates, cross_document_pairs, generate_evals
 from forgeai.model import LocalModel, BudgetExceeded, ModelOutputError, validate
 from forgeai.factory import make_definition, propose_patch, intake, build, evaluate
 from forgeai.storage import save, digest
@@ -23,6 +23,22 @@ class StubModel:
 
 
 class CoreTests(unittest.TestCase):
+    def test_fact_sampling_deduplicates_overlapping_chunks_and_spreads_sources(self):
+        chunks = [{'id': 'a', 'source': 'a.md', 'text': 'Members must wear closed shoes in the workshop. Bookings may be cancelled through the portal.'},
+                  {'id': 'b', 'source': 'a.md', 'text': 'Members must wear closed shoes in the workshop.'},
+                  {'id': 'c', 'source': 'b.md', 'text': 'Orders need a written purchase reference before dispatch.'}]
+        facts = fact_candidates(chunks)
+        self.assertEqual(len(facts), 3)
+        self.assertEqual({f['source'] for f in facts[:2]}, {'a.md', 'b.md'})
+        self.assertEqual(len({f['quote'] for f in facts}), 3)
+
+    def test_generated_suite_cannot_fill_with_repeated_questions(self):
+        corpus = ingest('examples/workshop/docs')
+        model = StubModel({'question': 'What does the policy require for members?'})
+        model.audit = None
+        with self.assertRaisesRegex(RuntimeError, 'E02'):
+            generate_evals(model, {'scope': 'Workshop', 'brief': 'Explain policies', 'must_refuse': ['Medical advice']}, corpus)
+
     def test_invalid_model_answer_is_a_failed_case_not_a_skipped_case(self):
         cases = [{'id': f'E{i}', 'question': 'What is the rule?', 'kind': 'answerable', 'split': 'development'} for i in (1, 2)]
         with tempfile.TemporaryDirectory() as root, patch('forgeai.factory.Agent') as agent_class:

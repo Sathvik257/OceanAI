@@ -42,7 +42,7 @@ python -m forgeai chat --agent artifacts/unseen-run/agent.json --question "Your 
 
 Use a new output directory for each run. The factory refuses to overwrite previous evidence. Default intake is unattended: it records up to five proposed questions and conservative assumptions, then proceeds within supported scope. Add `--interactive` to ask the questions in the CLI. A completely unsupported request stops at requirements rather than creating an agent with invented capabilities.
 
-Supported inputs: text-based PDF, UTF-8 `.md`, `.txt`, and `.csv`. At least two readable documents are needed to generate genuine cross-document tests. Scanned PDFs require OCR before use. Limits: 200 files, 20 MB per file, 1 MB extracted text; small, English-language corpora are the intended use case.
+Supported inputs: text-based PDF, UTF-8 `.md`, `.txt`, and `.csv`. At least two readable documents with twelve distinct factual statements are needed for the current evaluation design. Scanned PDFs require OCR before use. Limits: 200 files, 20 MB per file, 1 MB extracted text; small, English-language corpora are the intended use case.
 
 ## What a run contains
 
@@ -79,6 +79,8 @@ flowchart LR
 ```
 
 The registry exposes three read-only tools: exact CSV lookup, bounded arithmetic and the current UTC date. The generator must justify attached tools with a phrase from the brief. Every actual invocation is checked against that agent's allowlist. A valid tool justification is still a model judgment, so reviewers should inspect it; quote validation alone cannot prove necessity.
+
+The test generator first samples distinct verbatim facts, spread across source documents, then asks the local model to write focused questions. Cross-document questions receive two nonredundant source facts; refusal and ambiguity questions have explicit generation tasks. Every question is generated at runtime. A frozen, stratified split keeps six cases out of optimization.
 
 The judge combines deterministic checks (schema, quote occurrence, citation visibility, status) with anonymous, criterion-based model scoring. Expected facts are never passed to the answering agent. The optimizer cannot insert test answers: it chooses from small, generic patches. A non-improving patch is rejected and stops the loop; regressions are recorded even when aggregate score improves.
 

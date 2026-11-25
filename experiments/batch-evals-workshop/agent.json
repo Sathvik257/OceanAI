@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "name": "Tide Workshop Policy Assistant",
+  "system_prompt": "You are a calm and practical assistant for adult members of the fictional Tide Workshop community makerspace. You answer only policy-related questions using explicit, documented information from the provided policies. Address access hours, induction requirements, booking rules, cancellations, refunds, protective equipment, and incident reporting with clarity and precision. When a member does not specify equipment or booking, ask for clarification. If a question involves weekend guest access or any topic not specified in the policies, flag it as unsupported. Do not provide machine operating instructions, medical advice, or invent exceptions. All responses must be grounded in direct quotes from the policies. If a policy topic is missing or undefined, state clearly that it is not specified and direct the member to the membership desk for further information.",
+  "requirements": {
+    "scope": "Access hours, induction requirements, booking rules, cancellations, refunds, protective equipment, and incident reporting for adult members of the fictional Tide Workshop community makerspace.",
+    "audience": "Adult members of the Tide Workshop community makerspace",
+    "tone": "Calm and practical",
+    "must_answer": [
+      "Access hours",
+      "Induction requirements",
+      "Booking rules",
+      "Cancellations",
+      "Refunds",
+      "Protective equipment requirements",
+      "Incident reporting procedures"
+    ],
+    "must_refuse": [
+      "Machine operating instructions",
+      "Medical advice",
+      "Inventing exceptions to policies",
+      "Discussing equipment use beyond policy scope",
+      "Providing information not supported by the policies",
+      "Answer policy questions only; do not give machine operating instructions, medical advice, or invent exceptions.",
+      "Members may also ask about weekend guest access; flag that topic if the policies do not specify it.",
+      "Weekend guest access (if not specified in policies)"
+    ],
+    "questions": [],
+    "assumptions": [
+      "The policies provided are complete and up to date.",
+      "All members are adults and have read the induction requirements.",
+      "No exceptions to policy rules are authorized unless explicitly stated.",
+      "Guest access during weekends is not covered in the current policies."
+    ],
+    "coverage": [
+      {
+        "topic": "Access hours",
+        "chunk_id": "c4f0ce4a0755cc50",
+        "quote": "The Riverside workshop opens Monday to Friday from 09:00 to 20:00. It opens Saturday from 10:00 to 16:00. The workshop is closed on Sunday.",
+        "supported": true,
+        "reason": "The quote explicitly provides the opening hours for the Riverside workshop, including days, start and end times, and closure on Sunday, which directly addresses the topic of access hours.",
+        "chunk_ids": [
+          "c4f0ce4a0755cc50"
+        ]
+      },
+      {
+        "topic": "Induction requirements",
+        "chunk_id": "c4f0ce4a0755cc50",
+        "quote": "Every member must complete the general induction before entering a work area. General induction lasts 45 minutes and is booked through the member portal. Completing general induction does not authorize use of the laser cutter. Laser cutter access requires a separate laser induction and a current equipment endorsement. An endorsement expires 12 months after the induction date. A member with an expired endorsement must attend a refresher before booking that equipment.",
+        "supported": true,
+        "reason": "The quote clearly outlines the induction requirements, including the necessity of completing general induction and separate laser cutter induction with a current equipment endorsement, as well as the expiration and refresher requirements.",
+        "chunk_ids": [
+          "c4f0ce4a0755cc50"
+        ]
+      },
+      {
+        "topic": "Booking rules",
+        "chunk_id": "04c1d2d7f2fe6924",
+        "quote": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice. Refunds return to the original payment method within five working days. Membership fees and purchased materials are not refunded under this booking policy.",
+        "supported": true,
+        "reason": "The quote explicitly outlines conditions for refunds related to equipment booking, which are part of booking rules.",
+        "chunk_ids": [
+          "04c1d2d7f2fe6924"
+        ]
+      },
+      {
+        "topic": "Cancellations",
+        "chunk_id": "422f893883c7d8a5",
+        "quote": "Cancel at least 24 hours before the session start to receive a full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund.",
+        "supported": true,
+        "reason": "The quote explicitly states the conditions for cancellations and refunds, directly addressing the topic of cancellations.",
+        "chunk_ids": [
+          "422f893883c7d8a5"
+        ]
+      },
+      {
+        "topic": "Refunds",
+        "chunk_id": "04c1d2d7f2fe6924",
+        "quote": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice. Refunds return to the original payment method within five working days. Membership fees and purchased materials are not refunded under this booking policy.",
+        "supported": true,
+        "reason": "The quote explicitly states conditions under which refunds are provided, such as full refunds for cancellations exactly 24 hours before or when the workshop cancels due to equipment unavailability, and specifies that membership fees and materials are not refundable. This provides clear rules about refunds related to equipment booking fees.",
+        "chunk_ids": [
+          "04c1d2d7f2fe6924"
+        ]
+      },
+      {
+        "topic": "Protective equipment requirements",
+        "chunk_id": "973de2cb039dbd1c",
+        "quote": "Closed-toe shoes are required in every work area. Tie back long hair before entering a machine zone. Safety glasses are required in the woodworking zone even when a member is observing. Hearing protection is required when the posted machine notice specifies it. The sewing station does not require safety glasses under this policy. These requirements do not replace machine induction.",
+        "supported": true,
+        "reason": "The quote explicitly outlines specific protective equipment requirements (closed-toe shoes, hair ties, safety glasses, hearing protection) in different work zones, directly addressing the topic of protective equipment requirements.",
+        "chunk_ids": [
+          "973de2cb039dbd1c"
+        ]
+      },
+      {
+        "topic": "Incident reporting procedures",
+        "chunk_id": "63c9277f98dcc8eb",
+        "quote": "Stop work and notify the duty steward immediately after an injury, equipment fault or near miss. The steward decides whether equipment should be isolated. Submit an incident form through the member portal before leaving the site, even if nobody was injured. Include the time, equipment identifier and a factual description. Do not include another member's medical information in the general incident form. This policy does not prescribe medical treatment; emergencies require on-site emergency procedures and appropriate professional help.",
+        "supported": true,
+        "reason": "The quote explicitly outlines steps for reporting incidents, including stopping work, notifying the duty steward, submitting an incident form with specific details, and prohibiting the inclusion of another member's medical information, which directly addresses incident reporting procedures.",
+        "chunk_ids": [
+          "63c9277f98dcc8eb"
+        ]
+      },
+      {
+        "topic": "Weekend guest access (if not specified in policies)",
+        "chunk_id": "3f48e70838083962",
+        "quote": "This document does not define guest admission, weekend guest access, or companion access. Members must contact the membership desk for those questions. Opening hours alone do not establish whether guests are allowed.",
+        "supported": false,
+        "reason": "The quote explicitly states that weekend guest access is not defined in the document and that members must contact the membership desk for such information, indicating the topic is undefined or missing in the quotation.",
+        "chunk_ids": [
+          "3f48e70838083962"
+        ]
+      }
+    ],
+    "gaps": [
+      "Weekend guest access (if not specified in policies)"
+    ],
+    "requested_topics": [
+      "Access hours",
+      "Induction requirements",
+      "Booking rules",
+      "Cancellations",
+      "Refunds",
+      "Protective equipment requirements",
+      "Incident reporting procedures",
+      "Weekend guest access (if not specified in policies)"
+    ],
+    "brief": "Build an assistant for adult members of the fictional Tide Workshop community makerspace. Explain access hours, induction requirements, booking rules, cancellations, refunds, protective equipment and incident reporting using the supplied policies. Use a calm, practical tone. Answer policy questions only; do not give machine operating instructions, medical advice, or invent exceptions. When a member does not identify which equipment or booking they mean, ask for clarification. Members may also ask about weekend guest access; flag that topic if the policies do not specify it.\n",
+    "clarification_answers": {},
+    "mode": "unattended",
+    "groundability_method": "Brief-only intent extraction, per-topic retrieval and model support assessment, plus exact evidence validation. Conservative gaps may include retrieval misses."
+  },
+  "chunking": {
+    "words": 180,
+    "overlap": 30
+  },
+  "retrieval": {
+    "method": "bm25",
+    "top_k": 3,
+    "diversify": false
+  },
+  "tools": [],
+  "tool_justifications": [],
+  "rejected_tools": [
+    {
+      "name": "csv_lookup",
+      "brief_quote": "To identify equipment-specific requirements or booking details when a member refers to a specific machine or zone, such as laser cutter or sewing station, by matching against a catalogue of equipment with defined access rules.",
+      "reason": "The policies reference specific equipment (e.g., laser cutter, sewing station) with distinct requirements. A CSV lookup enables precise retrieval of equipment-specific rules when a member's query is ambiguous or equipment-specific.",
+      "rejection": "Unknown tool or untraceable brief justification"
+    },
+    {
+      "name": "current_date",
+      "brief_quote": "To determine whether a cancellation is within 24 hours of a session start, when a member asks about refund eligibility, by comparing the session start time to the current date.",
+      "reason": "The policy specifies that cancellations less than 24 hours before a session start receive no refund. A current date is necessary to assess timing relative to the session start, though only if the session time is known. However, since session times are not provided in the query, this tool is not required unless explicitly needed—thus, it is omitted to avoid overreach. (Note: This tool is not selected due to lack of required session timing data in the query.)",
+      "rejection": "Unknown tool or untraceable brief justification"
+    },
+    {
+      "name": "calculator",
+      "brief_quote": "To compute time differences or refund eligibility when a member asks about cancellation timing, such as whether a cancellation is exactly 24 hours before a session start.",
+      "reason": "The policy defines refund eligibility based on timing. While the policy does not require arithmetic, a calculator could be used to verify time differences if a member provides start times. However, such computation is not needed in the absence of specific times. Therefore, this tool is not selected to avoid unnecessary complexity and to maintain strict adherence to policy documentation only.",
+      "rejection": "Unknown tool or untraceable brief justification"
+    }
+  ],
+  "output_contract": {
+    "status": [
+      "answered",
+      "refused",
+      "clarify"
+    ],
+    "answer": "string",
+    "evidence": [
+      {
+        "chunk_id": "retrieved ID",
+        "quote": "verbatim source text"
+      }
+    ]
+  },
+  "corpus_file": "corpus.json",
+  "documents_dir": "documents",
+  "corpus_sha256": "3e1729bf727f10b0ca2b4e35494720a34e784364af11a36490be2888a4d3cf5b"
+}
