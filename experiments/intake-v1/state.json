@@ -1,0 +1,6 @@
+{
+  "status": "interrupted_by_developer",
+  "stage": "ingest",
+  "started_utc": "2026-11-25T12:45:37.467774+00:00",
+  "error": "Real intake omitted an explicit requested gap and refusal topics. Run stopped before evaluation; retained as development evidence, not a completed demonstration."
+}

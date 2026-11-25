@@ -1,0 +1,77 @@
+{
+  "stage": "positive",
+  "attempt": 1,
+  "request": {
+    "model": "qwen2.5-3b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Read the topic and text. Is the topic covered by the text? Explain the rule if it is.\nReturn JSON matching this example shape: {\"covered\": true, \"rule\": \"\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"topic\": \"Induction requirements\",\n  \"text\": \"Every member must complete the general induction before entering a work area. General induction lasts 45 minutes and is booked through the member portal.\"\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 150,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "covered": {
+            "type": "boolean"
+          },
+          "rule": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "covered",
+          "rule"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"covered\": true, \"rule\": \"The text mentions that every member must complete a general induction, which is a requirement for entering a work area.\"}"
+        }
+      }
+    ],
+    "created": 1795612193,
+    "model": "qwen2.5-3b",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 33,
+      "prompt_tokens": 95,
+      "total_tokens": 128,
+      "prompt_tokens_details": {
+        "cached_tokens": 3
+      }
+    },
+    "id": "chatcmpl-cEobWjuB4clFIGP57ad92Clg8sA5Y7nT",
+    "timings": {
+      "cache_n": 3,
+      "prompt_n": 92,
+      "prompt_ms": 1152.846,
+      "prompt_per_token_ms": 12.530934782608696,
+      "prompt_per_second": 79.8025061456604,
+      "predicted_n": 33,
+      "predicted_ms": 3115.46,
+      "predicted_per_token_ms": 97.358125,
+      "predicted_per_second": 10.271356396808176
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 4.347
+}

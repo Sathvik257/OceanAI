@@ -1,0 +1,97 @@
+{
+  "scope": "To build an assistant for adult members of the Tide Workshop community makerspace, providing access hours, induction requirements, booking rules, cancellations, refunds, protective equipment, and incident reporting.",
+  "audience": "Adult members of the Tide Workshop community makerspace",
+  "tone": "Calm and practical",
+  "must_answer": [
+    "Access hours",
+    "Induction requirements",
+    "Booking rules",
+    "Cancellation and refunds",
+    "Protective equipment",
+    "Incident reporting"
+  ],
+  "must_refuse": [],
+  "questions": [
+    "What are the specific hours for access, including weekends and holidays?",
+    "What are the requirements for completing induction and obtaining equipment endorsements?",
+    "What are the booking rules, including maximum session lengths and cancellation policies?",
+    "What are the cancellation and refund policies, including the timeframes and conditions for refunds?",
+    "What are the protective equipment requirements, including the types of equipment and the specific requirements for each?"
+  ],
+  "assumptions": [
+    "Clarifying questions were not answered; use only supported document scope and refuse missing information."
+  ],
+  "gaps": [],
+  "coverage": [
+    {
+      "topic": "Access hours",
+      "supported": true,
+      "chunk_ids": [
+        "422f893883c7d8a5",
+        "04c1d2d7f2fe6924",
+        "3f48e70838083962",
+        "973de2cb039dbd1c"
+      ],
+      "reason": "The policies cover access hours for the Riverside workshop, including weekdays, weekends, and holidays."
+    },
+    {
+      "topic": "Induction requirements",
+      "supported": true,
+      "chunk_ids": [
+        "422f893883c7d8a5",
+        "04c1d2d7f2fe6924",
+        "c4f0ce4a0755cc50",
+        "63c9277f98dcc8eb"
+      ],
+      "reason": "The policies specify the general induction, laser induction, and endorsement requirements for members."
+    },
+    {
+      "topic": "Booking rules",
+      "supported": true,
+      "chunk_ids": [
+        "422f893883c7d8a5",
+        "04c1d2d7f2fe6924",
+        "c4f0ce4a0755cc50",
+        "973de2cb039dbd1c"
+      ],
+      "reason": "The policies outline the maximum session lengths, booking times, and cancellation policies for equipment bookings."
+    },
+    {
+      "topic": "Cancellation and refunds",
+      "supported": true,
+      "chunk_ids": [
+        "422f893883c7d8a5",
+        "04c1d2d7f2fe6924",
+        "c4f0ce4a0755cc50",
+        "973de2cb039dbd1c"
+      ],
+      "reason": "The policies provide the cancellation and refund policies, including the timeframes and conditions for refunds."
+    },
+    {
+      "topic": "Protective equipment",
+      "supported": true,
+      "chunk_ids": [
+        "422f893883c7d8a5",
+        "04c1d2d7f2fe6924",
+        "c4f0ce4a0755cc50",
+        "973de2cb039dbd1c"
+      ],
+      "reason": "The policies specify the types of protective equipment required in each work area."
+    },
+    {
+      "topic": "Incident reporting",
+      "supported": true,
+      "chunk_ids": [
+        "422f893883c7d8a5",
+        "04c1d2d7f2fe6924",
+        "c4f0ce4a0755cc50",
+        "973de2cb039dbd1c"
+      ],
+      "reason": "The policies provide the process for submitting an incident report, including the required information and submission method."
+    }
+  ],
+  "brief": "Build an assistant for adult members of the fictional Tide Workshop community makerspace. Explain access hours, induction requirements, booking rules, cancellations, refunds, protective equipment and incident reporting using the supplied policies. Use a calm, practical tone. Answer policy questions only; do not give machine operating instructions, medical advice, or invent exceptions. When a member does not identify which equipment or booking they mean, ask for clarification. Members may also ask about weekend guest access; flag that topic if the policies do not specify it.\n",
+  "clarification_answers": {},
+  "mode": "unattended",
+  "groundability_method": "Model coverage analysis with deterministic chunk-ID validation; not a proof of semantic support."
+}

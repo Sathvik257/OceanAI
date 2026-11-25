@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forgeai-factory"
+version = "0.1.0"
+description = "A local agent factory with inspectable evidence and bounded repair"
+requires-python = ">=3.11"
+dependencies = ["pypdf>=5,<7"]
+
+[project.scripts]
+forgeai = "forgeai.cli:main"
+
+[tool.setuptools]
+packages = ["forgeai"]
+
+[tool.setuptools.package-data]
+forgeai = ["prompts/*.txt"]

@@ -1,0 +1,77 @@
+{
+  "stage": "simple2",
+  "attempt": 1,
+  "request": {
+    "model": "qwen2.5-3b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Extract the sentence that answers the topic. Then say whether you found an answer.\nReturn JSON matching this example shape: {\"quote\": \"\", \"found\": true}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"topic\": \"Access hours\",\n  \"text\": \"The workshop opens Monday to Friday from 09:00 to 20:00.\"\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 100,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "type": "string"
+          },
+          "found": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "quote",
+          "found"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"quote\": \"The workshop opens Monday to Friday from 09:00 to 20:00.\", \"found\": true}"
+        }
+      }
+    ],
+    "created": 1795611685,
+    "model": "qwen2.5-3b",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 31,
+      "prompt_tokens": 81,
+      "total_tokens": 112,
+      "prompt_tokens_details": {
+        "cached_tokens": 3
+      }
+    },
+    "id": "chatcmpl-EQWd3vmTO4XftjN4B9wBKVns1AmUTqWQ",
+    "timings": {
+      "cache_n": 3,
+      "prompt_n": 78,
+      "prompt_ms": 2770.102,
+      "prompt_per_token_ms": 35.5141282051282,
+      "prompt_per_second": 28.157807907434456,
+      "predicted_n": 31,
+      "predicted_ms": 3453.886,
+      "predicted_per_token_ms": 115.12953333333333,
+      "predicted_per_second": 8.685868612918897
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 6.233
+}

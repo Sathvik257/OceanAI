@@ -1,0 +1,9 @@
+{
+  "model": "qwen2.5-3b",
+  "endpoint": "http://127.0.0.1:8080/v1",
+  "calls": 1,
+  "tokens": 2248,
+  "token_limit": 180000,
+  "elapsed_seconds": 0.68,
+  "seconds_limit": 10800
+}

@@ -1,0 +1,6 @@
+{
+  "status": "interrupted_by_developer",
+  "stage": "ingest",
+  "started_utc": "2026-11-25T13:06:30.262137+00:00",
+  "error": "The older 3B model produced contradictory support judgments. Preserved as a failed development experiment; not a complete demonstration."
+}

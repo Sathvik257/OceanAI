@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "stage": "intake",
+  "started_utc": "2026-11-25T13:05:56.159349+00:00",
+  "error": "Local model request failed at intake-brief: HTTP Error 503: Service Unavailable",
+  "finished_utc": "2026-11-25T13:05:56.837191+00:00"
+}

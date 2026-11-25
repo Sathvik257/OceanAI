@@ -1,0 +1,6 @@
+{
+  "status": "interrupted_by_developer",
+  "stage": "ingest",
+  "started_utc": "2026-11-25T12:49:30.766754+00:00",
+  "error": "The 1.5B model failed to recognize supported policy topics in retrieved evidence. Stopped to test a larger local model. This is not a completed demonstration."
+}

@@ -1,0 +1,2 @@
+# Runtime dependency. Install the project with `python -m pip install -e .`.
+pypdf==6.21.4
