@@ -7,6 +7,7 @@ from .agent import Agent
 from .factory import build
 from .model import LocalModel
 from .runtime import keep_awake
+from .recovery import RecoveryModel
 
 
 def run(argv=None):
@@ -17,6 +18,7 @@ def run(argv=None):
     factory.add_argument('--docs', required=True)
     factory.add_argument('--out', required=True)
     factory.add_argument('--interactive', action='store_true')
+    factory.add_argument('--recover-from', help='Replay an exact audited request prefix from an interrupted run into a new output directory')
     factory.add_argument('--iterations', type=int, default=3, choices=(1, 2, 3))
     chat = sub.add_parser('chat', help='Load any generated definition and ask questions')
     chat.add_argument('--agent', required=True)
@@ -31,6 +33,9 @@ def run(argv=None):
     model = LocalModel(args.endpoint, args.model, max_tokens=args.token_budget, seconds=args.seconds, timeout=args.timeout)
     try:
         if args.command == 'build':
+            if args.recover_from:
+                model = RecoveryModel(args.recover_from, endpoint=args.endpoint, model=args.model,
+                                      max_tokens=args.token_budget, seconds=args.seconds, timeout=args.timeout)
             state = build(model, Path(args.brief).read_text(encoding='utf-8'), args.docs, args.out, args.interactive, args.iterations)
             return 0 if state['status'] == 'completed' else 2
         agent = Agent.load(args.agent, model)

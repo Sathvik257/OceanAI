@@ -15,6 +15,10 @@ def verify(folder):
     cases = suite['cases']
     assert len(cases) >= 20
     assert digest(cases) == suite['sha256'], 'Evaluation set changed after generation'
+    if (root / 'recovery.json').exists():
+        recovery = read(root / 'recovery.json')
+        if 'frozen_evals_sha256' in recovery:
+            assert suite['sha256'] == recovery['frozen_evals_sha256'], 'Recovery changed the frozen evaluation set'
     assert {'answerable', 'multi_document', 'ambiguous', 'out_of_scope'} <= {c['kind'] for c in cases}
     corpus = read(root / 'corpus.json')
     for case in cases:

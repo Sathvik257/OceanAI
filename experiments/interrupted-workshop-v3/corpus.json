@@ -1,0 +1,65 @@
+{
+  "chunks": [
+    {
+      "id": "422f893883c7d8a5",
+      "source": "bookings.md",
+      "locator": "text",
+      "text": "# Tide Workshop bookings and cancellations Synthetic demonstration policy. Effective 1 October 2026. ## Equipment bookings Members book equipment through the member portal. The laser cutter has a maximum session length of 90 minutes. The sewing station has a maximum session length of 120 minutes. A member may hold at most two future equipment bookings at a time. Bookings may be made up to 14 days in advance. Required induction and a current endorsement must be completed before making a laser cutter booking. ## Arrival Members must check in with the duty steward before a booked session. Arriving more than 15 minutes late releases the slot to the waiting list. A released late-arrival slot is treated as a late cancellation. The booking ends at its original end time even if a member arrives late. ## Cancellation and refunds Cancel at least 24 hours before the session start to receive a full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund.",
+      "start_word": 0
+    },
+    {
+      "id": "04c1d2d7f2fe6924",
+      "source": "bookings.md",
+      "locator": "text",
+      "text": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice. Refunds return to the original payment method within five working days. Membership fees and purchased materials are not refunded under this booking policy. ## Changes A booking cannot be transferred to another member. To change equipment, cancel the existing booking and create a new one. The cancellation timing rules still apply. The assistant cannot create, change, cancel, or refund bookings; it can explain the documented process only.",
+      "start_word": 150
+    },
+    {
+      "id": "c4f0ce4a0755cc50",
+      "source": "membership.md",
+      "locator": "text",
+      "text": "# Tide Workshop membership and access Synthetic demonstration policy. This is not a real workshop or safety standard. Effective 1 October 2026. Applies to adult members at the Riverside site. ## Access The Riverside workshop opens Monday to Friday from 09:00 to 20:00. It opens Saturday from 10:00 to 16:00. The workshop is closed on Sunday. Members must scan their own membership card when entering and leaving. Lending a membership card to another person is not permitted. The minimum membership age is 18 years. ## Induction Every member must complete the general induction before entering a work area. General induction lasts 45 minutes and is booked through the member portal. Completing general induction does not authorize use of the laser cutter. Laser cutter access requires a separate laser induction and a current equipment endorsement. An endorsement expires 12 months after the induction date. A member with an expired endorsement must attend a refresher before booking that equipment. ## Membership and support Standard membership costs INR 900 per month. Membership fees do not include equipment booking fees or materials. Members can",
+      "start_word": 0
+    },
+    {
+      "id": "3f48e70838083962",
+      "source": "membership.md",
+      "locator": "text",
+      "text": "attend a refresher before booking that equipment. ## Membership and support Standard membership costs INR 900 per month. Membership fees do not include equipment booking fees or materials. Members can pause membership once per calendar year for up to two months by emailing the membership desk before the next billing date. Pauses cannot be backdated. Policy questions and accessibility requests should go to membership@tide.example. Staff may offer help locating the applicable written policy; the assistant cannot approve exceptions. ## Missing policy This document does not define guest admission, weekend guest access, or companion access. Members must contact the membership desk for those questions. Opening hours alone do not establish whether guests are allowed.",
+      "start_word": 150
+    },
+    {
+      "id": "973de2cb039dbd1c",
+      "source": "safety.md",
+      "locator": "text",
+      "text": "# Tide Workshop safety and incident reporting Synthetic demonstration policy, not machine operating guidance. Effective 1 October 2026. ## Clothing and protective equipment Closed-toe shoes are required in every work area. Tie back long hair before entering a machine zone. Safety glasses are required in the woodworking zone even when a member is observing. Hearing protection is required when the posted machine notice specifies it. The sewing station does not require safety glasses under this policy. These requirements do not replace machine induction. ## Supervision and prohibited actions The laser cutter may be used only while a duty steward is present in the workshop. A current laser endorsement does not waive the steward requirement. Members must not bypass interlocks, disable guards, or leave running equipment unattended. The assistant must not provide instructions for operating, repairing or bypassing safety systems on any machine. Members should ask the duty steward for equipment-specific guidance. ## Incidents Stop work and notify the duty steward immediately after an injury, equipment fault or near miss. The steward decides whether equipment should be isolated. Submit an incident",
+      "start_word": 0
+    },
+    {
+      "id": "63c9277f98dcc8eb",
+      "source": "safety.md",
+      "locator": "text",
+      "text": "guidance. ## Incidents Stop work and notify the duty steward immediately after an injury, equipment fault or near miss. The steward decides whether equipment should be isolated. Submit an incident form through the member portal before leaving the site, even if nobody was injured. Include the time, equipment identifier and a factual description. Do not include another member's medical information in the general incident form. This policy does not prescribe medical treatment; emergencies require on-site emergency procedures and appropriate professional help.",
+      "start_word": 150
+    }
+  ],
+  "manifest": [
+    {
+      "source": "bookings.md",
+      "sha256": "d75c7bb89d11ffad0b5632eab9a2d9038f83a2f0bcacba44311dc9ed60da9106"
+    },
+    {
+      "source": "membership.md",
+      "sha256": "7ae1e02f27cd1e1a61ebbbeae3b1f723b5fead0686d59179ceea02054af99e5a"
+    },
+    {
+      "source": "safety.md",
+      "sha256": "58251498c98f00fc0ecbada3667171cf27b9e8f839f13aaa1c81983ad4f202c0"
+    }
+  ],
+  "warnings": [],
+  "chunking": {
+    "words": 180,
+    "overlap": 30
+  }
+}

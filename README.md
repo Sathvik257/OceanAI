@@ -101,6 +101,8 @@ With the reference local model server running, reproduce both demos in a new dir
 
 On Windows the CLI and demo script request temporary prevention of automatic system sleep while working. They release that request on exit; manual sleep or closing the laptop can still interrupt a run.
 
+To recover an interrupted run into a **new** output directory, add `--recover-from path/to/interrupted-run` to the same `forgeai build` command. Recovery requires unchanged inputs and prompts: it replays the exact recorded request prefix, stops on any mismatch, and performs new inference only after that prefix. `recovery.json` and the raw call records distinguish reuse from new execution. Prior token and inference-time usage remains charged, with an additional conservative reservation for the request lost during interruption. This is recovery of real saved inference, not a mock fallback or a fresh independent run.
+
 ```powershell
 python -m unittest discover -s tests -v
 ```

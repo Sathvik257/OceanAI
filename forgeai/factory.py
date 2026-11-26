@@ -175,6 +175,8 @@ def report(out, state, iterations, patches, holdout, stats):
     else:
         lines.append('Not completed. No holdout quality claim is made.')
     lines += ['', '## Remaining observed failures', '']
+    if stats.get('replayed_calls'):
+        lines += [f"Recovery reused {stats['replayed_calls']} exact recorded model responses; {stats['new_calls']} calls were newly executed. See recovery.json. Reuse is not new inference; resource totals include prior usage and a conservative interrupted-request reservation.", '']
     selected = next((i for i in iterations if i['version'] == state.get('selected_version')), None)
     failures = ([s for s in selected['cases'] if not s['passed']] if selected else []) + [s for s in holdout if not s['passed']]
     lines += [f"- {s['case_id']} ({s['split']}, {s['category']}): {s['judge']['reason']}" for s in failures] or ['No failures observed in the completed cases; this does not establish perfect correctness.']

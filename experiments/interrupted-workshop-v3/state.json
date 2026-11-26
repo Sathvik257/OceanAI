@@ -1,0 +1,7 @@
+{
+  "status": "interrupted",
+  "stage": "iteration_3",
+  "started_utc": "2026-11-26T12:41:28.247268+05:30",
+  "selected_version": 2,
+  "error": "Processes stopped externally during iteration 3; completed requests and scores preserved for exact-prefix recovery."
+}

@@ -74,6 +74,11 @@ class LocalModel:
                 'tokens': self.used, 'token_limit': self.limit,
                 'elapsed_seconds': round(time.monotonic()-self.start, 2), 'seconds_limit': self.seconds}
 
+    def request(self, url, payload, timeout):
+        request = urllib.request.Request(url, json.dumps(payload).encode(), {'Content-Type': 'application/json'})
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            return json.load(response)
+
     def ask(self, stage, system, data, example, max_output=1400):
         user = json.dumps(data, ensure_ascii=False, indent=2)
         for attempt in range(2):
@@ -96,9 +101,7 @@ class LocalModel:
             record = {'stage': stage, 'attempt': attempt+1, 'request': payload}
             begin = time.monotonic()
             try:
-                request = urllib.request.Request(url, json.dumps(payload).encode(), {'Content-Type': 'application/json'})
-                with urllib.request.urlopen(request, timeout=min(self.timeout, remaining)) as response:
-                    raw = json.load(response)
+                raw = self.request(url, payload, min(self.timeout, remaining))
                 record['response'] = raw
                 consumed = raw.get('usage', {}).get('total_tokens') or (raw.get('prompt_eval_count', 0) + raw.get('eval_count', 0)) or reserve
                 self.used += consumed
@@ -126,5 +129,7 @@ class LocalModel:
                 raise RuntimeError(f'Local model request failed at {stage}: {exc}') from exc
             finally:
                 record['elapsed_seconds'] = round(time.monotonic()-begin, 3)
+                if getattr(self, 'last_replay', None):
+                    record.update(self.last_replay)
                 if self.audit:
                     save(self.audit / f'{self.calls:04d}-{stage}.json', record)
