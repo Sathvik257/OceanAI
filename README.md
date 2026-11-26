@@ -105,12 +105,14 @@ On Windows the CLI and demo script request temporary prevention of automatic sys
 python -m unittest discover -s tests -v
 ```
 
+After both reference runs complete, `python -m scripts.check_submission` verifies their saved artifacts, runs four independent questions through the actual CLI, and exports `review.html` in each run folder. This command needs the local model server for the CLI probes. For artifact-only checks without inference, use `python -m scripts.verify_artifacts`.
+
 Unit tests use clearly named stubs only to test failure paths. They are not demonstration runs or model-quality evidence. See `docs/ARCHITECTURE.md` for tradeoffs and `docs/OWNERSHIP.md` for the candidate review checklist.
 
 ## Known boundaries
 
 This is a prototype for small document collections. BM25 can miss semantic paraphrases; PDF extraction can lose table structure. The same small model generates tests and supplies semantic judgments, so correlated errors remain despite deterministic guards and a holdout split. Generated test labels and groundability claims need human inspection. The runner treats questions independently; it does not provide conversational memory, write actions or live inventory.
 
-All model transcripts are stored locally. Review them before sharing a run containing private documents. Model weights and runtime binaries are excluded from Git. Source documents supplied for this assessment are not copied into the repository.
+All model transcripts are stored locally. Review them before sharing a run containing private documents. Model weights and runtime binaries are excluded from Git. The recruiter's assignment PDF is excluded; the fictional demonstration documents are included in full.
 
 

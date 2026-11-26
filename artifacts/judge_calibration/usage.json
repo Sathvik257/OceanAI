@@ -1,0 +1,9 @@
+{
+  "model": "qwen3-4b-instruct-2507",
+  "endpoint": "http://127.0.0.1:8080/v1",
+  "calls": 5,
+  "tokens": 2703,
+  "token_limit": 300000,
+  "elapsed_seconds": 127.67,
+  "seconds_limit": 10800
+}
