@@ -3,9 +3,10 @@ from pathlib import Path
 import argparse
 from forgeai.factory import build
 from forgeai.model import LocalModel
+from forgeai.runtime import keep_awake
 
 
-def main():
+def run():
     parser = argparse.ArgumentParser()
     parser.add_argument('--out', default='runs', help='Parent output directory; existing runs are never overwritten')
     args = parser.parse_args()
@@ -17,6 +18,11 @@ def main():
                       folder / 'docs', Path(args.out) / name)
         outcomes.append(state['status'])
     return 0 if all(s == 'completed' for s in outcomes) else 2
+
+
+def main():
+    with keep_awake():
+        return run()
 
 
 if __name__ == '__main__':

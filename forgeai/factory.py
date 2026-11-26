@@ -276,7 +276,7 @@ def build(model, brief, documents, output, interactive=False, max_iterations=3):
     except KeyboardInterrupt:
         state['status'] = 'interrupted'
         state['error'] = 'Run interrupted before completion; partial scores are not a completed demonstration.'
-    except (BudgetExceeded, RuntimeError, ValueError, OSError) as exc:
+    except (BudgetExceeded, RuntimeError, ValueError, OSError, ImportError) as exc:
         state['status'] = 'budget_exhausted' if isinstance(exc, BudgetExceeded) else 'failed'
         state['error'] = str(exc)
         print(f"Stopped honestly: {exc}", flush=True)

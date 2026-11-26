@@ -1,0 +1,7 @@
+{
+  "status": "budget_exhausted",
+  "stage": "intake",
+  "started_utc": "2026-11-25T18:50:25.980386+00:00",
+  "error": "Budget exhausted before groundability",
+  "finished_utc": "2026-11-26T01:17:38.319130+00:00"
+}

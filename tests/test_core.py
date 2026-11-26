@@ -197,6 +197,18 @@ class CoreTests(unittest.TestCase):
         self.assertFalse(score['passed'])
         self.assertEqual(score['category'], 'hallucination')
 
+    def test_failure_diagnosis_distinguishes_retrieval_refusal_and_invention(self):
+        model = StubModel({'correct': False, 'grounded': False, 'behavior': False, 'reason': 'Wrong answer'})
+        case = {'id': 'E1', 'kind': 'answerable', 'split': 'development', 'expected_status': 'answered',
+                'question': 'What is the booking limit?', 'facts': [{'chunk_id': 'a', 'quote': 'The limit is two bookings.'}]}
+        execution = {'response': {'status': 'refused', 'answer': 'Not in the documents.', 'evidence': []},
+                     'guard_errors': [], 'retrieved_ids': [], 'retrieved': [], 'tool_results': []}
+        self.assertEqual(score_case(model, case, execution)['category'], 'retrieval_miss')
+        execution['retrieved_ids'] = ['a']
+        self.assertEqual(score_case(model, case, execution)['category'], 'wrong_refusal')
+        execution['response']['status'] = 'answered'
+        self.assertEqual(score_case(model, case, execution)['category'], 'hallucination')
+
     def test_packaged_agent_rejects_tampered_sources(self):
         with tempfile.TemporaryDirectory() as root:
             documents = Path(root, 'documents')

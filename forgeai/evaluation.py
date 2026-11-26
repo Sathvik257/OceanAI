@@ -166,12 +166,14 @@ def score_case(model, case, run):
     passed = evidence_ok and status_ok and all(judgment[k] for k in ('correct', 'grounded', 'behavior'))
     category = None
     if not passed:
-        if not evidence_ok or not judgment['grounded']:
+        if not evidence_ok:
             category = 'hallucination'
         elif expected == 'answered' and not retrieval_hit:
             category = 'retrieval_miss'
         elif expected == 'answered' and response['status'] == 'refused':
             category = 'wrong_refusal'
+        elif not judgment['grounded']:
+            category = 'hallucination'
         else:
             category = 'prompt_defect'
     return {'case_id': case['id'], 'kind': case['kind'], 'split': case['split'], 'passed': passed,

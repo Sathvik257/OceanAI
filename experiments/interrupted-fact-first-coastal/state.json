@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "intake",
+  "started_utc": "2026-11-26T01:17:38.382555+00:00",
+  "error": "Process stopped before completion; no complete evaluation claim."
+}

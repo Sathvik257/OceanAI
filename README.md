@@ -99,6 +99,8 @@ Both corpora are fictional. Their synthesis instructions are in `examples/SYNTHE
 
 With the reference local model server running, reproduce both demos in a new directory using `python -m scripts.run_demos --out runs/reproduction`. This preserves the committed reference artifacts.
 
+On Windows the CLI and demo script request temporary prevention of automatic system sleep while working. They release that request on exit; manual sleep or closing the laptop can still interrupt a run.
+
 ```powershell
 python -m unittest discover -s tests -v
 ```

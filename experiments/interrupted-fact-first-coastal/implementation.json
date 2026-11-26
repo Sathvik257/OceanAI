@@ -1,0 +1,33 @@
+{
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "source_sha256": {
+    "__init__.py": "34d0c3a5089677c0900f8b1fa91a5a2ee3099ce778b40fcb1db0fd53ece6c361",
+    "__main__.py": "7afeadd4522552160b4980dc798d62c6351e23026023c4dc3f40ef0a286a8f3d",
+    "agent.py": "32d112984df06b476f450fed5ca0f4a84efd7d1757871aad1b077f2f0f2c63b4",
+    "cli.py": "476558c7b7bc67bcd8b69a5dd83012cfefded37ed1fd225dadea3bdb47da0dfb",
+    "contracts.py": "bd93d06132336c802e81031f8f6ff6b3408ba04b0644398656e0f0fb64325a8e",
+    "corpus.py": "a764f3b02d430f5ae1a5bf28c48583aacfa2a73b05b77202495e93df935f8d3f",
+    "evaluation.py": "00c0aaa6ac1892d68f667fa5c21902cb0c8dcf1aee2bff7f9e6c0875277524c2",
+    "factory.py": "2640f06a8433d7e02992782e50b0b536801bdb939be945b0374588ab49ec21c1",
+    "model.py": "0821f7b17fe2bd3a9a2944e175a5f5ae7cd245af73838aa9f1f6f39011f98729",
+    "prompts/answer.txt": "8ef4990bb11bafc428561553f27573ac6cc4c507df8c7a99e6dfbfa18987eaa5",
+    "prompts/brief.txt": "6bf1846d3b2359d8bc39d4dede027b45376e222537dd98400342d4a8d79b598f",
+    "prompts/coverage_extract.txt": "d433395edba48b7326d6e769b6af7b0861ea2c0476bbaa47327d1dd49aff96e1",
+    "prompts/critic.txt": "f9e8fd449dbadb5428d0474e14315433abff747ec095555627d1483c3e0eceef",
+    "prompts/eval_question.txt": "8fbaeb0bb8928bb2862e2d24df83022b53b48294199348faf1850d6ac5e3fa71",
+    "prompts/generate.txt": "1edb5e31b04da210400728392e01d86424362acd00d22ddde65baf15111d1c48",
+    "prompts/groundability.txt": "09a0a4b2d1c41019ad3aea74eec00764bcf2a3ffcc1836be265807e2e52e54d6",
+    "prompts/judge.txt": "2f31eb8a75eee5f240e21c833a1d96b66b764eae8cb8dcbedb525e4d0de738ce",
+    "prompts/questions.txt": "2ef708132ef024cf07bbb144fe4d63652c767a5f28df24596cd758f108055b4f",
+    "prompts/tool_plan.txt": "28736afcb93f2eb1ab9eb7594ef0f933d6058b9ec76eddf81c9128a77ea4d40d",
+    "storage.py": "03f11fae5c3b19b552c748ef130d89926224902665ca32c39d618cd650445433",
+    "tools.py": "e976915a862e3f72a1779240821e89f13588a769b8d997151b5ee8af42a236b3"
+  },
+  "model_configuration": {
+    "endpoint": "http://127.0.0.1:8080/v1",
+    "model": "qwen3-4b-instruct-2507",
+    "temperature": 0,
+    "seed": 42
+  }
+}

@@ -6,9 +6,10 @@ from pathlib import Path
 from .agent import Agent
 from .factory import build
 from .model import LocalModel
+from .runtime import keep_awake
 
 
-def main(argv=None):
+def run(argv=None):
     parser = argparse.ArgumentParser(description='ForgeAI: build and test an agent from a brief and documents')
     sub = parser.add_subparsers(dest='command', required=True)
     factory = sub.add_parser('build', help='Run the unattended factory (or --interactive intake)')
@@ -48,6 +49,11 @@ def main(argv=None):
     except (ValueError, RuntimeError, OSError, EOFError) as exc:
         print(f'ForgeAI: {exc}', file=sys.stderr)
         return 2
+
+
+def main(argv=None):
+    with keep_awake():
+        return run(argv)
 
 
 if __name__ == '__main__':
