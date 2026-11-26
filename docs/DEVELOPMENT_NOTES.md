@@ -33,3 +33,11 @@ The added-invention probe's correctness label was clarified from "contains the e
 The first 4B workshop run reached evaluation generation, but repeated broad questions about the same topics despite duplicate feedback. The validator stopped instead of pretending the required suite existed. That run is preserved under `experiments/batch-evals-workshop/`; the accompanying coastal run was interrupted when its execution session ended.
 
 The replacement generator samples distinct verbatim facts from all source documents first, then asks the local model for one focused question per fact or cross-document fact pair. The code supplies the source references and expected quotations directly from the corpus. The model still writes every question. This reduces copied answer-key errors, discourages repetitive tests, and substantially reduces the amount of text the small model must generate. Draft suites are checkpointed and still never count as complete evaluations.
+
+## Cross-document oracle audit
+
+Inspecting the next generated suite found a two-source case whose question addressed only one expected fact. That would penalize a correct answer for failing to answer an unasked question. The run was stopped and retained under `experiments/cross-document-audit-workshop/`. Cross-document cases now compose two separately generated source-specific questions and retain those subquestions for inspection. Similar restatements are excluded from candidate pairs. This checks question coverage structurally, but does not prove semantic quality; reviewers should still inspect the question and both quotations.
+
+## Isolated tool selection
+
+Combining prompt drafting and tool explanations confused the small model about selected versus rejected tools. A short isolated selection probe correctly returned no tools for workshop policy questions and CSV lookup plus calculator for procurement. The factory now uses that separate selection step, validates registry names and CSV availability, and supplies the resulting allowlist to the prompt generator. The probe is a development observation, not evidence of universal tool-selection accuracy.

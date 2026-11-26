@@ -1,0 +1,6 @@
+{
+  "status": "interrupted_by_developer",
+  "stage": "iteration_1",
+  "started_utc": "2026-11-26T01:20:49.943169+00:00",
+  "error": "Stopped after detecting a generated cross-document question that ignored one expected source. No completed demonstration claim."
+}

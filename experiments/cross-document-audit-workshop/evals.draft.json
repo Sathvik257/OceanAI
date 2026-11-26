@@ -1,0 +1,266 @@
+{
+  "cases": [
+    {
+      "question": "What happens to the equipment booking fee if the Tide Workshop cancels a session due to unavailable equipment?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "04c1d2d7f2fe6924",
+          "quote": "If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice.",
+          "source": "bookings.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the applicable site for the membership access policy described in the membership document?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Applies to adult members at the Riverside site.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "Should medical information of other members be included in the general incident form at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "63c9277f98dcc8eb",
+          "quote": "Do not include another member's medical information in the general incident form.",
+          "source": "safety.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the maximum session length for the sewing station at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "The sewing station has a maximum session length of 120 minutes.",
+          "source": "bookings.md"
+        }
+      ]
+    },
+    {
+      "question": "Who should members contact for policy questions or accessibility requests at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "3f48e70838083962",
+          "quote": "Policy questions and accessibility requests should go to membership@tide.example.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "What action is prohibited for members when operating equipment at the Tide Workshop according to the safety policy?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "Members must not bypass interlocks, disable guards, or leave running equipment unattended.",
+          "source": "safety.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the maximum session length for a laser cutter booking at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "The laser cutter has a maximum session length of 90 minutes.",
+          "source": "bookings.md"
+        }
+      ]
+    },
+    {
+      "question": "What are the access hours for the Riverside site of the Tide Workshop on Saturdays?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "It opens Saturday from 10:00 to 16:00.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "What safety requirement must adult members follow before entering a machine zone at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "Tie back long hair before entering a machine zone.",
+          "source": "safety.md"
+        }
+      ]
+    },
+    {
+      "question": "What is required before a member can book a laser cutter session at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "Required induction and a current endorsement must be completed before making a laser cutter booking.",
+          "source": "bookings.md"
+        }
+      ]
+    },
+    {
+      "question": "Is it required for adult members to scan their own membership card when entering and leaving the Tide Workshop at the Riverside site?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Members must scan their own membership card when entering and leaving.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "Who is responsible for deciding whether equipment should be isolated following an incident at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "The steward decides whether equipment should be isolated.",
+          "source": "safety.md"
+        }
+      ]
+    },
+    {
+      "question": "What specific inductions and endorsements are required for a member to book a laser cutter session at the Tide Workshop?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "Required induction and a current endorsement must be completed before making a laser cutter booking.",
+          "source": "bookings.md"
+        },
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Laser cutter access requires a separate laser induction and a current equipment endorsement.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the duration of the general induction and how is it booked for adult members at the Tide Workshop?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "63c9277f98dcc8eb",
+          "quote": "Submit an incident form through the member portal before leaving the site, even if nobody was injured.",
+          "source": "safety.md"
+        },
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "General induction lasts 45 minutes and is booked through the member portal.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "What are the rules regarding membership card lending and the handling of medical information in incident reports at the Tide Workshop?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "63c9277f98dcc8eb",
+          "quote": "Do not include another member's medical information in the general incident form.",
+          "source": "safety.md"
+        },
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Lending a membership card to another person is not permitted.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "What are the access and safety requirements that adult members must follow when entering and using equipment at the Tide Workshop, including procedures for card scanning and prohibited actions?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "Members must not bypass interlocks, disable guards, or leave running equipment unattended.",
+          "source": "safety.md"
+        },
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Members must scan their own membership card when entering and leaving.",
+          "source": "membership.md"
+        }
+      ]
+    },
+    {
+      "question": "Provide the machine operating instructions for the 3D printer at the Tide Workshop.",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": []
+    },
+    {
+      "question": "Can members of the Tide Workshop receive medical advice regarding equipment use or health-related concerns at the facility?",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": []
+    },
+    {
+      "question": "Can a member of the Tide Workshop create an exception to the safety policy for personal reasons, such as a medical condition or equipment malfunction?",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": []
+    },
+    {
+      "question": "Discuss the procedures for using a 3D printer at the Tide Workshop beyond the established safety and policy guidelines.",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": []
+    },
+    {
+      "question": "If a member books a session using a specific type of equipment, what happens to the booking fee if the workshop cancels due to equipment unavailability?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": []
+    },
+    {
+      "question": "What are the access hours for adult members at the Tide Workshop's Riverside site on a day that is not a weekday?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": []
+    },
+    {
+      "question": "What information must be excluded when submitting an incident report at the Tide Workshop involving a member's equipment use?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": []
+    },
+    {
+      "question": "What is the maximum session length for the sewing station if a member books a session with two different equipment types?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": []
+    }
+  ],
+  "complete": false,
+  "rejected": []
+}

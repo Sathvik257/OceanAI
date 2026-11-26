@@ -78,7 +78,7 @@ flowchart LR
   J --> K[Portable agent + evidence report]
 ```
 
-The registry exposes three read-only tools: exact CSV lookup, bounded arithmetic and the current UTC date. The generator must justify attached tools with a phrase from the brief. Every actual invocation is checked against that agent's allowlist. A valid tool justification is still a model judgment, so reviewers should inspect it; quote validation alone cannot prove necessity.
+The registry exposes three read-only tools: exact CSV lookup, bounded arithmetic and the current UTC date. A separate local-model step selects tools from the brief; the factory rejects unknown tools and CSV lookup without a CSV source. Every actual invocation is checked against that agent's allowlist. Whether a selected tool is necessary remains a model judgment, so reviewers should inspect the recorded brief and selection.
 
 The test generator first samples distinct verbatim facts, spread across source documents, then asks the local model to write focused questions. Cross-document questions receive two nonredundant source facts; refusal and ambiguity questions have explicit generation tasks. Every question is generated at runtime. A frozen, stratified split keeps six cases out of optimization.
 

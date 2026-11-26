@@ -1,0 +1,76 @@
+{
+  "stage": "tool-selection",
+  "attempt": 1,
+  "request": {
+    "model": "qwen3-4b-instruct-2507",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Select ONLY registry tools explicitly needed by the brief. Return an empty list if none are needed. Reading prose policies does not require a CSV tool. Printed dates and lead times do not require the current date. A calculator is for requested computations, not general policy explanations. Do not select speculative future features.\nReturn JSON matching this example shape: {\"tools\": [\"\"]}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"brief\": \"Build a procurement assistant for technicians at a fictional coastal sensor research station. Look up exact sensor and spare-part SKUs in the supplied CSV catalogue, explain supplier lead times, warranty and ordering conditions from the supplier policies, and calculate item subtotals for requested quantities using catalogue unit prices. Keep currency explicit and do not invent tax, shipping charges, discounts, live stock or arrival guarantees. Ask which SKU is intended when an item description is ambiguous. Explain written compatibility limitations without recommending unlisted substitutes. Do not place orders or give medical, legal or unrelated advice.\\n\",\n  \"registry\": {\n    \"csv_lookup\": \"Exact lookup of a column value in a supplied CSV catalogue. Arguments: source, column, value.\",\n    \"calculator\": \"Arithmetic for requested quantities, totals or conversions. Argument: expression. No Python execution.\",\n    \"current_date\": \"Current UTC date only, when the brief requires live date awareness. No arguments.\"\n  },\n  \"has_csv\": true\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 100,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "tools"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"tools\": [\n    \"csv_lookup\",\n    \"calculator\"\n  ]\n}"
+        }
+      }
+    ],
+    "created": 1795656848,
+    "model": "qwen3-4b-instruct-2507",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 19,
+      "prompt_tokens": 290,
+      "total_tokens": 309,
+      "prompt_tokens_details": {
+        "cached_tokens": 87
+      }
+    },
+    "id": "chatcmpl-ooQLytzoMVuiWUpdhH5lAws7W03Nd8gQ",
+    "timings": {
+      "cache_n": 87,
+      "prompt_n": 203,
+      "prompt_ms": 3991.131,
+      "prompt_per_token_ms": 19.660743842364532,
+      "prompt_per_second": 50.862775488952884,
+      "predicted_n": 19,
+      "predicted_ms": 3382.156,
+      "predicted_per_token_ms": 187.89755555555556,
+      "predicted_per_second": 5.322049012523372
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 29.239
+}

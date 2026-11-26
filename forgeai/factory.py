@@ -38,6 +38,10 @@ def intake(model, brief, corpus, interactive=False):
     req['coverage'], req['gaps'] = [], []
     # Inspect every source through topic retrieval; lack of a supporting quote is conservative.
     for topic in req['must_answer']:
+        if re.search(r"\b(?:current\s+(?:utc\s+)?date|today(?:'s|’s)?\s+date)\b", topic, re.I):
+            req['coverage'].append({'topic': topic, 'supported': True, 'chunk_ids': [], 'quote': '',
+                                    'tool': 'current_date', 'reason': 'The registered current_date tool supplies the current UTC date; this is tool-backed, not a document claim.'})
+            continue
         evidence = retrieve(corpus['chunks'], topic, top_k=4, diversify=True)
         candidate = model.ask('coverage-extract', prompt('coverage_extract'), {'topic': topic, 'evidence': evidence},
                               {'chunk_id': '', 'quote': ''}, 250)
@@ -76,20 +80,26 @@ def intake(model, brief, corpus, interactive=False):
 
 
 def make_definition(model, req, corpus):
+    selection = model.ask('tool-selection', prompt('tool_selection'),
+                          {'brief': req['brief'], 'registry': REGISTRY,
+                           'has_csv': any(m['source'].lower().endswith('.csv') for m in corpus['manifest'])},
+                          {'tools': ['']}, 120)
+    selected = list(dict.fromkeys(selection['tools']))
+    if any(name not in REGISTRY for name in selected):
+        raise ValueError('Tool selector proposed an unknown registry tool')
+    if 'csv_lookup' in selected and not any(m['source'].lower().endswith('.csv') for m in corpus['manifest']):
+        raise ValueError('Tool selector requested CSV lookup without a CSV source')
+    required = {c['tool'] for c in req.get('coverage', []) if c.get('supported') and c.get('tool')}
+    if not required.issubset(selected):
+        raise ValueError('Tool-backed requirements lack their required tool attachment')
     generated = model.ask('agent-generation', prompt('generate'),
-                           {'brief': req['brief'], 'requirements': req, 'registry': REGISTRY}, DEFINITION, 1500)
-    accepted, rejected = {}, []
-    for tool in generated['tools']:
-        if tool['name'] not in REGISTRY or not tool['brief_quote'].strip() or normalize(tool['brief_quote']) not in normalize(req['brief']):
-            rejected.append({**tool, 'rejection': 'Unknown tool or untraceable brief justification'})
-        elif tool['name'] == 'csv_lookup' and not any(m['source'].endswith('.csv') for m in corpus['manifest']):
-            rejected.append({**tool, 'rejection': 'No CSV source exists'})
-        else:
-            accepted[tool['name']] = tool
+                           {'brief': req['brief'], 'requirements': req,
+                            'attached_tools': {name: REGISTRY[name] for name in selected}}, DEFINITION, 900)
     return {'schema_version': 1, 'name': generated['name'], 'system_prompt': generated['system_prompt'],
             'requirements': req, 'chunking': corpus['chunking'],
             'retrieval': {'method': 'bm25', 'top_k': max(2, min(6, generated['top_k'])), 'diversify': False},
-            'tools': list(accepted), 'tool_justifications': list(accepted.values()), 'rejected_tools': rejected,
+            'tools': selected, 'tool_selection': {'method': 'Isolated local-model selection from the brief, followed by registry and corpus validation.',
+                                                'brief': req['brief'], 'registry': REGISTRY},
             'output_contract': {'status': ['answered', 'refused', 'clarify'], 'answer': 'string',
                                 'evidence': [{'chunk_id': 'retrieved ID', 'quote': 'verbatim source text'}]},
             'corpus_file': 'corpus.json', 'documents_dir': 'documents', 'corpus_sha256': digest(corpus)}
@@ -207,7 +217,7 @@ def build(model, brief, documents, output, interactive=False, max_iterations=3):
             target = out / 'documents' / entry['source']
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(Path(documents) / entry['source'], target)
-        for name in ['brief', 'coverage_extract', 'groundability', 'questions', 'generate', 'eval_question', 'answer', 'tool_plan', 'judge', 'critic']:
+        for name in ['brief', 'coverage_extract', 'groundability', 'questions', 'tool_selection', 'generate', 'eval_question', 'answer', 'tool_plan', 'judge', 'critic']:
             target = out / 'prompts' / (name + '.txt')
             target.parent.mkdir(exist_ok=True)
             target.write_text(prompt(name), encoding='utf-8')

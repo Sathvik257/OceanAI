@@ -76,7 +76,7 @@ def cross_document_pairs(facts):
             similarity = len(common) / max(1, len(term_sets[i] | term_sets[j]))
             numbers_a = set(re.findall(r'\d+', a['quote']))
             numbers_b = set(re.findall(r'\d+', facts[j]['quote']))
-            if similarity > .65 and numbers_a == numbers_b:
+            if similarity > .30 and numbers_a == numbers_b:
                 continue  # Two restatements of one fact do not require two documents.
             weight = sum(math.log(1 + len(facts)/df[t]) for t in common)
             pairs.append((weight, i, j))
@@ -116,14 +116,23 @@ def generate_evals(model, requirements, corpus):
         print(f'  Generating E{position+1:02d}: {kind}', flush=True)
         for attempt in range(3):
             try:
-                result = model.ask('eval-question', prompt('eval_question'),
-                                   {'scope': requirements['scope'], 'kind': kind, 'task': task,
-                                    'target_facts': targets, 'source_context': [index[t['chunk_id']] for t in targets],
-                                    'avoid_questions': [c['question'] for c in accepted],
-                                    'validation_feedback': rejected[-2:]}, {'question': ''}, 180)
-                case = {'question': result['question'], 'kind': kind,
+                parts = []
+                groups = [[t] for t in targets] if kind == 'multi_document' else [targets]
+                for group in groups:
+                    result = model.ask('eval-question', prompt('eval_question'),
+                                       {'scope': requirements['scope'], 'must_refuse': requirements['must_refuse'],
+                                        'kind': 'answerable' if kind == 'multi_document' else kind, 'task': task,
+                                        'target_facts': group, 'source_context': [index[t['chunk_id']] for t in group],
+                                        'avoid_questions': [c['question'] for c in accepted] + parts,
+                                        'validation_feedback': rejected[-2:]}, {'question': ''}, 180)
+                    if len(result['question'].strip()) < 12 or normalize(result['question']) in {normalize(p) for p in parts}:
+                        raise ValueError('Each source needs a distinct, nonempty question')
+                    parts.append(result['question'])
+                case = {'question': ' '.join(parts), 'kind': kind,
                         'expected_status': {'answerable': 'answered', 'multi_document': 'answered', 'out_of_scope': 'refused', 'ambiguous': 'clarify'}[kind],
                         'facts': [dict(f) for f in targets] if kind in {'answerable', 'multi_document'} else []}
+                if kind == 'multi_document':
+                    case['subquestions'] = parts
                 validate_case(case, chunks)
                 if normalize(case['question']) in {normalize(c['question']) for c in accepted}:
                     raise ValueError('Duplicate question; use the new target fact and a different question')

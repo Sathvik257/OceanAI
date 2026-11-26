@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "intake",
+  "started_utc": "2026-11-26T07:14:36.457564+05:30",
+  "error": "Inference and factory processes were no longer running when work resumed; no completed demonstration."
+}

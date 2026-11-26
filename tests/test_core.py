@@ -164,14 +164,18 @@ class CoreTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate({}, {'answer': ''})
 
-    def test_tool_selection_rejects_fabricated_brief_justification(self):
-        model = StubModel({'name': 'HR', 'system_prompt': 'Answer policy questions.', 'top_k': 99,
-                           'tools': [{'name': 'current_date', 'brief_quote': 'tell me today', 'reason': 'useful'}]})
+    def test_tool_selection_rejects_unknown_tools_and_missing_csv(self):
         req = {'brief': 'Explain workshop policy'}
         corpus = {'manifest': [], 'chunking': {'words': 180, 'overlap': 30}}
-        result = make_definition(model, req, corpus)
-        self.assertEqual(result['tools'], [])
-        self.assertEqual(result['retrieval']['top_k'], 6)
+        for tools in [['shell'], ['csv_lookup']]:
+            with self.assertRaises(ValueError):
+                make_definition(StubModel({'tools': tools}), req, corpus)
+
+    def test_tool_backed_requirements_must_have_the_tool_attached(self):
+        req = {'brief': 'Tell me the current UTC date', 'coverage': [{'supported': True, 'tool': 'current_date'}]}
+        corpus = {'manifest': [], 'chunking': {'words': 180, 'overlap': 30}}
+        with self.assertRaisesRegex(ValueError, 'lack their required tool'):
+            make_definition(StubModel({'tools': []}), req, corpus)
 
     def test_optimizer_changes_only_the_targeted_setting(self):
         definition = {'retrieval': {'top_k': 3, 'diversify': False}, 'system_prompt': 'Original', 'tools': []}
