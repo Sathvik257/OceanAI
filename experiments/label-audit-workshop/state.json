@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "iteration_1",
+  "started_utc": "2026-11-26T11:53:28.934037+05:30",
+  "error": "Stopped after manual audit found answerable questions mislabeled as ambiguous or refusal cases."
+}

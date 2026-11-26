@@ -217,7 +217,7 @@ def build(model, brief, documents, output, interactive=False, max_iterations=3):
             target = out / 'documents' / entry['source']
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(Path(documents) / entry['source'], target)
-        for name in ['brief', 'coverage_extract', 'groundability', 'questions', 'tool_selection', 'generate', 'eval_question', 'answer', 'tool_plan', 'judge', 'critic']:
+        for name in ['brief', 'coverage_extract', 'groundability', 'questions', 'tool_selection', 'generate', 'eval_question', 'eval_ambiguous', 'eval_refusal', 'answer', 'tool_plan', 'judge', 'critic']:
             target = out / 'prompts' / (name + '.txt')
             target.parent.mkdir(exist_ok=True)
             target.write_text(prompt(name), encoding='utf-8')

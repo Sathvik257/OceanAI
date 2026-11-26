@@ -1,0 +1,88 @@
+{
+  "summary": {
+    "passed": 1,
+    "total": 1,
+    "pass_rate": 1.0,
+    "failure_categories": {},
+    "by_kind": {
+      "answerable": {
+        "passed": 1,
+        "total": 1
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "E02",
+      "kind": "answerable",
+      "split": "development",
+      "passed": true,
+      "category": null,
+      "evidence_valid": true,
+      "status_correct": true,
+      "retrieval_hit": true,
+      "judge": {
+        "reason": "The candidate answer correctly identifies that the membership policy applies to the Riverside site, which is directly supported by the quoted evidence from membership.md. The quote explicitly states 'Applies to adult members at the Riverside site,' and the candidate accurately reflects this fact without adding unsupported details or misrepresenting the scope. The answer matches the expected facts and status.",
+        "correct": true,
+        "grounded": true,
+        "behavior": true
+      },
+      "execution": {
+        "response": {
+          "status": "answered",
+          "answer": "The membership policy applies to the Riverside site of the Tide Workshop.",
+          "evidence": [
+            {
+              "chunk_id": "c4f0ce4a0755cc50",
+              "quote": "Applies to adult members at the Riverside site."
+            }
+          ]
+        },
+        "raw_response": {
+          "status": "answered",
+          "answer": "The membership policy applies to the Riverside site of the Tide Workshop.",
+          "evidence": [
+            {
+              "chunk_id": "c4f0ce4a0755cc50",
+              "quote": "Applies to adult members at the Riverside site."
+            }
+          ]
+        },
+        "guard_errors": [],
+        "retrieved_ids": [
+          "c4f0ce4a0755cc50",
+          "04c1d2d7f2fe6924",
+          "3f48e70838083962"
+        ],
+        "retrieved": [
+          {
+            "id": "c4f0ce4a0755cc50",
+            "source": "membership.md",
+            "locator": "text",
+            "text": "# Tide Workshop membership and access Synthetic demonstration policy. This is not a real workshop or safety standard. Effective 1 October 2026. Applies to adult members at the Riverside site. ## Access The Riverside workshop opens Monday to Friday from 09:00 to 20:00. It opens Saturday from 10:00 to 16:00. The workshop is closed on Sunday. Members must scan their own membership card when entering and leaving. Lending a membership card to another person is not permitted. The minimum membership age is 18 years. ## Induction Every member must complete the general induction before entering a work area. General induction lasts 45 minutes and is booked through the member portal. Completing general induction does not authorize use of the laser cutter. Laser cutter access requires a separate laser induction and a current equipment endorsement. An endorsement expires 12 months after the induction date. A member with an expired endorsement must attend a refresher before booking that equipment. ## Membership and support Standard membership costs INR 900 per month. Membership fees do not include equipment booking fees or materials. Members can",
+            "start_word": 0,
+            "score": 3.40687
+          },
+          {
+            "id": "04c1d2d7f2fe6924",
+            "source": "bookings.md",
+            "locator": "text",
+            "text": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice. Refunds return to the original payment method within five working days. Membership fees and purchased materials are not refunded under this booking policy. ## Changes A booking cannot be transferred to another member. To change equipment, cancel the existing booking and create a new one. The cancellation timing rules still apply. The assistant cannot create, change, cancel, or refund bookings; it can explain the documented process only.",
+            "start_word": 150,
+            "score": 2.9913
+          },
+          {
+            "id": "3f48e70838083962",
+            "source": "membership.md",
+            "locator": "text",
+            "text": "attend a refresher before booking that equipment. ## Membership and support Standard membership costs INR 900 per month. Membership fees do not include equipment booking fees or materials. Members can pause membership once per calendar year for up to two months by emailing the membership desk before the next billing date. Pauses cannot be backdated. Policy questions and accessibility requests should go to membership@tide.example. Staff may offer help locating the applicable written policy; the assistant cannot approve exceptions. ## Missing policy This document does not define guest admission, weekend guest access, or companion access. Members must contact the membership desk for those questions. Opening hours alone do not establish whether guests are allowed.",
+            "start_word": 150,
+            "score": 1.93753
+          }
+        ],
+        "tool_results": []
+      }
+    }
+  ],
+  "complete": false
+}

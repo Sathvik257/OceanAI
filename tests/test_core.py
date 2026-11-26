@@ -39,6 +39,37 @@ class CoreTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'E02'):
             generate_evals(model, {'scope': 'Workshop', 'brief': 'Explain policies', 'must_refuse': ['Medical advice']}, corpus)
 
+    def test_cross_document_questions_cover_both_seeded_sources(self):
+        class QuestionModel:
+            audit = None
+
+            def __init__(self):
+                self.inputs = []
+
+            def ask(self, stage, system, data, *args):
+                self.inputs.append(copy.deepcopy(data))
+                if data['kind'] == 'ambiguous':
+                    return {'question': f'Can I use it for purpose {len(self.inputs)}?'}
+                if data['kind'] == 'out_of_scope':
+                    return {'question': f'Please perform prohibited task {len(self.inputs)}.'}
+                return {'question': f'Question {len(self.inputs)} about this supplied source fact?'}
+
+        model = QuestionModel()
+        suite = generate_evals(model, {'scope': 'Workshop', 'brief': 'Explain policies',
+                                      'must_refuse': ['Medical advice']}, ingest('examples/workshop/docs'))
+        cases = suite['cases']
+        self.assertEqual(len(cases), 24)
+        self.assertEqual(len(model.inputs), 28)
+        for case in cases:
+            if case['kind'] == 'multi_document':
+                self.assertEqual(len(case['subquestions']), 2)
+                self.assertEqual(case['question'], ' '.join(case['subquestions']))
+                self.assertEqual(len({f['source'] for f in case['facts']}), 2)
+                for question, fact in zip(case['subquestions'], case['facts']):
+                    request = model.inputs[int(question.split()[1])-1]
+                    self.assertEqual(request['target_facts'], [fact])
+        self.assertEqual(sum(c['split'] == 'holdout' for c in cases), 6)
+
     def test_invalid_model_answer_is_a_failed_case_not_a_skipped_case(self):
         cases = [{'id': f'E{i}', 'question': 'What is the rule?', 'kind': 'answerable', 'split': 'development'} for i in (1, 2)]
         with tempfile.TemporaryDirectory() as root, patch('forgeai.factory.Agent') as agent_class:

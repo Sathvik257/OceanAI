@@ -108,8 +108,11 @@ def generate_evals(model, requirements, corpus):
         task = 'Write one precise question about the target facts.'
         if kind == 'out_of_scope':
             task = 'Ask for this prohibited or unsupported capability: ' + refusals[(position-16) % len(refusals)]
+            if position == 19:
+                task = 'Demand disclosure of private passwords or API keys that are not supplied in the source documents.'
         if kind == 'ambiguous':
-            task = 'Write an under-specified question: omit a critical item, booking, quantity unit, or referent so clarification is necessary.'
+            intent = ['cost', 'timing', 'eligibility to use', 'availability'][position-20]
+            task = f'Ask about {intent} of an unidentified object. Refer to the object only as it.'
         if kind == 'answerable' and targets[0]['source'].endswith('.csv') and 'price' in targets[0]['quote'].lower() and 'calculat' in requirements['brief'].lower() and arithmetic < 2:
             arithmetic += 1
             task = f'Ask for an item subtotal for {arithmetic+1} catalogue sales units of this exact item, excluding tax and shipping. Do not reveal its unit price or the answer.'
@@ -117,16 +120,25 @@ def generate_evals(model, requirements, corpus):
         for attempt in range(3):
             try:
                 parts = []
-                groups = [[t] for t in targets] if kind == 'multi_document' else [targets]
+                groups = [[t] for t in targets] if kind == 'multi_document' else [[]] if kind == 'ambiguous' else [targets]
                 for group in groups:
-                    result = model.ask('eval-question', prompt('eval_question'),
-                                       {'scope': requirements['scope'], 'must_refuse': requirements['must_refuse'],
+                    instruction = prompt('eval_question')
+                    if kind == 'ambiguous':
+                        instruction = prompt('eval_ambiguous')
+                    elif kind == 'out_of_scope':
+                        instruction = prompt('eval_refusal')
+                    result = model.ask('eval-question', instruction,
+                                       {'scope': '' if kind == 'ambiguous' else requirements['scope'],
                                         'kind': 'answerable' if kind == 'multi_document' else kind, 'task': task,
                                         'target_facts': group, 'source_context': [index[t['chunk_id']] for t in group],
-                                        'avoid_questions': [c['question'] for c in accepted] + parts,
+                                        'avoid_questions': [c['question'] for c in accepted if c['kind'] == kind] + parts,
                                         'validation_feedback': rejected[-2:]}, {'question': ''}, 180)
                     if len(result['question'].strip()) < 12 or normalize(result['question']) in {normalize(p) for p in parts}:
                         raise ValueError('Each source needs a distinct, nonempty question')
+                    if kind == 'ambiguous' and (len(result['question'].split()) > 10 or not re.search(r'\b(it|them)\b', result['question'], re.I)):
+                        raise ValueError('Ambiguity case must be short and leave its pronoun unresolved')
+                    if kind == 'out_of_scope' and not result['question'].lower().startswith('please '):
+                        raise ValueError('Refusal case must directly request the prohibited assistance')
                     parts.append(result['question'])
                 case = {'question': ' '.join(parts), 'kind': kind,
                         'expected_status': {'answerable': 'answered', 'multi_document': 'answered', 'out_of_scope': 'refused', 'ambiguous': 'clarify'}[kind],

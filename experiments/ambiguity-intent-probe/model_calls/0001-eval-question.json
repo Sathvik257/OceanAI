@@ -1,0 +1,73 @@
+{
+  "stage": "eval-question",
+  "attempt": 1,
+  "request": {
+    "model": "qwen3-4b-instruct-2507",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Write one short, deliberately under-specified user question, at most 10 words. Use the unresolved pronoun it or them. Follow the requested intent. Never identify what it or them refers to. Do not include a policy name, equipment name, item code, location, date, or factual details. A reader must ask what the user means. Vary the intent from previous questions. Return only {\"question\":\"...\"}.\n\nReturn JSON matching this example shape: {\"question\": \"\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"scope\": \"\",\n  \"task\": \"Ask about cost of unidentified it or them. Omit what it or them refers to.\",\n  \"avoid_questions\": []\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 180,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"question\": \"What is the cost of it or them?\"}"
+        }
+      }
+    ],
+    "created": 1795675210,
+    "model": "qwen3-4b-instruct-2507",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 15,
+      "prompt_tokens": 148,
+      "total_tokens": 163,
+      "prompt_tokens_details": {
+        "cached_tokens": 18
+      }
+    },
+    "id": "chatcmpl-6o4MtXQALiO3CrNwYulHX7qgF7TUIZ8q",
+    "timings": {
+      "cache_n": 18,
+      "prompt_n": 130,
+      "prompt_ms": 793.147,
+      "prompt_per_token_ms": 6.101130769230769,
+      "prompt_per_second": 163.90404300842087,
+      "predicted_n": 15,
+      "predicted_ms": 1652.925,
+      "predicted_per_token_ms": 118.06607142857142,
+      "predicted_per_second": 8.469833779512077
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 2.558
+}

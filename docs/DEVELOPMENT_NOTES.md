@@ -41,3 +41,9 @@ Inspecting the next generated suite found a two-source case whose question addre
 ## Isolated tool selection
 
 Combining prompt drafting and tool explanations confused the small model about selected versus rejected tools. A short isolated selection probe correctly returned no tools for workshop policy questions and CSV lookup plus calculator for procurement. The factory now uses that separate selection step, validates registry names and CSV availability, and supplies the resulting allowlist to the prompt generator. The probe is a development observation, not evidence of universal tool-selection accuracy.
+
+## Refusal and ambiguity label audit
+
+The next manual audit found clear policy questions labeled as ambiguous and a refusal case asking whether an expired endorsement allowed booking. That is an answerable policy question, not a request for prohibited assistance. The run was stopped; its artifacts remain in `experiments/label-audit-workshop/`.
+
+The generator now uses separate prompts for positive, refusal and ambiguity cases. Ambiguity prompts receive no source facts and vary cost, timing, eligibility and availability while deliberately leaving a pronoun unresolved. Refusal prompts request the prohibited assistance directly rather than asking whether it is permitted. A separate case asks for unavailable private credentials. Length, pronoun, request-form and duplicate checks catch some mistakes, but these are limited structural checks, not proof of correct semantic labels. The small-model probes are retained alongside the failures.
