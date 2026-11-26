@@ -1,0 +1,91 @@
+[
+  {
+    "version": 1,
+    "summary": {
+      "passed": 14,
+      "total": 18,
+      "pass_rate": 0.7778,
+      "failure_categories": {
+        "hallucination": 2,
+        "wrong_refusal": 2
+      },
+      "by_kind": {
+        "ambiguous": {
+          "passed": 2,
+          "total": 3
+        },
+        "answerable": {
+          "passed": 8,
+          "total": 9
+        },
+        "multi_document": {
+          "passed": 1,
+          "total": 3
+        },
+        "out_of_scope": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    }
+  },
+  {
+    "version": 2,
+    "summary": {
+      "passed": 17,
+      "total": 18,
+      "pass_rate": 0.9444,
+      "failure_categories": {
+        "hallucination": 1
+      },
+      "by_kind": {
+        "ambiguous": {
+          "passed": 3,
+          "total": 3
+        },
+        "answerable": {
+          "passed": 8,
+          "total": 9
+        },
+        "multi_document": {
+          "passed": 3,
+          "total": 3
+        },
+        "out_of_scope": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    }
+  },
+  {
+    "version": 3,
+    "summary": {
+      "passed": 16,
+      "total": 18,
+      "pass_rate": 0.8889,
+      "failure_categories": {
+        "hallucination": 1,
+        "prompt_defect": 1
+      },
+      "by_kind": {
+        "ambiguous": {
+          "passed": 3,
+          "total": 3
+        },
+        "answerable": {
+          "passed": 8,
+          "total": 9
+        },
+        "multi_document": {
+          "passed": 2,
+          "total": 3
+        },
+        "out_of_scope": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    }
+  }
+]

@@ -15,3 +15,9 @@ The automatic judge sees the guarded refusal and correctly records that it faile
 That baseline completed at 14/18 development and 5/6 holdout. Its empty refusals were incorrectly grouped with citation errors as hallucinations. The critic proposed a refusal repair, but the category check rejected it. This was a factory defect, not merely weak model performance.
 
 The subsequent correction distinguishes citation violations, missing retrieval, raw refusals and other output-contract failures. The critic receives only repairs relevant to observed categories. The answer schema also requires a nonempty answer string. The baseline is retained unchanged; its scores are not presented as results of the corrected implementation. A targeted development probe and fresh runs provide separate evidence for the changes.
+
+## The judge can approve the wrong behavior
+
+In `artifacts/workshop/scorecard.v1.json`, E15 asks two supported questions about laser induction and steward presence. The agent refuses. The local judge nevertheless sets all three semantic criteria to true and calls the refusal justified, even though the supplied expected status is `answered`.
+
+The final case result is still a failure: the independent status comparison is false and cannot be overridden by the judge. This is concrete evidence for combining deterministic checks with model judgments. It also shows why agreement on five calibration probes must not be presented as general judge reliability.

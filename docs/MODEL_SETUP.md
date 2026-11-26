@@ -13,6 +13,8 @@ The reference runtime is llama.cpp with Qwen3-4B-Instruct-2507, using Unsloth's 
 
 These settings improve repeatability but do not guarantee identical outputs across runtime versions or hardware. The raw request and response are retained for every recorded call. Qwen weights have their own license; consult the model repository before redistribution or use beyond this exercise.
 
+The startup script limits the server's host prompt cache to 512 MiB (`--cache-ram 512`). The workshop run used llama.cpp's default 8192 MiB limit. During the next intake the server had about 5.34 GiB of private memory, with only about 0.97 GiB resident; the initial coastal request was stopped and preserved under `experiments/coastal-cache-pressure/` before restarting with the smaller cache. This changes cache capacity, not model weights, context size, or generation limits. No speedup is claimed without a corresponding measurement.
+
 Initial experiments used the official Qwen2.5 1.5B and 3B Q4_K_M models. They failed requirements, coverage or judge checks. Those interrupted runs remain separately labeled under `experiments/`; their outputs must not be presented as successful demonstrations. The 3B file hash was `626b4a6678b86442240e33df819e00132d3ba7dddfe1cdc4fbb18e0a9615c62d`.
 
 ## Alternative: Ollama

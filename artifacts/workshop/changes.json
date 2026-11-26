@@ -1,0 +1,46 @@
+[
+  {
+    "patch": "reduce_wrong_refusal",
+    "reason": "The failures involving wrong refusals (E15 and E16) stem from the agent incorrectly refusing to answer questions where the evidence directly and explicitly supports a response. In E16, the policies clearly state prohibitions on including medical information and lending membership cards, making the answer directly derivable. In E15, while the refusal is justified due to an implied rule not present in the policy, the agent fails to recognize that the evidence supports a direct answer to the stated facts. The 'reduce_wrong_refusal' patch ensures that when evidence directly answers a question within scope, the agent answers with the exact facts, even if the question phrasing differs. This directly addresses the hallucination and wrong refusal failures by enforcing a stricter rule: if the evidence supports an answer, it must be provided, not refused without justification.",
+    "addressed_failures": [
+      "E15",
+      "E16"
+    ],
+    "unaddressed_failures": [
+      "E08",
+      "E21"
+    ],
+    "change": "Do not refuse merely because the question uses different words from the policy. When evidence answers the question within scope, answer with its exact facts.",
+    "before_definition_sha256": "d1874861180ef34e8a8cedb77f8989e5dbefc9a4bb69cba49b93d481a56b45ed",
+    "after_definition_sha256": "ae53c594d9cb2582dc3c119099bc3eb5ce023c39cacf131e6002bb1948f224a9",
+    "score_before": 0.7778,
+    "evaluation_completed": true,
+    "accepted": true,
+    "score_after": 0.9444,
+    "regressions": [],
+    "improvements": [
+      "E15",
+      "E16",
+      "E21"
+    ]
+  },
+  {
+    "patch": "source_only",
+    "reason": "The failure is a hallucination caused by the agent refusing to answer a question that is directly supported by the expected facts. The agent incorrectly cites an inability to verify evidence, despite having a clear, explicitly stated source in the expected facts. Applying the 'source_only' patch ensures the agent only states information directly entailed by quoted evidence, preventing unsupported refusals and enforcing accurate, source-backed responses.",
+    "addressed_failures": [
+      "E08"
+    ],
+    "unaddressed_failures": [],
+    "change": "State only claims directly entailed by quoted evidence. Preserve numbers, exceptions and conditions. Refuse unsupported additions.",
+    "before_definition_sha256": "ae53c594d9cb2582dc3c119099bc3eb5ce023c39cacf131e6002bb1948f224a9",
+    "after_definition_sha256": "22f3137f02237fedaeeb125f2c4e5ee93b793535b8bea5486a0d9f10caf86c9e",
+    "score_before": 0.9444,
+    "evaluation_completed": true,
+    "accepted": false,
+    "score_after": 0.8889,
+    "regressions": [
+      "E15"
+    ],
+    "improvements": []
+  }
+]

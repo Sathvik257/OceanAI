@@ -1,0 +1,9 @@
+{
+  "source_run": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\interrupted-workshop-v3",
+  "recorded_prefix_calls": 140,
+  "unrecorded_token_reservation": 10000,
+  "unrecorded_seconds_reservation": 600,
+  "original_inference_seconds": 5491.969,
+  "note": "Exact request-prefix replay of actual saved inference. Replayed calls are not new model executions. A mismatch stops recovery. Budgets include prior usage and a conservative allowance for the lost in-flight request.",
+  "frozen_evals_sha256": "a3511a617450c1afe1f9e7fd301f00a43470896e1423320a451a453da1d01b0f"
+}

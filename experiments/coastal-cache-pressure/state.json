@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "intake",
+  "started_utc": "2026-11-26T21:24:10.123761+05:30",
+  "error": "Stopped during the first intake request to reduce the server prompt cache from default 8192 MiB to 512 MiB under measured memory pressure."
+}

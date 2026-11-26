@@ -29,6 +29,7 @@ $('title').textContent=data.agent.name;
 const selected=data.cards.find(c=>c.version===data.state.selected_version), hold=data.cards.find(c=>c.version==='holdout');
 for(const [label,value,caption] of [['Development',score(selected.summary),'Selected version '+data.state.selected_version],['Holdout',score(hold.summary),'Evaluated once after selection'],['Generated tests',data.evals.cases.length,'Quoted facts checked against sources'],['Local model',data.usage.model.replace('qwen3-',''),'Open weights, recorded inference']]){const e=node('div','', 'metric');e.append(node('span',label,'muted'),node('strong',value),node('small',caption,'muted'));$('metrics').append(e)}
 $('limits').textContent='Completed run. These small, model-generated samples do not establish production accuracy. Citation checks verify quote occurrence; semantic correctness still depends on an imperfect model judge.';
+if(data.usage.replayed_calls)$('limits').textContent+=` Recovery reused ${data.usage.replayed_calls} exact recorded responses; ${data.usage.new_calls} calls were newly executed. See recovery.json for provenance.`;
 for(const card of data.cards){const o=node('option',card.version==='holdout'?'Holdout — final agent':`Version ${card.version} — ${score(card.summary)} passed`);o.value=String(card.version);$('version').append(o)}
 $('version').value=String(data.state.selected_version);
 for(const gap of data.agent.requirements.gaps)$('gaps').append(node('li',gap));
@@ -37,6 +38,7 @@ $('tools').textContent=data.agent.tools.length?data.agent.tools.join(', '):'None
 function sourceButton(id){const c=chunkById[id], b=node('button',c?`${c.source} · ${c.locator}`:id);b.onclick=()=>{$('sourceTitle').textContent=c?`${c.source} · ${c.locator}`:id;$('sourceText').textContent=c?c.text:'Source unavailable';$('source').showModal()};return b}
 function show(s){const c=casesById[s.case_id], d=$('detail');d.replaceChildren();const badge=node('span',s.passed?'PASS':'FAIL','tag '+(s.passed?'pass':'fail'));d.append(badge,node('code',`${s.case_id} · ${c.kind} · ${c.split}`),node('h2',c.question));
 const x=s.execution,r=x?.response;d.append(node('h3','Expected behavior'),node('p',c.expected_status),node('h3','Actual response'),node('p',r?`${r.status}: ${r.answer}`:s.evaluation_error||'No response','prose'));
+d.append(node('h3','Deterministic checks'),node('p',`Expected status matched: ${s.status_correct} · Evidence contract valid: ${s.evidence_valid}`));
 d.append(node('h3','Judge verdict'),node('p',`Correct: ${s.judge.correct} · Grounded: ${s.judge.grounded} · Behavior: ${s.judge.behavior}`),node('p',s.judge.reason,'prose'));
 if(!s.passed)d.append(node('p','Failure category: '+s.category));
 d.append(node('h3','Expected source facts'));
