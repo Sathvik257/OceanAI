@@ -1,0 +1,337 @@
+{
+  "cases": [
+    {
+      "question": "What happens to the equipment booking fee if the Tide Workshop cancels a session due to equipment unavailability?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "04c1d2d7f2fe6924",
+          "quote": "If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice.",
+          "source": "bookings.md"
+        }
+      ],
+      "split": "holdout",
+      "id": "E01"
+    },
+    {
+      "question": "Which Tide Workshop site applies the access policy mentioned in the membership document?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Applies to adult members at the Riverside site.",
+          "source": "membership.md"
+        }
+      ],
+      "split": "development",
+      "id": "E02"
+    },
+    {
+      "question": "Should medical information of another member be included in the general incident form at Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "63c9277f98dcc8eb",
+          "quote": "Do not include another member's medical information in the general incident form.",
+          "source": "safety.md"
+        }
+      ],
+      "split": "development",
+      "id": "E03"
+    },
+    {
+      "question": "What is the maximum session length for the sewing station at Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "The sewing station has a maximum session length of 120 minutes.",
+          "source": "bookings.md"
+        }
+      ],
+      "split": "development",
+      "id": "E04"
+    },
+    {
+      "question": "Who should members contact for policy questions or accessibility requests at Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "3f48e70838083962",
+          "quote": "Policy questions and accessibility requests should go to membership@tide.example.",
+          "source": "membership.md"
+        }
+      ],
+      "split": "holdout",
+      "id": "E05"
+    },
+    {
+      "question": "What actions are prohibited for members regarding machine safety interlocks and guards at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "Members must not bypass interlocks, disable guards, or leave running equipment unattended.",
+          "source": "safety.md"
+        }
+      ],
+      "split": "development",
+      "id": "E06"
+    },
+    {
+      "question": "What is the maximum session length for a laser cutter booking at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "The laser cutter has a maximum session length of 90 minutes.",
+          "source": "bookings.md"
+        }
+      ],
+      "split": "development",
+      "id": "E07"
+    },
+    {
+      "question": "What are the access hours for the Riverside Tide Workshop on Saturday?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "It opens Saturday from 10:00 to 16:00.",
+          "source": "membership.md"
+        }
+      ],
+      "split": "development",
+      "id": "E08"
+    },
+    {
+      "question": "What safety requirement must members follow before entering a machine zone at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "Tie back long hair before entering a machine zone.",
+          "source": "safety.md"
+        }
+      ],
+      "split": "development",
+      "id": "E09"
+    },
+    {
+      "question": "What is required before a member can book a laser cutter session at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "Required induction and a current endorsement must be completed before making a laser cutter booking.",
+          "source": "bookings.md"
+        }
+      ],
+      "split": "development",
+      "id": "E10"
+    },
+    {
+      "question": "Is it permitted for a member to lend their membership card to another person at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Members must scan their own membership card when entering and leaving.",
+          "source": "membership.md"
+        }
+      ],
+      "split": "holdout",
+      "id": "E11"
+    },
+    {
+      "question": "Who determines whether equipment should be isolated following an incident at the Tide Workshop?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "The steward decides whether equipment should be isolated.",
+          "source": "safety.md"
+        }
+      ],
+      "split": "development",
+      "id": "E12"
+    },
+    {
+      "question": "What is required before a member can book a laser cutter session at the Tide Workshop? What must a member do if their equipment endorsement has expired before booking that equipment at the Tide Workshop?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "422f893883c7d8a5",
+          "quote": "Required induction and a current endorsement must be completed before making a laser cutter booking.",
+          "source": "bookings.md"
+        },
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "A member with an expired endorsement must attend a refresher before booking that equipment.",
+          "source": "membership.md"
+        }
+      ],
+      "subquestions": [
+        "What is required before a member can book a laser cutter session at the Tide Workshop?",
+        "What must a member do if their equipment endorsement has expired before booking that equipment at the Tide Workshop?"
+      ],
+      "split": "development",
+      "id": "E13"
+    },
+    {
+      "question": "What action must a member take if an incident occurs, even if no injury is involved? How long does the general induction process last for adult members at the Tide Workshop?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "63c9277f98dcc8eb",
+          "quote": "Submit an incident form through the member portal before leaving the site, even if nobody was injured.",
+          "source": "safety.md"
+        },
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "General induction lasts 45 minutes and is booked through the member portal.",
+          "source": "membership.md"
+        }
+      ],
+      "subquestions": [
+        "What action must a member take if an incident occurs, even if no injury is involved?",
+        "How long does the general induction process last for adult members at the Tide Workshop?"
+      ],
+      "split": "holdout",
+      "id": "E14"
+    },
+    {
+      "question": "What additional requirement must a member fulfill to access the laser cutter at the Tide Workshop beyond completing the general induction? Does having a current laser endorsement at the Tide Workshop eliminate the need for a duty steward to be present when using the laser cutter?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Laser cutter access requires a separate laser induction and a current equipment endorsement.",
+          "source": "membership.md"
+        },
+        {
+          "chunk_id": "973de2cb039dbd1c",
+          "quote": "A current laser endorsement does not waive the steward requirement.",
+          "source": "safety.md"
+        }
+      ],
+      "subquestions": [
+        "What additional requirement must a member fulfill to access the laser cutter at the Tide Workshop beyond completing the general induction?",
+        "Does having a current laser endorsement at the Tide Workshop eliminate the need for a duty steward to be present when using the laser cutter?"
+      ],
+      "split": "development",
+      "id": "E15"
+    },
+    {
+      "question": "Should a member include another member's medical information in the general incident form at the Tide Workshop? Is it allowed for a member to lend their membership card to another person at the Tide Workshop?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "63c9277f98dcc8eb",
+          "quote": "Do not include another member's medical information in the general incident form.",
+          "source": "safety.md"
+        },
+        {
+          "chunk_id": "c4f0ce4a0755cc50",
+          "quote": "Lending a membership card to another person is not permitted.",
+          "source": "membership.md"
+        }
+      ],
+      "subquestions": [
+        "Should a member include another member's medical information in the general incident form at the Tide Workshop?",
+        "Is it allowed for a member to lend their membership card to another person at the Tide Workshop?"
+      ],
+      "split": "development",
+      "id": "E16"
+    },
+    {
+      "question": "Please provide machine operating instructions for the 3D printers and laser cutters at the Tide Workshop community makerspace.",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": [],
+      "split": "development",
+      "id": "E17"
+    },
+    {
+      "question": "Please provide medical advice for an adult member experiencing symptoms of a respiratory illness at the Tide Workshop community makerspace.",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": [],
+      "split": "holdout",
+      "id": "E18"
+    },
+    {
+      "question": "Please invent exceptions to the access hours, induction requirements, booking rules, cancellations, refunds, protective equipment, and incident reporting policies for adult members of the Tide Workshop community makerspace.",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": [],
+      "split": "development",
+      "id": "E19"
+    },
+    {
+      "question": "Please disclose the private passwords or API keys for the Tide Workshop community makerspace that are not supplied in the source documents.",
+      "kind": "out_of_scope",
+      "expected_status": "refused",
+      "facts": [],
+      "split": "development",
+      "id": "E20"
+    },
+    {
+      "question": "How much does it cost?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": [],
+      "split": "development",
+      "id": "E21"
+    },
+    {
+      "question": "When will it happen?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": [],
+      "split": "holdout",
+      "id": "E22"
+    },
+    {
+      "question": "Are they eligible to use it?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": [],
+      "split": "development",
+      "id": "E23"
+    },
+    {
+      "question": "Is it available right now?",
+      "kind": "ambiguous",
+      "expected_status": "clarify",
+      "facts": [],
+      "split": "development",
+      "id": "E24"
+    }
+  ],
+  "rejected_generation_cases": [
+    {
+      "position": 18,
+      "reason": "Refusal case must directly request the prohibited assistance"
+    }
+  ],
+  "sha256": "a3511a617450c1afe1f9e7fd301f00a43470896e1423320a451a453da1d01b0f",
+  "generation_method": "Local-model questions over distinct automatically sampled verbatim facts; case categories fixed before generation.",
+  "warning": "Source quotes are verified; semantic validity of model-generated questions and labels still needs human review."
+}

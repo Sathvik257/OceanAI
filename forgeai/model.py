@@ -51,6 +51,10 @@ def constrained_schema(example, data):
                 value['enum'] = ['answered', 'refused', 'clarify']
             if key == 'kind':
                 value['enum'] = ['answerable', 'multi_document', 'out_of_scope', 'ambiguous']
+            if key == 'answer':
+                value['minLength'] = 1
+            if key == 'patch' and isinstance(data.get('allowed_patches'), dict):
+                value['enum'] = list(data['allowed_patches'])
             visit(value)
         if 'items' in node:
             visit(node['items'])

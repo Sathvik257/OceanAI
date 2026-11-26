@@ -1,0 +1,17 @@
+# Secondary evidence review
+
+These observations were made during AI-assisted development by inspecting saved artifacts. They are not an independent human benchmark. The candidate should check them against the source documents before submission.
+
+## Workshop: citation fidelity can reject a correct fact
+
+In the completed baseline under `experiments/diagnosis-audit-workshop/`, E08 asks for Saturday access hours. The raw answer correctly gives 10:00–16:00. Its purported quotation is “The Riverside workshop opens Saturday from 10:00 to 16:00.” The actual source says “It opens Saturday from 10:00 to 16:00.”
+
+The quotation-occurrence guard rejects that rewritten sentence, replaces the visible answer with a refusal, and retains both the raw answer and guard error in the scorecard. The factory classifies the failed citation as `hallucination`, one of the four assignment categories. This should not be described as inventing the opening hours: it is a citation-fidelity failure. Strict quotation checking trades some useful answers for inspectable evidence.
+
+The automatic judge sees the guarded refusal and correctly records that it failed to answer a supported question. Its explanation alone does not reveal why the guard refused, so inspect `raw_response` and `guard_errors` as well as the judge verdict.
+
+## Diagnosis must preserve the reason for a guard failure
+
+That baseline completed at 14/18 development and 5/6 holdout. Its empty refusals were incorrectly grouped with citation errors as hallucinations. The critic proposed a refusal repair, but the category check rejected it. This was a factory defect, not merely weak model performance.
+
+The subsequent correction distinguishes citation violations, missing retrieval, raw refusals and other output-contract failures. The critic receives only repairs relevant to observed categories. The answer schema also requires a nonempty answer string. The baseline is retained unchanged; its scores are not presented as results of the corrected implementation. A targeted development probe and fresh runs provide separate evidence for the changes.

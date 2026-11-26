@@ -7,7 +7,7 @@ from unittest.mock import patch
 from forgeai.agent import evidence_errors, Agent
 from forgeai.corpus import ingest, retrieve
 from forgeai.evaluation import validate_case, summarize, score_case, fact_candidates, cross_document_pairs, generate_evals
-from forgeai.model import LocalModel, BudgetExceeded, ModelOutputError, validate
+from forgeai.model import LocalModel, BudgetExceeded, ModelOutputError, validate, constrained_schema
 from forgeai.factory import make_definition, propose_patch, intake, build, evaluate
 from forgeai.storage import save, digest
 from forgeai.tools import calculator, execute
@@ -219,9 +219,26 @@ class CoreTests(unittest.TestCase):
     def test_optimizer_rejects_patch_unrelated_to_diagnosed_failures(self):
         definition = {'retrieval': {'top_k': 3, 'diversify': False}, 'system_prompt': 'Original', 'tools': []}
         score = {'case_id': 'E1', 'passed': False, 'category': 'retrieval_miss', 'kind': 'answerable', 'judge': {'reason': 'Missing evidence'}}
-        changed, log = propose_patch(StubModel({'patch': 'source_only', 'reason': 'Be more grounded'}), definition, [score], set())
-        self.assertIsNone(changed)
-        self.assertEqual(log['patch'], 'stop')
+        with self.assertRaisesRegex(ValueError, 'disallowed patch'):
+            propose_patch(StubModel({'patch': 'source_only', 'reason': 'Be more grounded'}), definition, [score], set())
+
+    def test_schema_prevents_blank_answers_and_unrelated_repairs(self):
+        answer_schema = constrained_schema({'answer': ''}, {})
+        self.assertEqual(answer_schema['properties']['answer']['minLength'], 1)
+        patch_schema = constrained_schema({'patch': ''}, {'allowed_patches': {'source_only': 'Copy sources', 'stop': 'Stop'}})
+        self.assertEqual(patch_schema['properties']['patch']['enum'], ['source_only', 'stop'])
+
+    def test_empty_refusals_are_not_diagnosed_as_invented_citations(self):
+        model = StubModel({'correct': False, 'grounded': False, 'behavior': False, 'reason': 'No useful answer'})
+        case = {'id': 'E1', 'kind': 'answerable', 'split': 'development', 'expected_status': 'answered',
+                'question': 'What is the rule?', 'facts': [{'chunk_id': 'a', 'quote': 'The rule is stated.'}]}
+        execution = {'response': {'status': 'refused', 'answer': 'Guard refused', 'evidence': []},
+                     'raw_response': {'status': 'refused', 'answer': '', 'evidence': []},
+                     'guard_errors': ['Empty answer'], 'retrieved_ids': ['a'], 'retrieved': [], 'tool_results': []}
+        self.assertEqual(score_case(model, case, execution)['category'], 'wrong_refusal')
+        case['expected_status'] = 'clarify'
+        case['facts'] = []
+        self.assertEqual(score_case(model, case, execution)['category'], 'prompt_defect')
 
     def test_judge_cannot_override_fabricated_evidence(self):
         model = StubModel({'correct': True, 'grounded': True, 'behavior': True, 'reason': 'Looks good'})

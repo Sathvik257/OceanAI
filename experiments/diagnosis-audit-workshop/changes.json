@@ -1,0 +1,8 @@
+[
+  {
+    "patch": "stop",
+    "reason": "The critic proposed a patch with no matching diagnosed failures; no change applied.",
+    "accepted": false,
+    "score_before": 0.7778
+  }
+]

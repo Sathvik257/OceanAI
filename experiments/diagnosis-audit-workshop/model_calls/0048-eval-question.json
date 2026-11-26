@@ -1,0 +1,73 @@
+{
+  "stage": "eval-question",
+  "attempt": 1,
+  "request": {
+    "model": "qwen3-4b-instruct-2507",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Write one short, deliberately under-specified user question, at most 10 words. Use the unresolved pronoun it or them. Follow the requested intent. Never identify what it or them refers to. Do not include a policy name, equipment name, item code, location, date, or factual details. A reader must ask what the user means. Vary the intent from previous questions. Return only {\"question\":\"...\"}.\n\nReturn JSON matching this example shape: {\"question\": \"\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"scope\": \"\",\n  \"kind\": \"ambiguous\",\n  \"task\": \"Ask about eligibility to use of an unidentified object. Refer to the object only as it.\",\n  \"target_facts\": [],\n  \"source_context\": [],\n  \"avoid_questions\": [\n    \"How much does it cost?\",\n    \"When will it happen?\"\n  ],\n  \"validation_feedback\": [\n    {\n      \"position\": 18,\n      \"reason\": \"Refusal case must directly request the prohibited assistance\"\n    }\n  ]\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 180,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"question\": \"Are they eligible to use it?\"}"
+        }
+      }
+    ],
+    "created": 1795675683,
+    "model": "qwen3-4b-instruct-2507",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 13,
+      "prompt_tokens": 220,
+      "total_tokens": 233,
+      "prompt_tokens_details": {
+        "cached_tokens": 127
+      }
+    },
+    "id": "chatcmpl-ngJsY5sNWqbqkOTcGt6DsGd56Hvkqnuz",
+    "timings": {
+      "cache_n": 127,
+      "prompt_n": 93,
+      "prompt_ms": 1508.963,
+      "prompt_per_token_ms": 16.225408602150537,
+      "prompt_per_second": 61.631729870116104,
+      "predicted_n": 13,
+      "predicted_ms": 1999.397,
+      "predicted_per_token_ms": 166.61641666666665,
+      "predicted_per_second": 6.001809545577991
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 3.542
+}

@@ -187,12 +187,17 @@ def score_case(model, case, run):
     passed = evidence_ok and status_ok and all(judgment[k] for k in ('correct', 'grounded', 'behavior'))
     category = None
     if not passed:
-        if not evidence_ok:
+        citation_failure = any(any(word in error.lower() for word in ('quote', 'citation', 'no source evidence'))
+                               for error in run['guard_errors'])
+        raw_status = run.get('raw_response', response)['status']
+        if citation_failure:
             category = 'hallucination'
         elif expected == 'answered' and not retrieval_hit:
             category = 'retrieval_miss'
-        elif expected == 'answered' and response['status'] == 'refused':
+        elif expected == 'answered' and raw_status == 'refused':
             category = 'wrong_refusal'
+        elif not evidence_ok:
+            category = 'prompt_defect'
         elif not judgment['grounded']:
             category = 'hallucination'
         else:

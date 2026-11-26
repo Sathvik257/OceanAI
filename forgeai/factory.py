@@ -107,7 +107,11 @@ def make_definition(model, req, corpus):
 
 def propose_patch(model, definition, scores, used):
     failures = [{'id': s['case_id'], 'category': s['category'], 'reason': s['judge']['reason']} for s in scores if not s['passed']]
-    allowed = {k: v for k, v in PATCHES.items() if k not in used}
+    targets = {'increase_retrieval': 'retrieval_miss', 'diversify_retrieval': 'retrieval_miss',
+               'source_only': 'hallucination', 'reduce_wrong_refusal': 'wrong_refusal',
+               'clarify_and_cover': 'prompt_defect'}
+    categories = {s['category'] for s in failures}
+    allowed = {k: v for k, v in PATCHES.items() if k not in used and targets[k] in categories}
     if definition['retrieval']['top_k'] >= 8:
         allowed.pop('increase_retrieval', None)
     if definition['retrieval']['diversify']:
@@ -122,9 +126,6 @@ def propose_patch(model, definition, scores, used):
         raise ValueError('Critic proposed a disallowed patch')
     changed = copy.deepcopy(definition)
     name = result['patch']
-    targets = {'increase_retrieval': 'retrieval_miss', 'diversify_retrieval': 'retrieval_miss',
-               'source_only': 'hallucination', 'reduce_wrong_refusal': 'wrong_refusal',
-               'clarify_and_cover': 'prompt_defect'}
     addressed = [s['id'] for s in failures if s['category'] == targets[name]]
     if not addressed:
         return None, {'patch': 'stop', 'reason': 'The critic proposed a patch with no matching diagnosed failures; no change applied.'}
@@ -186,6 +187,7 @@ def report(out, state, iterations, patches, holdout, stats):
               '- Expected facts are verified verbatim against sources; the questions, refusal labels and coverage claims still require human review. A wrong test oracle can distort scores.',
               '- BM25 can miss paraphrases. PDFs need extractable text; scanned pages have no automatic OCR. Tables in PDFs may lose layout.',
               '- The optimizer sees development failures only. Holdout remains a small in-domain check, not an unseen-domain benchmark.',
+              '- Demo artifacts were inspected during development. Holdout is hidden from the in-run optimizer, not an untouched external benchmark of the development process.',
               '- Corpus text and model call transcripts are stored locally in artifacts. Do not publish runs containing confidential input.',
               '- Source prompt injection, model errors and incorrect tool arguments remain risks. Tools are read-only and bounded; no generated code is executed.',
               '- Live date values depend on the run date. No external weather or paid service is required.', '']

@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "intake",
+  "started_utc": "2026-11-26T12:38:34.105676+05:30",
+  "error": "Stopped during intake to correct diagnosis using the completed workshop evidence."
+}
