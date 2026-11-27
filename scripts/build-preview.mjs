@@ -15,6 +15,4 @@ for (const name of ['workshop', 'coastal']) {
     await copyFile(dir + '/' + file, out + '/' + dir + '/' + file);
   }
 }
-for (const file of ['demo.html', 'forgeai-demo.mp4']) {
-  await copyFile(file, out + '/' + file);
-}
+await copyFile('forgeai-demo.mp4', out + '/forgeai-demo.mp4');
