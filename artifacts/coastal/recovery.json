@@ -1,0 +1,9 @@
+{
+  "source_run": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\coastal-interrupted-e09",
+  "recorded_prefix_calls": 67,
+  "unrecorded_token_reservation": 40000,
+  "unrecorded_seconds_reservation": 2400,
+  "original_inference_seconds": 1459.255,
+  "note": "Exact request-prefix replay of actual saved inference. Replayed calls are not new model executions. A mismatch stops recovery. Budgets include prior usage and a conservative allowance for the lost in-flight request.",
+  "frozen_evals_sha256": "e6f6a22b6e8491511880c7abefada05e0b2ff20768763cca95f791392b65b751"
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "run": "workshop",
+    "holdout_failures": 0,
+    "js_errors": [],
+    "desktop_and_mobile": "checked"
+  },
+  {
+    "run": "coastal",
+    "holdout_failures": 2,
+    "js_errors": [],
+    "desktop_and_mobile": "checked"
+  }
+]

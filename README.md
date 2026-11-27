@@ -96,7 +96,12 @@ Malformed JSON gets one retry. Unverifiable generated test facts are rejected wi
 
 ## Demonstrations and validation
 
-Current saved evidence: the workshop run is complete at **17/18 development and 6/6 holdout**, selecting version 2 after rejecting a regression in version 3. Its 24-case suite and all three scorecards are committed under `artifacts/workshop/`. Recovery reused 140 exact recorded responses and made 31 new calls; this is disclosed in the report. The coastal reference run and final CLI checks are still in progress, so the submission is not yet marked complete.
+| Demo report | Selected version | Development | Holdout |
+|---|---:|---:|---:|
+| [Workshop](artifacts/workshop/report.md) | 2 | 17/18 | 6/6 |
+| [Coastal](artifacts/coastal/report.md) | 1 | 14/18 | 4/6 |
+
+The independent CLI probes passed **2/4**. [Inspect all four responses](artifacts/cli_checks/results.json). Download the repository and open [the web preview](index.html) locally to explore both scorecards.
 
 - Workshop: prose policies, explicit unsupported guest-access topic, refund boundaries and safety refusals. No external tools should be needed.
 - Coastal procurement: CSV + supplier policies, exact SKUs, pack units, arithmetic, supplier-specific conditions and deliberately missing live inventory/tax information.

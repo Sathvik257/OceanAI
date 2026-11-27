@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "name": "Procurement Assistant for Coastal Sensor Technicians",
+  "system_prompt": "Address technicians at a fictional coastal sensor research station with clear, precise, and technical language. Identify exact SKUs from the CSV catalogue only when item descriptions are unambiguous; explicitly ask for clarification when descriptions are ambiguous (e.g., 'seal', 'battery pack'). Explain supplier lead times, warranty terms (e.g., 18-month manufacturing defect warranty), and ordering conditions (e.g., minimum order subtotal of INR 3000) directly from supplier policies. Calculate item subtotals using unit prices and requested quantities only if unit prices and quantities are provided in the catalogue. Maintain explicit currency (e.g., INR) without inventing tax, shipping, discounts, or arrival guarantees. Clarify written compatibility limitations (e.g., working-day lead times, exclusion of wear) without recommending unlisted substitutes. Refuse to place orders, provide medical/legal advice, or invent data not present in the catalogue or supplier policies. Tool requests are read-only; no external actions or assumptions are permitted.\nState only claims directly entailed by quoted evidence. Preserve numbers, exceptions and conditions. Refuse unsupported additions.",
+  "requirements": {
+    "scope": "Build a procurement assistant for technicians at a fictional coastal sensor research station that looks up sensor and spare-part SKUs from a supplied CSV catalogue, retrieves supplier lead times, warranty terms, and ordering conditions, and calculates item subtotals based on unit prices. The assistant must operate strictly within defined parameters and not perform order placement or provide unrelated advice.",
+    "audience": "Technicians at a fictional coastal sensor research station",
+    "tone": "Clear, precise, and technical",
+    "must_answer": [
+      "Explain supplier lead times for each requested item",
+      "Explain warranty terms for each requested item",
+      "Explain ordering conditions (e.g., minimum order quantities, batch requirements) from supplier policies",
+      "Calculate item subtotals using catalogue unit prices and requested quantities",
+      "Maintain explicit currency representation (e.g., USD, EUR) without inventing tax, shipping, discounts, or arrival guarantees",
+      "Clarify written compatibility limitations without recommending unlisted substitutes",
+      "Ask explicitly when an item description is ambiguous or insufficient to determine the correct SKU"
+    ],
+    "must_refuse": [
+      "Placing any orders or initiating purchase actions",
+      "Providing medical, legal, or unrelated advice",
+      "Inventing tax, shipping charges, discounts, or live stock provisions",
+      "Assuming arrival guarantees or delivery timelines beyond supplier policy",
+      "Recommending substitutes or unlisted compatible parts",
+      "Modifying or inventing data not present in the CSV catalogue",
+      "Keep currency explicit and do not invent tax, shipping charges, discounts, live stock or arrival guarantees.",
+      "Do not place orders or give medical, legal or unrelated advice.",
+      "Identify exact sensor and spare-part SKUs from the CSV catalogue when item descriptions are ambiguous"
+    ],
+    "questions": [
+      "What is the standard currency (e.g., USD, EUR, INR) used in the CSV catalogue for sensor and spare-part pricing?",
+      "Are there specific examples of ambiguous item descriptions (e.g., 'seal', 'battery pack') in technician requests that need to be clarified?",
+      "Do the supplier policies explicitly state any compatibility limitations beyond those already documented (e.g., sensor model restrictions, environmental conditions)?",
+      "Is there a defined process or format for technicians to provide item descriptions when ambiguity is suspected?",
+      "What are the known SKUs in the catalogue that are commonly misidentified or described ambiguously in requests?"
+    ],
+    "assumptions": [
+      "The CSV catalogue contains complete and accurate SKU mappings for sensors and spare parts",
+      "Supplier policies are publicly available and clearly documented in the provided data",
+      "All item descriptions in requests are either fully specific or ambiguous enough to require clarification",
+      "Technicians will provide quantities and descriptions in a format that can be matched to the catalogue",
+      "The assistant operates in a controlled environment with no real-time connectivity to external databases",
+      "Clarifying questions were not answered; use only supported document scope and refuse missing information."
+    ],
+    "coverage": [
+      {
+        "topic": "Identify exact sensor and spare-part SKUs from the CSV catalogue when item descriptions are ambiguous",
+        "chunk_id": "",
+        "quote": "",
+        "supported": false,
+        "reason": "No verifiable relevant quote was found.",
+        "chunk_ids": [],
+        "attempts": [
+          {
+            "chunk_id": "",
+            "quote": "",
+            "supported": false,
+            "reason": "No verifiable relevant quote was found."
+          }
+        ]
+      },
+      {
+        "topic": "Explain supplier lead times for each requested item",
+        "chunk_id": "a0bbef001b390bd9",
+        "quote": "lead_time_working_days: 5",
+        "supported": true,
+        "reason": "The quote specifies a lead time of 5 working days for the item 'Temperature probe' (sku: TP-20), which directly addresses the supplier lead time for a requested item. Although only one item is mentioned, the topic asks for lead times for 'each requested item,' and this source provides a concrete, relevant value for at least one such item.",
+        "chunk_ids": [
+          "a0bbef001b390bd9"
+        ],
+        "attempts": [
+          {
+            "chunk_id": "a0bbef001b390bd9",
+            "quote": "lead_time_working_days: 5",
+            "supported": true,
+            "reason": "The quote specifies a lead time of 5 working days for the item 'Temperature probe' (sku: TP-20), which directly addresses the supplier lead time for a requested item. Although only one item is mentioned, the topic asks for lead times for 'each requested item,' and this source provides a concrete, relevant value for at least one such item."
+          }
+        ]
+      },
+      {
+        "topic": "Explain warranty terms for each requested item",
+        "chunk_id": "d29a76c561009d19",
+        "quote": "The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear",
+        "supported": true,
+        "reason": "The quote specifies that the PH-30 probe and Logger L3 each have an 18-month manufacturing-defect warranty from dispatch, and that the warranty excludes wear. This provides clear, concrete warranty terms for each requested item (PH-30 probe and Logger L3), directly addressing the topic of warranty terms for each item.",
+        "chunk_ids": [
+          "d29a76c561009d19"
+        ],
+        "attempts": [
+          {
+            "chunk_id": "d29a76c561009d19",
+            "quote": "The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear",
+            "supported": true,
+            "reason": "The quote specifies that the PH-30 probe and Logger L3 each have an 18-month manufacturing-defect warranty from dispatch, and that the warranty excludes wear. This provides clear, concrete warranty terms for each requested item (PH-30 probe and Logger L3), directly addressing the topic of warranty terms for each item."
+          }
+        ]
+      },
+      {
+        "topic": "Explain ordering conditions (e.g., minimum order quantities, batch requirements) from supplier policies",
+        "chunk_id": "8c3fea60d5f19727",
+        "quote": "The minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping.",
+        "supported": true,
+        "reason": "The quote explicitly states that the minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping, which directly addresses a key ordering condition (minimum order quantity). This provides a concrete, relevant value from the supplier policy as requested in the topic.",
+        "chunk_ids": [
+          "8c3fea60d5f19727"
+        ],
+        "attempts": [
+          {
+            "chunk_id": "8c3fea60d5f19727",
+            "quote": "The minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping.",
+            "supported": true,
+            "reason": "The quote explicitly states that the minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping, which directly addresses a key ordering condition (minimum order quantity). This provides a concrete, relevant value from the supplier policy as requested in the topic."
+          }
+        ]
+      },
+      {
+        "topic": "Calculate item subtotals using catalogue unit prices and requested quantities",
+        "chunk_id": "a0bbef001b390bd9",
+        "quote": "sku: TP-20; description: Temperature probe; supplier: Estuary Instruments; unit_price_inr: 2100; unit: each; lead_time_working_days: 5; compatibility: Logger L2 and L3",
+        "supported": true,
+        "reason": "The source provides a unit price of 2100 INR per item (unit: each) for SKU TP-20. Given a requested quantity, the item subtotal can be calculated by multiplying the unit price by the quantity. Although the requested quantity is not specified in the quote, the unit price is explicitly available and sufficient to compute a subtotal for any given quantity.",
+        "chunk_ids": [
+          "a0bbef001b390bd9"
+        ],
+        "attempts": [
+          {
+            "chunk_id": "8c3fea60d5f19727",
+            "quote": "Item subtotals therefore cannot be presented as final payable totals.",
+            "supported": false,
+            "reason": "The source explicitly states that 'item subtotals therefore cannot be presented as final payable totals' and provides no concrete unit prices or quantities to calculate item subtotals. While it mentions catalogue prices are in INR and exclude tax and shipping, it does not specify any actual prices or requested quantities needed to compute subtotals. Therefore, no actionable data exists to calculate item subtotals from the given information."
+          },
+          {
+            "chunk_id": "a0bbef001b390bd9",
+            "quote": "sku: TP-20; description: Temperature probe; supplier: Estuary Instruments; unit_price_inr: 2100; unit: each; lead_time_working_days: 5; compatibility: Logger L2 and L3",
+            "supported": true,
+            "reason": "The source provides a unit price of 2100 INR per item (unit: each) for SKU TP-20. Given a requested quantity, the item subtotal can be calculated by multiplying the unit price by the quantity. Although the requested quantity is not specified in the quote, the unit price is explicitly available and sufficient to compute a subtotal for any given quantity."
+          }
+        ]
+      },
+      {
+        "topic": "Maintain explicit currency representation (e.g., USD, EUR) without inventing tax, shipping, discounts, or arrival guarantees",
+        "chunk_id": "8c3fea60d5f19727",
+        "quote": "Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals.",
+        "supported": true,
+        "reason": "The source explicitly states that catalogue prices are in INR (Indian Rupees), providing a clear and explicit currency representation. This directly supports the topic's requirement to maintain explicit currency representation without inventing other details like tax, shipping, or guarantees. Although tax and shipping are excluded and not specified, the currency (INR) is clearly defined and present in the quote, fulfilling the core requirement of explicit currency representation.",
+        "chunk_ids": [
+          "8c3fea60d5f19727"
+        ],
+        "attempts": [
+          {
+            "chunk_id": "8c3fea60d5f19727",
+            "quote": "Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals.",
+            "supported": true,
+            "reason": "The source explicitly states that catalogue prices are in INR (Indian Rupees), providing a clear and explicit currency representation. This directly supports the topic's requirement to maintain explicit currency representation without inventing other details like tax, shipping, or guarantees. Although tax and shipping are excluded and not specified, the currency (INR) is clearly defined and present in the quote, fulfilling the core requirement of explicit currency representation."
+          }
+        ]
+      },
+      {
+        "topic": "Clarify written compatibility limitations without recommending unlisted substitutes",
+        "chunk_id": "8c3fea60d5f19727",
+        "quote": "Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. The holiday calendar is not provided. Lead times are estimates, not guaranteed arrival dates.",
+        "supported": true,
+        "reason": "The quote explicitly states that quoted lead times are working days from written order acceptance, not calendar days from a user query, and that the supplier operates Monday to Friday, excluding holidays. While the holiday calendar is not provided, the source clearly defines the working day basis for lead times and specifies that lead times are estimates, not guaranteed. This provides a concrete, documented limitation on timing—specifically, that lead times are based on working days and not calendar days—without recommending unlisted substitutes. Thus, the written compatibility limitation (timing based on working days) is clearly defined and supported.",
+        "chunk_ids": [
+          "8c3fea60d5f19727"
+        ],
+        "attempts": [
+          {
+            "chunk_id": "8c3fea60d5f19727",
+            "quote": "Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. The holiday calendar is not provided. Lead times are estimates, not guaranteed arrival dates.",
+            "supported": true,
+            "reason": "The quote explicitly states that quoted lead times are working days from written order acceptance, not calendar days from a user query, and that the supplier operates Monday to Friday, excluding holidays. While the holiday calendar is not provided, the source clearly defines the working day basis for lead times and specifies that lead times are estimates, not guaranteed. This provides a concrete, documented limitation on timing—specifically, that lead times are based on working days and not calendar days—without recommending unlisted substitutes. Thus, the written compatibility limitation (timing based on working days) is clearly defined and supported."
+          }
+        ]
+      },
+      {
+        "topic": "Ask explicitly when an item description is ambiguous or insufficient to determine the correct SKU",
+        "chunk_id": "d29a76c561009d19",
+        "quote": "Ask for clarification if a quantity could mean individual seals or packs.",
+        "supported": true,
+        "reason": "The source explicitly states: 'Ask for clarification if a quantity could mean individual seals or packs.' This directly addresses the topic of ambiguous item descriptions, specifically regarding the interpretation of quantities for seal kits. The quote provides a clear rule for handling such ambiguity, confirming that the source supports the topic.",
+        "chunk_ids": [
+          "d29a76c561009d19"
+        ],
+        "attempts": [
+          {
+            "chunk_id": "d29a76c561009d19",
+            "quote": "Ask for clarification if a quantity could mean individual seals or packs.",
+            "supported": true,
+            "reason": "The source explicitly states: 'Ask for clarification if a quantity could mean individual seals or packs.' This directly addresses the topic of ambiguous item descriptions, specifically regarding the interpretation of quantities for seal kits. The quote provides a clear rule for handling such ambiguity, confirming that the source supports the topic."
+          }
+        ]
+      }
+    ],
+    "gaps": [
+      "Identify exact sensor and spare-part SKUs from the CSV catalogue when item descriptions are ambiguous"
+    ],
+    "requested_topics": [
+      "Identify exact sensor and spare-part SKUs from the CSV catalogue when item descriptions are ambiguous",
+      "Explain supplier lead times for each requested item",
+      "Explain warranty terms for each requested item",
+      "Explain ordering conditions (e.g., minimum order quantities, batch requirements) from supplier policies",
+      "Calculate item subtotals using catalogue unit prices and requested quantities",
+      "Maintain explicit currency representation (e.g., USD, EUR) without inventing tax, shipping, discounts, or arrival guarantees",
+      "Clarify written compatibility limitations without recommending unlisted substitutes",
+      "Ask explicitly when an item description is ambiguous or insufficient to determine the correct SKU"
+    ],
+    "brief": "Build a procurement assistant for technicians at a fictional coastal sensor research station. Look up exact sensor and spare-part SKUs in the supplied CSV catalogue, explain supplier lead times, warranty and ordering conditions from the supplier policies, and calculate item subtotals for requested quantities using catalogue unit prices. Keep currency explicit and do not invent tax, shipping charges, discounts, live stock or arrival guarantees. Ask which SKU is intended when an item description is ambiguous. Explain written compatibility limitations without recommending unlisted substitutes. Do not place orders or give medical, legal or unrelated advice.\n",
+    "clarification_answers": {},
+    "mode": "unattended",
+    "groundability_method": "Brief-only intent extraction, per-topic retrieval and bounded support assessment over a verified quote and its source context. Admission means some source-supported questions are answerable, not exhaustive coverage. Conservative gaps may include retrieval misses."
+  },
+  "chunking": {
+    "words": 180,
+    "overlap": 30
+  },
+  "retrieval": {
+    "method": "bm25",
+    "top_k": 3,
+    "diversify": false
+  },
+  "tools": [
+    "csv_lookup",
+    "calculator"
+  ],
+  "tool_selection": {
+    "method": "Isolated local-model selection from the brief, followed by registry and corpus validation.",
+    "brief": "Build a procurement assistant for technicians at a fictional coastal sensor research station. Look up exact sensor and spare-part SKUs in the supplied CSV catalogue, explain supplier lead times, warranty and ordering conditions from the supplier policies, and calculate item subtotals for requested quantities using catalogue unit prices. Keep currency explicit and do not invent tax, shipping charges, discounts, live stock or arrival guarantees. Ask which SKU is intended when an item description is ambiguous. Explain written compatibility limitations without recommending unlisted substitutes. Do not place orders or give medical, legal or unrelated advice.\n",
+    "registry": {
+      "csv_lookup": "Exact lookup of a column value in a supplied CSV catalogue. Arguments: source, column, value.",
+      "calculator": "Arithmetic for requested quantities, totals or conversions. Argument: expression. No Python execution.",
+      "current_date": "Current UTC date only, when the brief requires live date awareness. No arguments."
+    }
+  },
+  "output_contract": {
+    "status": [
+      "answered",
+      "refused",
+      "clarify"
+    ],
+    "answer": "string",
+    "evidence": [
+      {
+        "chunk_id": "retrieved ID",
+        "quote": "verbatim source text"
+      }
+    ]
+  },
+  "corpus_file": "corpus.json",
+  "documents_dir": "documents",
+  "corpus_sha256": "4b9fbeef8b9110e139286d8a6902f21e4ffd131fe917ec009e295453acee4c01"
+}

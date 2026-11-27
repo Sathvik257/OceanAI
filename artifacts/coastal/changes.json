@@ -1,0 +1,24 @@
+[
+  {
+    "patch": "source_only",
+    "reason": "The failures are primarily due to the agent refusing to answer or providing incorrect information despite clear, direct evidence in the sources. The agent fails to ground responses in explicitly stated facts and instead introduces unsupported claims or refuses to answer when evidence exists. The 'source_only' patch ensures that all claims are strictly derived from quoted evidence, preserving accuracy, conditions, and numbers. This directly addresses the hallucination failures by enforcing that the agent must either provide verifiable, source-grounded answers or refuse only when no evidence supports a claim—preventing false refusals and incorrect inferences.",
+    "addressed_failures": [
+      "E03",
+      "E09",
+      "E15",
+      "E16"
+    ],
+    "unaddressed_failures": [],
+    "change": "State only claims directly entailed by quoted evidence. Preserve numbers, exceptions and conditions. Refuse unsupported additions.",
+    "before_definition_sha256": "ed0c2c0baf054a0b5a447a9d6a22945bf1bbd8ee07a43765e2bba7b26c04bfc0",
+    "after_definition_sha256": "2b43217c6ad05b072421f3f7bcfe884d8c028c8ae645eaa4a0ce73391a22a1f0",
+    "score_before": 0.7778,
+    "evaluation_completed": true,
+    "accepted": false,
+    "score_after": 0.7222,
+    "regressions": [
+      "E02"
+    ],
+    "improvements": []
+  }
+]

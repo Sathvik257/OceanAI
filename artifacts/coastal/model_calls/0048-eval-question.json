@@ -1,0 +1,75 @@
+{
+  "stage": "eval-question",
+  "attempt": 1,
+  "request": {
+    "model": "qwen3-4b-instruct-2507",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Write one short, deliberately under-specified user question, at most 10 words. Use the unresolved pronoun it or them. Follow the requested intent. Never identify what it or them refers to. Do not include a policy name, equipment name, item code, location, date, or factual details. A reader must ask what the user means. Vary the intent from previous questions. Return only {\"question\":\"...\"}.\n\nReturn JSON matching this example shape: {\"question\": \"\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"scope\": \"\",\n  \"kind\": \"ambiguous\",\n  \"task\": \"Ask about availability of an unidentified object. Refer to the object only as it.\",\n  \"target_facts\": [],\n  \"source_context\": [],\n  \"avoid_questions\": [\n    \"What is the cost of it?\",\n    \"When will it happen?\",\n    \"Are they eligible to use it?\"\n  ],\n  \"validation_feedback\": []\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 180,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"question\": \"Is it available right now?\"}"
+        }
+      }
+    ],
+    "created": 1795761725,
+    "model": "qwen3-4b-instruct-2507",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 12,
+      "prompt_tokens": 199,
+      "total_tokens": 211,
+      "prompt_tokens_details": {
+        "cached_tokens": 127
+      }
+    },
+    "id": "chatcmpl-wPUDuuZj5VguzhHXa1xdLN0KqKijlvn1",
+    "timings": {
+      "cache_n": 127,
+      "prompt_n": 72,
+      "prompt_ms": 1857.545,
+      "prompt_per_token_ms": 25.799236111111114,
+      "prompt_per_second": 38.76083755709821,
+      "predicted_n": 12,
+      "predicted_ms": 1737.102,
+      "predicted_per_token_ms": 157.91836363636364,
+      "predicted_per_second": 6.332385778152347
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 0.001,
+  "replayed_from": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\coastal-interrupted-e09\\model_calls\\0048-eval-question.json",
+  "original_elapsed_seconds": 3.622
+}

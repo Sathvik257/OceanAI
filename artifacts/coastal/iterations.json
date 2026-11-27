@@ -1,0 +1,61 @@
+[
+  {
+    "version": 1,
+    "summary": {
+      "passed": 14,
+      "total": 18,
+      "pass_rate": 0.7778,
+      "failure_categories": {
+        "hallucination": 4
+      },
+      "by_kind": {
+        "ambiguous": {
+          "passed": 3,
+          "total": 3
+        },
+        "answerable": {
+          "passed": 7,
+          "total": 9
+        },
+        "multi_document": {
+          "passed": 1,
+          "total": 3
+        },
+        "out_of_scope": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    }
+  },
+  {
+    "version": 2,
+    "summary": {
+      "passed": 13,
+      "total": 18,
+      "pass_rate": 0.7222,
+      "failure_categories": {
+        "wrong_refusal": 1,
+        "hallucination": 4
+      },
+      "by_kind": {
+        "ambiguous": {
+          "passed": 3,
+          "total": 3
+        },
+        "answerable": {
+          "passed": 6,
+          "total": 9
+        },
+        "multi_document": {
+          "passed": 1,
+          "total": 3
+        },
+        "out_of_scope": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    }
+  }
+]

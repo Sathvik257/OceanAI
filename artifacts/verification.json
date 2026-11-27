@@ -1,0 +1,125 @@
+{
+  "artifact_checks": [
+    {
+      "run": "artifacts\\workshop",
+      "status": "verified",
+      "cases": 24,
+      "iterations": 3,
+      "tools": [],
+      "development": {
+        "passed": 17,
+        "total": 18,
+        "pass_rate": 0.9444,
+        "failure_categories": {
+          "hallucination": 1
+        },
+        "by_kind": {
+          "ambiguous": {
+            "passed": 3,
+            "total": 3
+          },
+          "answerable": {
+            "passed": 8,
+            "total": 9
+          },
+          "multi_document": {
+            "passed": 3,
+            "total": 3
+          },
+          "out_of_scope": {
+            "passed": 3,
+            "total": 3
+          }
+        }
+      },
+      "holdout": {
+        "passed": 6,
+        "total": 6,
+        "pass_rate": 1.0,
+        "failure_categories": {},
+        "by_kind": {
+          "ambiguous": {
+            "passed": 1,
+            "total": 1
+          },
+          "answerable": {
+            "passed": 3,
+            "total": 3
+          },
+          "multi_document": {
+            "passed": 1,
+            "total": 1
+          },
+          "out_of_scope": {
+            "passed": 1,
+            "total": 1
+          }
+        }
+      }
+    },
+    {
+      "run": "artifacts\\coastal",
+      "status": "verified",
+      "cases": 24,
+      "iterations": 2,
+      "tools": [
+        "csv_lookup",
+        "calculator"
+      ],
+      "development": {
+        "passed": 14,
+        "total": 18,
+        "pass_rate": 0.7778,
+        "failure_categories": {
+          "hallucination": 4
+        },
+        "by_kind": {
+          "ambiguous": {
+            "passed": 3,
+            "total": 3
+          },
+          "answerable": {
+            "passed": 7,
+            "total": 9
+          },
+          "multi_document": {
+            "passed": 1,
+            "total": 3
+          },
+          "out_of_scope": {
+            "passed": 3,
+            "total": 3
+          }
+        }
+      },
+      "holdout": {
+        "passed": 4,
+        "total": 6,
+        "pass_rate": 0.6667,
+        "failure_categories": {
+          "hallucination": 2
+        },
+        "by_kind": {
+          "ambiguous": {
+            "passed": 1,
+            "total": 1
+          },
+          "answerable": {
+            "passed": 1,
+            "total": 3
+          },
+          "multi_document": {
+            "passed": 1,
+            "total": 1
+          },
+          "out_of_scope": {
+            "passed": 1,
+            "total": 1
+          }
+        }
+      }
+    }
+  ],
+  "cli_checks_exit_code": 2,
+  "note": "Structural artifact checks and four independent CLI probes; not proof of semantic correctness or submission readiness."
+}

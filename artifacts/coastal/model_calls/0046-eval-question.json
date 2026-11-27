@@ -1,0 +1,75 @@
+{
+  "stage": "eval-question",
+  "attempt": 1,
+  "request": {
+    "model": "qwen3-4b-instruct-2507",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Write one short, deliberately under-specified user question, at most 10 words. Use the unresolved pronoun it or them. Follow the requested intent. Never identify what it or them refers to. Do not include a policy name, equipment name, item code, location, date, or factual details. A reader must ask what the user means. Vary the intent from previous questions. Return only {\"question\":\"...\"}.\n\nReturn JSON matching this example shape: {\"question\": \"\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"scope\": \"\",\n  \"kind\": \"ambiguous\",\n  \"task\": \"Ask about timing of an unidentified object. Refer to the object only as it.\",\n  \"target_facts\": [],\n  \"source_context\": [],\n  \"avoid_questions\": [\n    \"What is the cost of it?\"\n  ],\n  \"validation_feedback\": []\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 180,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"question\": \"When will it happen?\"}"
+        }
+      }
+    ],
+    "created": 1795761718,
+    "model": "qwen3-4b-instruct-2507",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 11,
+      "prompt_tokens": 183,
+      "total_tokens": 194,
+      "prompt_tokens_details": {
+        "cached_tokens": 127
+      }
+    },
+    "id": "chatcmpl-CuAf7vEYg10F7P9azCFzITPZavySjCpW",
+    "timings": {
+      "cache_n": 127,
+      "prompt_n": 56,
+      "prompt_ms": 829.192,
+      "prompt_per_token_ms": 14.807,
+      "prompt_per_second": 67.53562504220977,
+      "predicted_n": 11,
+      "predicted_ms": 1514.604,
+      "predicted_per_token_ms": 151.4604,
+      "predicted_per_second": 6.602385838146473
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 0.002,
+  "replayed_from": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\coastal-interrupted-e09\\model_calls\\0046-eval-question.json",
+  "original_elapsed_seconds": 2.374
+}
