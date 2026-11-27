@@ -23,6 +23,25 @@ class StubModel:
 
 
 class CoreTests(unittest.TestCase):
+    def test_calculation_uses_lookup_result_even_when_planned_first(self):
+        from unittest.mock import Mock
+        model = Mock()
+        model.ask.side_effect = [
+            {'calls': [{'name': 'calculator', 'arguments': [{'key': 'expression', 'value': '2 * 99'}]},
+                       {'name': 'csv_lookup', 'arguments': [{'key': 'column', 'value': 'sku'}, {'key': 'value', 'value': 'T7'}]}]},
+            {'expression': '2 * 15'}, {'status': 'answered', 'answer': '30', 'evidence': []}]
+        with tempfile.TemporaryDirectory() as root:
+            Path(root, 'stock.csv').write_text('sku,price\nT7,15\nT70,99\n', encoding='utf-8')
+            definition = {'schema_version': 1, 'tools': ['csv_lookup', 'calculator'], 'system_prompt': '',
+                          'requirements': {'scope': 'Pricing', 'gaps': []}, 'retrieval': {'top_k': 2, 'diversify': False}}
+            corpus = ingest(root)
+            with patch('forgeai.agent.retrieve', return_value=[corpus['chunks'][1]]):
+                result = Agent(definition, corpus, root, model).answer('Subtotal for two T7 units?')
+            self.assertEqual(result['retrieved_ids'][0], corpus['chunks'][0]['id'])
+        lookup, calculation = result['tool_results']
+        self.assertEqual(model.ask.call_args_list[1].args[2]['lookup_results'][0], lookup)
+        self.assertEqual(calculation['result']['value'], 30)
+
     def test_csv_source_defaults_only_when_unambiguous_and_reports_resolution(self):
         with tempfile.TemporaryDirectory() as root:
             Path(root, 'items.csv').write_text('sku,price\nA1,25\n', encoding='utf-8')

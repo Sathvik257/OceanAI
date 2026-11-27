@@ -101,7 +101,7 @@ Malformed JSON gets one retry. Unverifiable generated test facts are rejected wi
 | [Workshop](artifacts/workshop/report.md) | 2 | 17/18 | 6/6 |
 | [Coastal](artifacts/coastal/report.md) | 1 | 14/18 | 4/6 |
 
-The independent CLI probes passed **2/4**. [Inspect all four responses](artifacts/cli_checks/results.json). Download the repository and open [the web preview](index.html) locally to explore both scorecards.
+After runner fixes, the independent CLI probes passed **4/4** (previously [2/4](artifacts/cli_checks/before-runner-fix.json)). The demo scores above describe their original recorded runs. [Inspect all four responses](artifacts/cli_checks/results.json). Download the repository and open [the web preview](index.html) locally to explore both scorecards.
 
 - Workshop: prose policies, explicit unsupported guest-access topic, refund boundaries and safety refusals. No external tools should be needed.
 - Coastal procurement: CSV + supplier policies, exact SKUs, pack units, arithmetic, supplier-specific conditions and deliberately missing live inventory/tax information.

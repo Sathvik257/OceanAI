@@ -25,12 +25,12 @@
           "answer": "Yes, if you cancel exactly 24 hours before your session, the booking fee is refunded. The policy states: 'Cancel at least 24 hours before the session start to receive a full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund.'",
           "evidence": [
             {
-              "chunk_id": "04c1d2d7f2fe6924",
-              "quote": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice. Refunds return to the original payment method within five working days. Membership fees and purchased materials are not refunded under this booking policy."
-            },
-            {
               "chunk_id": "422f893883c7d8a5",
               "quote": "Cancel at least 24 hours before the session start to receive a full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund."
+            },
+            {
+              "chunk_id": "04c1d2d7f2fe6924",
+              "quote": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice."
             }
           ]
         },
@@ -39,12 +39,12 @@
           "answer": "Yes, if you cancel exactly 24 hours before your session, the booking fee is refunded. The policy states: 'Cancel at least 24 hours before the session start to receive a full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund.'",
           "evidence": [
             {
-              "chunk_id": "04c1d2d7f2fe6924",
-              "quote": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice. Refunds return to the original payment method within five working days. Membership fees and purchased materials are not refunded under this booking policy."
-            },
-            {
               "chunk_id": "422f893883c7d8a5",
               "quote": "Cancel at least 24 hours before the session start to receive a full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund."
+            },
+            {
+              "chunk_id": "04c1d2d7f2fe6924",
+              "quote": "full refund of the equipment booking fee. Cancellations less than 24 hours before the session start receive no refund. Exactly 24 hours before the session qualifies for a full refund. If the workshop cancels a session because equipment is unavailable, it refunds the full equipment booking fee regardless of notice."
             }
           ]
         },
@@ -104,24 +104,14 @@
       ],
       "execution": {
         "response": {
-          "status": "clarify",
-          "answer": "The policy does not specify whether guests are allowed on Saturdays or how guest access is managed. Weekend guest access is undefined in the available documentation.",
-          "evidence": [
-            {
-              "chunk_id": "3f48e70838083962",
-              "quote": "This document does not define guest admission, weekend guest access, or companion access. Members must contact the membership desk for those questions."
-            }
-          ]
+          "status": "refused",
+          "answer": "The policy does not specify whether guests are allowed on Saturday or how guest access is managed. To determine if a guest may be brought on Saturday, you should contact the membership desk directly.",
+          "evidence": []
         },
         "raw_response": {
           "status": "clarify",
-          "answer": "The policy does not specify whether guests are allowed on Saturdays or how guest access is managed. Weekend guest access is undefined in the available documentation.",
-          "evidence": [
-            {
-              "chunk_id": "3f48e70838083962",
-              "quote": "This document does not define guest admission, weekend guest access, or companion access. Members must contact the membership desk for those questions."
-            }
-          ]
+          "answer": "The policy does not specify whether guests are allowed on Saturday or how guest access is managed. To determine if a guest may be brought on Saturday, you should contact the membership desk directly.",
+          "evidence": []
         },
         "guard_errors": [],
         "retrieved_ids": [
@@ -157,7 +147,7 @@
         ],
         "tool_results": []
       },
-      "passed": false
+      "passed": true
     },
     {
       "name": "workshop_ambiguous",
@@ -180,12 +170,12 @@
       "execution": {
         "response": {
           "status": "clarify",
-          "answer": "I cannot determine if you can use the facility without knowing which specific equipment or activity you're referring to. The policy outlines access hours and induction requirements but does not specify whether general access or use of particular equipment (like the laser cutter) is permitted. Please clarify your intent or specify the equipment or activity you're asking about.",
+          "answer": "The question 'Can I use it?' is too vague and lacks specificity regarding which equipment or activity is being referenced. The policies specify access hours, induction requirements, and booking rules for adult members, but do not provide a general answer to whether a member can use unspecified equipment or resources. To determine eligibility, clarification is needed about the specific equipment or activity in question.",
           "evidence": []
         },
         "raw_response": {
-          "status": "clarify",
-          "answer": "I cannot determine if you can use the facility without knowing which specific equipment or activity you're referring to. The policy outlines access hours and induction requirements but does not specify whether general access or use of particular equipment (like the laser cutter) is permitted. Please clarify your intent or specify the equipment or activity you're asking about.",
+          "status": "refused",
+          "answer": "The question 'Can I use it?' is too vague and lacks specificity regarding which equipment or activity is being referenced. The policies specify access hours, induction requirements, and booking rules for adult members, but do not provide a general answer to whether a member can use unspecified equipment or resources. To determine eligibility, clarification is needed about the specific equipment or activity in question.",
           "evidence": []
         },
         "guard_errors": [],
@@ -226,22 +216,40 @@
       ],
       "execution": {
         "response": {
-          "status": "refused",
-          "answer": "The requested item subtotal for three CT-10 probes cannot be calculated because the catalogue entry for 'CT-10' describes a 'Conductivity probe', not a 'CT-10 probe'. The only entry matching 'CT-10' in the catalogue specifies a 'Conductivity probe' with a unit price of INR 4800, and the description does not match the query. Additionally, the tool result for 'CT-10' does not provide a unit price for a 'probe' specifically, and the entry for 'CT-10C' (a cable) is not relevant. Without a clear, unambiguous match to the requested item, the subtotal cannot be accurately determined.",
-          "evidence": []
+          "status": "answered",
+          "answer": "The item subtotal for three CT-10 probes is INR 14,400, excluding tax and shipping. This is calculated as 3 × INR 4,800 (unit price of CT-10 probe), as specified in the catalogue entry.",
+          "evidence": [
+            {
+              "chunk_id": "e287666eb662355b",
+              "quote": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only"
+            }
+          ]
         },
         "raw_response": {
-          "status": "refused",
-          "answer": "The requested item subtotal for three CT-10 probes cannot be calculated because the catalogue entry for 'CT-10' describes a 'Conductivity probe', not a 'CT-10 probe'. The only entry matching 'CT-10' in the catalogue specifies a 'Conductivity probe' with a unit price of INR 4800, and the description does not match the query. Additionally, the tool result for 'CT-10' does not provide a unit price for a 'probe' specifically, and the entry for 'CT-10C' (a cable) is not relevant. Without a clear, unambiguous match to the requested item, the subtotal cannot be accurately determined.",
-          "evidence": []
+          "status": "answered",
+          "answer": "The item subtotal for three CT-10 probes is INR 14,400, excluding tax and shipping. This is calculated as 3 × INR 4,800 (unit price of CT-10 probe), as specified in the catalogue entry.",
+          "evidence": [
+            {
+              "chunk_id": "e287666eb662355b",
+              "quote": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only"
+            }
+          ]
         },
         "guard_errors": [],
         "retrieved_ids": [
+          "e287666eb662355b",
           "8c3fea60d5f19727",
           "d29a76c561009d19",
           "f82c88dcc0f96024"
         ],
         "retrieved": [
+          {
+            "id": "e287666eb662355b",
+            "source": "catalogue.csv",
+            "locator": "row 2",
+            "text": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only",
+            "start_word": 0
+          },
           {
             "id": "8c3fea60d5f19727",
             "source": "estuary.md",
@@ -295,18 +303,18 @@
           {
             "name": "calculator",
             "arguments": {
-              "expression": "650 * 3"
+              "expression": "3 * 4800"
             },
             "result": {
-              "expression": "650 * 3",
-              "value": 1950
+              "expression": "3 * 4800",
+              "value": 14400
             }
           }
         ]
       },
-      "passed": false
+      "passed": true
     }
   ],
-  "passed": 2,
+  "passed": 4,
   "total": 4
 }

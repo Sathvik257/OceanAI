@@ -13,3 +13,5 @@ runs/
 /ForgeAI-project.zip
 /experiments/coastal-duplicate-process-audit/*
 !/experiments/coastal-duplicate-process-audit/README.md
+
+/forgeai-demo.webm

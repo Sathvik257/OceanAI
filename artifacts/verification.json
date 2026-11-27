@@ -120,6 +120,6 @@
       }
     }
   ],
-  "cli_checks_exit_code": 2,
+  "cli_checks_exit_code": 0,
   "note": "Structural artifact checks and four independent CLI probes; not proof of semantic correctness or submission readiness."
 }
