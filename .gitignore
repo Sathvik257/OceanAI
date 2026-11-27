@@ -8,3 +8,8 @@ tmp/
 *.egg-info/
 dist/
 runs/
+
+# Local delivery files and quarantined overlapping output
+/ForgeAI-project.zip
+/experiments/coastal-duplicate-process-audit/*
+!/experiments/coastal-duplicate-process-audit/README.md
