@@ -2,6 +2,8 @@
 
 Build, evaluate and repair document-grounded agents using a local model.
 
+[View the live demo reports](https://ocean-ai-gray.vercel.app)
+
 A brief and a document folder go in. A portable agent definition, generated tests, a bounded repair history and an honest quality report come out. The factory runs on a small open model through llama.cpp or Ollama. No paid API or hosted database is needed.
 
 The implementation deliberately uses a small Python state machine rather than a large orchestration framework. Source ingestion, retrieval, tool permissions, judging and repair can be inspected independently.
