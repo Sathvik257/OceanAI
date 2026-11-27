@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "intake",
+  "started_utc": "2026-11-26T21:27:07.509884+05:30",
+  "error": "Process stopped during intake. A documented lead-time field was incorrectly rejected by an exhaustive interpretation of topic coverage; rubric corrected after positive and negative local probes."
+}

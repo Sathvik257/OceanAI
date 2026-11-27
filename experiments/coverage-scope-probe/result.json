@@ -1,0 +1,18 @@
+{
+  "input": {
+    "topic": "Explain supplier lead times for each requested item",
+    "quote": "lead_time_working_days: 5",
+    "source_context": {
+      "id": "a0bbef001b390bd9",
+      "source": "catalogue.csv",
+      "locator": "row 4",
+      "text": "sku: TP-20; description: Temperature probe; supplier: Estuary Instruments; unit_price_inr: 2100; unit: each; lead_time_working_days: 5; compatibility: Logger L2 and L3",
+      "start_word": 0,
+      "score": 0.74193
+    }
+  },
+  "result": {
+    "supported": true,
+    "reason": "The quote specifies a lead time of 5 working days for the item 'Temperature probe' (sku: TP-20), which directly addresses the supplier lead time for a requested item. Although only one item is mentioned, the topic asks for lead times for 'each requested item,' and this source provides a concrete, relevant value for at least one such item."
+  }
+}

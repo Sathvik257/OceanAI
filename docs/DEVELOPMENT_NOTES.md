@@ -47,3 +47,9 @@ Combining prompt drafting and tool explanations confused the small model about s
 The next manual audit found clear policy questions labeled as ambiguous and a refusal case asking whether an expired endorsement allowed booking. That is an answerable policy question, not a request for prohibited assistance. The run was stopped; its artifacts remain in `experiments/label-audit-workshop/`.
 
 The generator now uses separate prompts for positive, refusal and ambiguity cases. Ambiguity prompts receive no source facts and vary cost, timing, eligibility and availability while deliberately leaving a pronoun unresolved. Refusal prompts request the prohibited assistance directly rather than asking whether it is permitted. A separate case asks for unavailable private credentials. Length, pronoun, request-form and duplicate checks catch some mistakes, but these are limited structural checks, not proof of correct semantic labels. The small-model probes are retained alongside the failures.
+
+## Bounded topic coverage versus exhaustive coverage
+
+The first coastal intake rejected a documented five-working-day lead time because one quotation did not describe every requested item. Adding the complete SKU row alone did not fix that interpretation. Both failures are preserved in the coastal coverage diagnostics.
+
+The support rubric now asks whether the verified passage and its source context support a bounded factual answer on the topic. It does not treat one row as proof of a complete catalogue. A local positive probe accepts the documented TP-20 lead time; a separate negative probe still rejects live stock because the documents explicitly say it is unavailable. The support method and its limits are recorded in requirements. This intake correction followed the completed workshop demonstration; each run's implementation snapshot identifies its actual source version.

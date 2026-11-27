@@ -49,7 +49,7 @@ def intake(model, brief, corpus, interactive=False):
         chunk = next((c for c in evidence if c['id'] == candidate['chunk_id']), None)
         quote_valid = bool(chunk and candidate['quote'].strip() and normalize(candidate['quote']) in normalize(chunk['text']))
         if quote_valid:
-            verdict = model.ask('groundability', prompt('groundability'), {'topic': topic, 'quote': candidate['quote']},
+            verdict = model.ask('groundability', prompt('groundability'), {'topic': topic, 'quote': candidate['quote'], 'source_context': chunk},
                                  {'supported': True, 'reason': ''}, 160)
             coverage.update(verdict)
         item = {'topic': topic, **coverage, 'chunk_ids': [coverage['chunk_id']] if quote_valid else []}
@@ -75,7 +75,7 @@ def intake(model, brief, corpus, interactive=False):
     req['mode'] = 'interactive' if interactive else 'unattended'
     if not interactive and req['questions']:
         req['assumptions'].append('Clarifying questions were not answered; use only supported document scope and refuse missing information.')
-    req['groundability_method'] = 'Brief-only intent extraction, per-topic retrieval and model support assessment, plus exact evidence validation. Conservative gaps may include retrieval misses.'
+    req['groundability_method'] = 'Brief-only intent extraction, per-topic retrieval and bounded support assessment over a verified quote and its source context. Admission means some source-supported questions are answerable, not exhaustive coverage. Conservative gaps may include retrieval misses.'
     return req
 
 
