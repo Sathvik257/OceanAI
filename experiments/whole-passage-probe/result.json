@@ -1,0 +1,4 @@
+{
+  "supported": true,
+  "reason": "The source provides a unit price (4800 INR) per 'each' unit for SKU CT-10. Given a requested quantity, the item subtotal can be calculated by multiplying the unit price by the quantity. Although the requested quantity is not specified in the quote, the unit price and unit are clearly defined, enabling the calculation of a subtotal if the quantity is known."
+}

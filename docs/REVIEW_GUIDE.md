@@ -13,9 +13,9 @@ The strongest explanation is concrete: "This question failed because the expecte
 With the reference model server running:
 
 ```powershell
-python -m forgeai chat --agent artifacts/workshop/agent.json --question "If I cancel exactly 24 hours before my session, is the booking fee refunded?"
-python -m forgeai chat --agent artifacts/workshop/agent.json --question "May I bring a guest on Saturday?"
-python -m forgeai chat --agent artifacts/coastal/agent.json --question "What is the item subtotal for three CT-10 probes, excluding tax and shipping?"
+.venv\Scripts\python -m forgeai chat --agent artifacts/workshop/agent.json --question "If I cancel exactly 24 hours before my session, is the booking fee refunded?"
+.venv\Scripts\python -m forgeai chat --agent artifacts/workshop/agent.json --question "May I bring a guest on Saturday?"
+.venv\Scripts\python -m forgeai chat --agent artifacts/coastal/agent.json --question "What is the item subtotal for three CT-10 probes, excluding tax and shipping?"
 ```
 
 Expected behavior from the fictional documents: the cancellation qualifies for a full booking-fee refund; guest admission is not specified and must not be invented; three CT-10 probes have an item subtotal of INR 14,400. These are review expectations, not assertions that a particular model run passed them. Inspect actual outputs and tool traces.

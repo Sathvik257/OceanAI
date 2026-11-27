@@ -1,0 +1,38 @@
+{
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "source_sha256": {
+    "__init__.py": "34d0c3a5089677c0900f8b1fa91a5a2ee3099ce778b40fcb1db0fd53ece6c361",
+    "__main__.py": "7afeadd4522552160b4980dc798d62c6351e23026023c4dc3f40ef0a286a8f3d",
+    "agent.py": "32d112984df06b476f450fed5ca0f4a84efd7d1757871aad1b077f2f0f2c63b4",
+    "cli.py": "72a201b18a6b009c705f9a145394b5913490b6ba4d36ca44f2bcbbd68b933008",
+    "contracts.py": "4c19094408b7d3c58d33c79ff124e616243af7fc0f578419b9e63fcf7b344ef3",
+    "corpus.py": "a764f3b02d430f5ae1a5bf28c48583aacfa2a73b05b77202495e93df935f8d3f",
+    "evaluation.py": "9648e5b2388d4e61344e068438bdd5fd11441a5d5636b05060a35d52a9638d76",
+    "factory.py": "d865d32a95e9f746838f4db1c90996826e06d1ea64309353c15bbae1f1046a88",
+    "model.py": "2346792047dda247fffbaa501c4abf6891da1b643902666ca4c55f362a414d0f",
+    "prompts/answer.txt": "8ef4990bb11bafc428561553f27573ac6cc4c507df8c7a99e6dfbfa18987eaa5",
+    "prompts/brief.txt": "6bf1846d3b2359d8bc39d4dede027b45376e222537dd98400342d4a8d79b598f",
+    "prompts/coverage_extract.txt": "d433395edba48b7326d6e769b6af7b0861ea2c0476bbaa47327d1dd49aff96e1",
+    "prompts/critic.txt": "f9e8fd449dbadb5428d0474e14315433abff747ec095555627d1483c3e0eceef",
+    "prompts/eval_ambiguous.txt": "902740cab767fd908f103ed916b4d718e3840ad43f18e7d3d921c0b42ed360ae",
+    "prompts/eval_question.txt": "1292a33311c5579e3e278c18644efeeb6bdd698d01899c6d4ea994ee1a9deea2",
+    "prompts/eval_refusal.txt": "82346fba18d79a1120bfd0716639a9e52c4cbc51c004e5cc3720975d5daf1ad0",
+    "prompts/generate.txt": "9feea2f35cef5cbcbbb71f799099369f3f56d03aedf89d7e390f8b491e612c8d",
+    "prompts/groundability.txt": "879f3c347ca963b486d3c94ea7a49f9c45ed6c785eaa0becea3b13e474127e43",
+    "prompts/judge.txt": "2f31eb8a75eee5f240e21c833a1d96b66b764eae8cb8dcbedb525e4d0de738ce",
+    "prompts/questions.txt": "2ef708132ef024cf07bbb144fe4d63652c767a5f28df24596cd758f108055b4f",
+    "prompts/tool_plan.txt": "28736afcb93f2eb1ab9eb7594ef0f933d6058b9ec76eddf81c9128a77ea4d40d",
+    "prompts/tool_selection.txt": "7b96e87c265faa53be0c7756157c7709518e2170599bfb63cf7750e240125324",
+    "recovery.py": "6740c2acc04d982d2f634d22b23a8ae4ebe2957c5e20d2c6534741a9010a86bc",
+    "runtime.py": "62b542b2cba7d65d9bd9748d76839fe6b2d39d243c4327c0aa03fbb33172d20e",
+    "storage.py": "03f11fae5c3b19b552c748ef130d89926224902665ca32c39d618cd650445433",
+    "tools.py": "e976915a862e3f72a1779240821e89f13588a769b8d997151b5ee8af42a236b3"
+  },
+  "model_configuration": {
+    "endpoint": "http://127.0.0.1:8080/v1",
+    "model": "qwen3-4b-instruct-2507",
+    "temperature": 0,
+    "seed": 42
+  }
+}

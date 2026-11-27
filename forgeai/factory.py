@@ -43,16 +43,32 @@ def intake(model, brief, corpus, interactive=False):
                                     'tool': 'current_date', 'reason': 'The registered current_date tool supplies the current UTC date; this is tool-backed, not a document claim.'})
             continue
         evidence = retrieve(corpus['chunks'], topic, top_k=4, diversify=True)
-        candidate = model.ask('coverage-extract', prompt('coverage_extract'), {'topic': topic, 'evidence': evidence},
-                              {'chunk_id': '', 'quote': ''}, 250)
-        coverage = {**candidate, 'supported': False, 'reason': 'No verifiable relevant quote was found.'}
-        chunk = next((c for c in evidence if c['id'] == candidate['chunk_id']), None)
-        quote_valid = bool(chunk and candidate['quote'].strip() and normalize(candidate['quote']) in normalize(chunk['text']))
-        if quote_valid:
-            verdict = model.ask('groundability', prompt('groundability'), {'topic': topic, 'quote': candidate['quote'], 'source_context': chunk},
-                                 {'supported': True, 'reason': ''}, 160)
-            coverage.update(verdict)
-        item = {'topic': topic, **coverage, 'chunk_ids': [coverage['chunk_id']] if quote_valid else []}
+        batches, attempts = [evidence], []
+        while batches and len(attempts) < 3:
+            selected_evidence = batches.pop(0)
+            if attempts:
+                # Retry the actual bounded source passage, not another model-written excerpt.
+                candidate = {'chunk_id': selected_evidence[0]['id'], 'quote': selected_evidence[0]['text']}
+            else:
+                candidate = model.ask('coverage-extract', prompt('coverage_extract'), {'topic': topic, 'evidence': selected_evidence},
+                                      {'chunk_id': '', 'quote': ''}, 250)
+            coverage = {**candidate, 'supported': False, 'reason': 'No verifiable relevant quote was found.'}
+            chunk = next((c for c in selected_evidence if c['id'] == candidate['chunk_id']), None)
+            quote_valid = bool(chunk and candidate['quote'].strip() and normalize(candidate['quote']) in normalize(chunk['text']))
+            if quote_valid:
+                verdict = model.ask('groundability', prompt('groundability'), {'topic': topic, 'quote': candidate['quote'], 'source_context': chunk},
+                                     {'supported': True, 'reason': ''}, 160)
+                coverage.update(verdict)
+            attempts.append(dict(coverage))
+            explicitly_missing = re.search(r'\b(?:not (?:provided|supplied|specified|defined|covered)|undefined|unavailable)\b', candidate['quote'], re.I)
+            if coverage['supported'] or not quote_valid or explicitly_missing:
+                break
+            if len(attempts) == 1:
+                alternatives = [c for c in evidence if c['id'] != chunk['id']]
+                # A prose warning can distract from structured data, and vice versa.
+                alternatives.sort(key=lambda c: Path(c['source']).suffix == Path(chunk['source']).suffix)
+                batches = [[c] for c in alternatives[:2]]
+        item = {'topic': topic, **coverage, 'chunk_ids': [coverage['chunk_id']] if quote_valid else [], 'attempts': attempts}
         req['coverage'].append(item)
         if not coverage['supported']:
             req['gaps'].append(topic)

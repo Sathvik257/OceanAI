@@ -23,6 +23,28 @@ class StubModel:
 
 
 class CoreTests(unittest.TestCase):
+    def test_coverage_checks_an_alternative_before_rejecting_available_data(self):
+        policy = {'id': 'p', 'source': 'policy.md', 'text': 'An item subtotal is not a final payable total.'}
+        row = {'id': 'r', 'source': 'items.csv', 'text': 'sku: X1; unit_price: 25; currency: INR'}
+
+        class CoverageModel:
+            def ask(self, stage, system, data, *args):
+                if stage == 'intake-brief':
+                    return {'scope': 'Item subtotals', 'audience': 'Staff', 'tone': 'Plain',
+                            'must_answer': ['Calculate item subtotals'], 'must_refuse': [], 'questions': [], 'assumptions': []}
+                if stage == 'coverage-extract':
+                    chunk = data['evidence'][0]
+                    return {'chunk_id': chunk['id'], 'quote': chunk['text']}
+                if stage == 'groundability':
+                    return {'supported': data['source_context']['id'] == 'r', 'reason': 'Check the actual unit price'}
+                return {'questions': []}
+
+        with patch('forgeai.factory.retrieve', return_value=[policy, row]):
+            requirements = intake(CoverageModel(), 'Calculate item subtotals', {'chunks': [policy, row], 'manifest': []})
+        self.assertEqual(requirements['gaps'], [])
+        self.assertEqual(requirements['coverage'][0]['chunk_ids'], ['r'])
+        self.assertEqual(len(requirements['coverage'][0]['attempts']), 2)
+
     def test_fact_sampling_deduplicates_overlapping_chunks_and_spreads_sources(self):
         chunks = [{'id': 'a', 'source': 'a.md', 'text': 'Members must wear closed shoes in the workshop. Bookings may be cancelled through the portal.'},
                   {'id': 'b', 'source': 'a.md', 'text': 'Members must wear closed shoes in the workshop.'},

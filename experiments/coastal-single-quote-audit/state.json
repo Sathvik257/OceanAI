@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "definition",
+  "started_utc": "2026-11-27T08:15:27.407962+05:30",
+  "error": "Stopped after a valid but irrelevant final-total warning was selected instead of a retrieved unit-price row. Adding bounded alternative-passage assessment."
+}

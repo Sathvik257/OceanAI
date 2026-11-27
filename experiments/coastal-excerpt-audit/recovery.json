@@ -1,0 +1,8 @@
+{
+  "source_run": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\coastal-reusable-prefix",
+  "recorded_prefix_calls": 10,
+  "unrecorded_token_reservation": 10000,
+  "unrecorded_seconds_reservation": 600,
+  "original_inference_seconds": 240.696,
+  "note": "Exact request-prefix replay of actual saved inference. Replayed calls are not new model executions. A mismatch stops recovery. Budgets include prior usage and a conservative allowance for the lost in-flight request."
+}

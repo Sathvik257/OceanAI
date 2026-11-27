@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "definition",
+  "started_utc": "2026-11-27T08:24:21.270693+05:30",
+  "error": "Stopped after the excerpt selector returned an empty quote for a retrieved price row. Direct whole-passage support assessment was verified to recognize the available numeric input."
+}
