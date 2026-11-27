@@ -137,8 +137,6 @@ def generate_evals(model, requirements, corpus):
                         raise ValueError('Each source needs a distinct, nonempty question')
                     if kind == 'ambiguous' and (len(result['question'].split()) > 10 or not re.search(r'\b(it|them)\b', result['question'], re.I)):
                         raise ValueError('Ambiguity case must be short and leave its pronoun unresolved')
-                    if kind == 'out_of_scope' and not result['question'].lower().startswith('please '):
-                        raise ValueError('Refusal case must directly request the prohibited assistance')
                     parts.append(result['question'])
                 case = {'question': ' '.join(parts), 'kind': kind,
                         'expected_status': {'answerable': 'answered', 'multi_document': 'answered', 'out_of_scope': 'refused', 'ambiguous': 'clarify'}[kind],

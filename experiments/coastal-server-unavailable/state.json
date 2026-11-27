@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "stage": "eval_generation",
+  "started_utc": "2026-11-27T06:39:36.598067+00:00",
+  "error": "Local model request failed at eval-question: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>",
+  "finished_utc": "2026-11-27T06:39:39.463552+00:00"
+}

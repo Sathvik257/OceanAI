@@ -1,0 +1,234 @@
+{
+  "cases": [
+    {
+      "question": "What is the subtotal for 2 units of the item with SKU CB-USB, excluding tax and shipping?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "286befb052fa1a18",
+          "quote": "sku: CB-USB; description: Logger USB cable; supplier: Delta Field Supply; unit_price_inr: 280; unit: each; lead_time_working_days: 2; compatibility: Logger L2 and L3",
+          "source": "catalogue.csv"
+        }
+      ]
+    },
+    {
+      "question": "Does Delta Field Supply have a minimum order subtotal requirement?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "d29a76c561009d19",
+          "quote": "Delta Field Supply has no minimum order subtotal.",
+          "source": "delta.md"
+        }
+      ]
+    },
+    {
+      "question": "Are supplier lead times guaranteed to match the specified arrival dates?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "8c3fea60d5f19727",
+          "quote": "Lead times are estimates, not guaranteed arrival dates.",
+          "source": "estuary.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the subtotal for 3 units of the item with SKU CT-10C, excluding tax and shipping?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "f82c88dcc0f96024",
+          "quote": "sku: CT-10C; description: Conductivity probe cable 3m; supplier: Estuary Instruments; unit_price_inr: 650; unit: each; lead_time_working_days: 4; compatibility: CT-10 only",
+          "source": "catalogue.csv"
+        }
+      ]
+    },
+    {
+      "question": "Should the assistant promise a specific arrival date when providing lead time information for sensor components?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "9f8b4d23b1a800a9",
+          "quote": "Do not promise arrival on a specific date.",
+          "source": "delta.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the manufacturing-defect warranty period for cables according to the estuary.md document?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "60039c1b40998528",
+          "quote": "Cables carry a three-month manufacturing-defect warranty.",
+          "source": "estuary.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the lead time in working days for the conductivity probe with SKU CT-10 supplied by Estuary Instruments?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "e287666eb662355b",
+          "quote": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only",
+          "source": "catalogue.csv"
+        }
+      ]
+    },
+    {
+      "question": "How are calibration buffers and seal kits sold in the catalogue according to the supplier's unit specifications?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "d29a76c561009d19",
+          "quote": "Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise.",
+          "source": "delta.md"
+        }
+      ]
+    },
+    {
+      "question": "What specific information is required to file a claim for a sensor device according to the warranty policy?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "60039c1b40998528",
+          "quote": "A claim needs the serial number and purchase-order reference.",
+          "source": "estuary.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the lead time in working days for the pH calibration buffer 4 with SKU PH-B4 supplied by Delta Field Supply?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "03c3070c8411300e",
+          "quote": "sku: PH-B4; description: pH calibration buffer 4; supplier: Delta Field Supply; unit_price_inr: 450; unit: 500ml bottle; lead_time_working_days: 3; compatibility: pH calibration use only",
+          "source": "catalogue.csv"
+        }
+      ]
+    },
+    {
+      "question": "When does the quoted lead time for a sensor component start according to Delta Field Supply's supplier conditions?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "d29a76c561009d19",
+          "quote": "Written order acceptance starts the quoted lead time.",
+          "source": "delta.md"
+        }
+      ]
+    },
+    {
+      "question": "What specific details must be included in an order placed with Estuary Instruments according to the supplier's order process?",
+      "kind": "answerable",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "8c3fea60d5f19727",
+          "quote": "Orders must include an SKU, quantity, delivery address and purchase-order reference.",
+          "source": "estuary.md"
+        }
+      ]
+    },
+    {
+      "question": "What is the definition of quoted lead times according to the supplier's conditions? What does the lead-time value in the catalogue represent in terms of delivery timing?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "8c3fea60d5f19727",
+          "quote": "Quoted lead times are working days from written order acceptance, not calendar days from a user query.",
+          "source": "estuary.md"
+        },
+        {
+          "chunk_id": "9f8b4d23b1a800a9",
+          "quote": "Lead-time values are estimates in working days and exclude transit time.",
+          "source": "delta.md"
+        }
+      ],
+      "subquestions": [
+        "What is the definition of quoted lead times according to the supplier's conditions?",
+        "What does the lead-time value in the catalogue represent in terms of delivery timing?"
+      ]
+    },
+    {
+      "question": "Does Delta Field Supply have a minimum order subtotal requirement for purchases? How does the procurement assistant handle a request that includes items from multiple suppliers?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "d29a76c561009d19",
+          "quote": "Delta Field Supply has no minimum order subtotal.",
+          "source": "delta.md"
+        },
+        {
+          "chunk_id": "8c3fea60d5f19727",
+          "quote": "A mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum.",
+          "source": "estuary.md"
+        }
+      ],
+      "subquestions": [
+        "Does Delta Field Supply have a minimum order subtotal requirement for purchases?",
+        "How does the procurement assistant handle a request that includes items from multiple suppliers?"
+      ]
+    },
+    {
+      "question": "What specific information is required to file a warranty claim for a sensor device according to the supplier's policy? What email address should be used to report a defective sensor item to Delta Field Supply?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "60039c1b40998528",
+          "quote": "A claim needs the serial number and purchase-order reference.",
+          "source": "estuary.md"
+        },
+        {
+          "chunk_id": "d29a76c561009d19",
+          "quote": "Send the SKU, batch or serial number, and a description of the defect to returns@delta.example.",
+          "source": "delta.md"
+        }
+      ],
+      "subquestions": [
+        "What specific information is required to file a warranty claim for a sensor device according to the supplier's policy?",
+        "What email address should be used to report a defective sensor item to Delta Field Supply?"
+      ]
+    },
+    {
+      "question": "What specific details must be included in an order submitted to Estuary Instruments according to their procurement conditions? What is the time frame within which a defective item must be reported after delivery to Delta Field Supply?",
+      "kind": "multi_document",
+      "expected_status": "answered",
+      "facts": [
+        {
+          "chunk_id": "8c3fea60d5f19727",
+          "quote": "Orders must include an SKU, quantity, delivery address and purchase-order reference.",
+          "source": "estuary.md"
+        },
+        {
+          "chunk_id": "d29a76c561009d19",
+          "quote": "A defective item must be reported within seven calendar days of delivery.",
+          "source": "delta.md"
+        }
+      ],
+      "subquestions": [
+        "What specific details must be included in an order submitted to Estuary Instruments according to their procurement conditions?",
+        "What is the time frame within which a defective item must be reported after delivery to Delta Field Supply?"
+      ]
+    }
+  ],
+  "complete": false,
+  "rejected": []
+}

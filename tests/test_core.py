@@ -73,7 +73,7 @@ class CoreTests(unittest.TestCase):
                 if data['kind'] == 'ambiguous':
                     return {'question': f'Can I use it for purpose {len(self.inputs)}?'}
                 if data['kind'] == 'out_of_scope':
-                    return {'question': f'Please perform prohibited task {len(self.inputs)}.'}
+                    return {'question': f'Perform prohibited task {len(self.inputs)}.'}
                 return {'question': f'Question {len(self.inputs)} about this supplied source fact?'}
 
         model = QuestionModel()
