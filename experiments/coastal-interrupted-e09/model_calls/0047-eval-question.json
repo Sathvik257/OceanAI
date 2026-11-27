@@ -1,0 +1,75 @@
+{
+  "stage": "eval-question",
+  "attempt": 1,
+  "request": {
+    "model": "qwen3-4b-instruct-2507",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Write one short, deliberately under-specified user question, at most 10 words. Use the unresolved pronoun it or them. Follow the requested intent. Never identify what it or them refers to. Do not include a policy name, equipment name, item code, location, date, or factual details. A reader must ask what the user means. Vary the intent from previous questions. Return only {\"question\":\"...\"}.\n\nReturn JSON matching this example shape: {\"question\": \"\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\n  \"scope\": \"\",\n  \"kind\": \"ambiguous\",\n  \"task\": \"Ask about eligibility to use of an unidentified object. Refer to the object only as it.\",\n  \"target_facts\": [],\n  \"source_context\": [],\n  \"avoid_questions\": [\n    \"What is the cost of it?\",\n    \"When will it happen?\"\n  ],\n  \"validation_feedback\": []\n}"
+      }
+    ],
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 180,
+    "response_format": {
+      "type": "json_object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"question\": \"Are they eligible to use it?\"}"
+        }
+      }
+    ],
+    "created": 1795761722,
+    "model": "qwen3-4b-instruct-2507",
+    "system_fingerprint": "b12722-e6443bd7e",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 13,
+      "prompt_tokens": 192,
+      "total_tokens": 205,
+      "prompt_tokens_details": {
+        "cached_tokens": 127
+      }
+    },
+    "id": "chatcmpl-cuznhq9o6RXIOaTok5GkU5o5eP0dFtPu",
+    "timings": {
+      "cache_n": 127,
+      "prompt_n": 65,
+      "prompt_ms": 1503.402,
+      "prompt_per_token_ms": 23.129261538461538,
+      "prompt_per_second": 43.23527572798226,
+      "predicted_n": 13,
+      "predicted_ms": 1926.649,
+      "predicted_per_token_ms": 160.55408333333332,
+      "predicted_per_second": 6.228430814330997
+    }
+  },
+  "valid": true,
+  "elapsed_seconds": 0.002,
+  "replayed_from": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\coastal-evaluation-prefix\\model_calls\\0047-eval-question.json",
+  "original_elapsed_seconds": 3.457
+}

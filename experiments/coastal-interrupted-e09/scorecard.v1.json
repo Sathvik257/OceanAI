@@ -1,0 +1,575 @@
+{
+  "summary": {
+    "passed": 5,
+    "total": 6,
+    "pass_rate": 0.8333,
+    "failure_categories": {
+      "hallucination": 1
+    },
+    "by_kind": {
+      "answerable": {
+        "passed": 5,
+        "total": 6
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "E02",
+      "kind": "answerable",
+      "split": "development",
+      "passed": true,
+      "category": null,
+      "evidence_valid": true,
+      "status_correct": true,
+      "retrieval_hit": true,
+      "judge": {
+        "reason": "The candidate correctly answers that Delta Field Supply does not have a minimum order subtotal requirement, which directly addresses the question. This claim is fully supported by the cited evidence, where the exact quote 'Delta Field Supply has no minimum order subtotal' is provided from the source delta.md. The answer is factually accurate, directly entailed by the evidence, and matches the expected status and facts.",
+        "correct": true,
+        "grounded": true,
+        "behavior": true
+      },
+      "execution": {
+        "response": {
+          "status": "answered",
+          "answer": "Delta Field Supply does not have a minimum order subtotal requirement. This is explicitly stated in the supplier conditions: 'Delta Field Supply has no minimum order subtotal.'",
+          "evidence": [
+            {
+              "chunk_id": "d29a76c561009d19",
+              "quote": "Delta Field Supply has no minimum order subtotal."
+            }
+          ]
+        },
+        "raw_response": {
+          "status": "answered",
+          "answer": "Delta Field Supply does not have a minimum order subtotal requirement. This is explicitly stated in the supplier conditions: 'Delta Field Supply has no minimum order subtotal.'",
+          "evidence": [
+            {
+              "chunk_id": "d29a76c561009d19",
+              "quote": "Delta Field Supply has no minimum order subtotal."
+            }
+          ]
+        },
+        "guard_errors": [],
+        "retrieved_ids": [
+          "d29a76c561009d19",
+          "8c3fea60d5f19727",
+          "60039c1b40998528"
+        ],
+        "retrieved": [
+          {
+            "id": "d29a76c561009d19",
+            "source": "delta.md",
+            "locator": "text",
+            "text": "# Delta Field Supply supplier conditions Synthetic supplier for a demonstration. Effective 1 October 2026. ## Pricing and ordering Catalogue unit prices are in INR, excluding tax and shipping. Delta Field Supply has no minimum order subtotal. Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise. Ask for clarification if a quantity could mean individual seals or packs. Written order acceptance starts the quoted lead time. The supplier operates Monday to Friday; its holiday calendar is not supplied. ## Handling and returns Unopened standard items may be returned within 14 calendar days of delivery with prior return authorization. Opened calibration buffers cannot be returned unless defective. A defective item must be reported within seven calendar days of delivery. Send the SKU, batch or serial number, and a description of the defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear",
+            "start_word": 0,
+            "score": 6.08004
+          },
+          {
+            "id": "8c3fea60d5f19727",
+            "source": "estuary.md",
+            "locator": "text",
+            "text": "# Estuary Instruments supplier conditions Synthetic supplier for a demonstration. Prices and conditions are fictional. Effective 1 October 2026. ## Quotations and dispatch Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals. Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. The holiday calendar is not provided. Lead times are estimates, not guaranteed arrival dates. Live stock is not provided in the catalogue. ## Order process The minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping. Orders must include an SKU, quantity, delivery address and purchase-order reference. The assistant can prepare an informational item subtotal but cannot place an order, reserve inventory or issue a purchase order. A mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry",
+            "start_word": 0,
+            "score": 5.38185
+          },
+          {
+            "id": "60039c1b40998528",
+            "source": "estuary.md",
+            "locator": "text",
+            "text": "mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry a six-month manufacturing-defect warranty. Cables carry a three-month manufacturing-defect warranty. Warranty excludes corrosion caused by damaged seals, accidental damage and unauthorized modifications. A claim needs the serial number and purchase-order reference. Contact support@estuary.example for a return authorization before sending equipment back. ## Compatibility Use only the compatibility entries explicitly listed in the catalogue. A shared connector shape does not establish electrical or firmware compatibility. The supplier does not authorize adapters or substitutions in these documents.",
+            "start_word": 150,
+            "score": 3.32118
+          }
+        ],
+        "tool_results": []
+      }
+    },
+    {
+      "case_id": "E03",
+      "kind": "answerable",
+      "split": "development",
+      "passed": false,
+      "category": "hallucination",
+      "evidence_valid": false,
+      "status_correct": false,
+      "retrieval_hit": true,
+      "judge": {
+        "reason": "The question asks whether supplier lead times are guaranteed to match specified arrival dates. The expected fact from the source explicitly states that lead times are 'estimates, not guaranteed arrival dates,' which directly addresses the question. The candidate refuses to answer and cites inability to verify evidence, despite having clear, direct evidence in the source. This refusal contradicts the expected status of 'answered' and fails to provide a correct factual response based on available evidence.",
+        "correct": false,
+        "grounded": false,
+        "behavior": false
+      },
+      "execution": {
+        "response": {
+          "status": "refused",
+          "answer": "I could not verify the evidence for this answer. Please narrow the question or provide a supporting document.",
+          "evidence": []
+        },
+        "raw_response": {
+          "status": "refused",
+          "answer": "Supplier lead times are not guaranteed to match specified arrival dates. The retrieved documents explicitly state that lead times are estimates in working days from written order acceptance and do not guarantee arrival on a specific date. Lead times exclude transit time, and no arrival guarantees or expedited delivery options are provided. Therefore, it is not possible to guarantee alignment with specified arrival dates.",
+          "evidence": [
+            {
+              "chunk_id": "8c3fea60d5f19727",
+              "quote": "Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. Lead times are estimates, not guaranteed arrival dates."
+            },
+            {
+              "chunk_id": "9f8b4d23b1a800a9",
+              "quote": "Lead-time values are estimates in working days and exclude transit time. Do not promise arrival on a specific date. No expedited delivery or substitution policy is included in these documents."
+            }
+          ]
+        },
+        "guard_errors": [
+          "Quoted evidence does not occur in cited chunk: 8c3fea60d5f19727"
+        ],
+        "retrieved_ids": [
+          "8c3fea60d5f19727",
+          "9f8b4d23b1a800a9",
+          "d29a76c561009d19"
+        ],
+        "retrieved": [
+          {
+            "id": "8c3fea60d5f19727",
+            "source": "estuary.md",
+            "locator": "text",
+            "text": "# Estuary Instruments supplier conditions Synthetic supplier for a demonstration. Prices and conditions are fictional. Effective 1 October 2026. ## Quotations and dispatch Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals. Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. The holiday calendar is not provided. Lead times are estimates, not guaranteed arrival dates. Live stock is not provided in the catalogue. ## Order process The minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping. Orders must include an SKU, quantity, delivery address and purchase-order reference. The assistant can prepare an informational item subtotal but cannot place an order, reserve inventory or issue a purchase order. A mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry",
+            "start_word": 0,
+            "score": 7.26412
+          },
+          {
+            "id": "9f8b4d23b1a800a9",
+            "source": "delta.md",
+            "locator": "text",
+            "text": "defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear of consumable seals and damage caused by incompatible connections. Calibration buffers have an expiry printed on each bottle; no universal expiry date is provided here. The assistant must not infer an expiry from the purchase date. ## Inventory and delivery Catalogue entries describe products, not current availability. No live inventory feed is provided. Lead-time values are estimates in working days and exclude transit time. Do not promise arrival on a specific date. No expedited delivery or substitution policy is included in these documents.",
+            "start_word": 150,
+            "score": 2.49551
+          },
+          {
+            "id": "d29a76c561009d19",
+            "source": "delta.md",
+            "locator": "text",
+            "text": "# Delta Field Supply supplier conditions Synthetic supplier for a demonstration. Effective 1 October 2026. ## Pricing and ordering Catalogue unit prices are in INR, excluding tax and shipping. Delta Field Supply has no minimum order subtotal. Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise. Ask for clarification if a quantity could mean individual seals or packs. Written order acceptance starts the quoted lead time. The supplier operates Monday to Friday; its holiday calendar is not supplied. ## Handling and returns Unopened standard items may be returned within 14 calendar days of delivery with prior return authorization. Opened calibration buffers cannot be returned unless defective. A defective item must be reported within seven calendar days of delivery. Send the SKU, batch or serial number, and a description of the defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear",
+            "start_word": 0,
+            "score": 0.96113
+          }
+        ],
+        "tool_results": []
+      }
+    },
+    {
+      "case_id": "E04",
+      "kind": "answerable",
+      "split": "development",
+      "passed": true,
+      "category": null,
+      "evidence_valid": true,
+      "status_correct": true,
+      "retrieval_hit": true,
+      "judge": {
+        "reason": "The candidate correctly calculates the subtotal as 3 × 650 = 1950 INR, which is based on the unit price from the cited catalogue entry (SKU CT-10C). The answer explicitly states it excludes tax and shipping, consistent with the evidence from estuary.md that catalogue prices exclude tax and shipping. The calculation is supported by the tool result, and the factual claim is directly entailed by the provided data. There are no unsupported additions or contradictions.",
+        "correct": true,
+        "grounded": true,
+        "behavior": true
+      },
+      "execution": {
+        "response": {
+          "status": "answered",
+          "answer": "The subtotal for 3 units of SKU CT-10C (Conductivity probe cable 3m) is INR 1950, excluding tax and shipping. This is calculated as 3 units × INR 650 per unit, based on the catalogue price provided in the CSV data.",
+          "evidence": [
+            {
+              "chunk_id": "f82c88dcc0f96024",
+              "quote": "sku: CT-10C; description: Conductivity probe cable 3m; supplier: Estuary Instruments; unit_price_inr: 650; unit: each; lead_time_working_days: 4; compatibility: CT-10 only"
+            },
+            {
+              "chunk_id": "8c3fea60d5f19727",
+              "quote": "Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals."
+            }
+          ]
+        },
+        "raw_response": {
+          "status": "answered",
+          "answer": "The subtotal for 3 units of SKU CT-10C (Conductivity probe cable 3m) is INR 1950, excluding tax and shipping. This is calculated as 3 units × INR 650 per unit, based on the catalogue price provided in the CSV data.",
+          "evidence": [
+            {
+              "chunk_id": "f82c88dcc0f96024",
+              "quote": "sku: CT-10C; description: Conductivity probe cable 3m; supplier: Estuary Instruments; unit_price_inr: 650; unit: each; lead_time_working_days: 4; compatibility: CT-10 only"
+            },
+            {
+              "chunk_id": "8c3fea60d5f19727",
+              "quote": "Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals."
+            }
+          ]
+        },
+        "guard_errors": [],
+        "retrieved_ids": [
+          "8c3fea60d5f19727",
+          "f82c88dcc0f96024",
+          "d29a76c561009d19"
+        ],
+        "retrieved": [
+          {
+            "id": "8c3fea60d5f19727",
+            "source": "estuary.md",
+            "locator": "text",
+            "text": "# Estuary Instruments supplier conditions Synthetic supplier for a demonstration. Prices and conditions are fictional. Effective 1 October 2026. ## Quotations and dispatch Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals. Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. The holiday calendar is not provided. Lead times are estimates, not guaranteed arrival dates. Live stock is not provided in the catalogue. ## Order process The minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping. Orders must include an SKU, quantity, delivery address and purchase-order reference. The assistant can prepare an informational item subtotal but cannot place an order, reserve inventory or issue a purchase order. A mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry",
+            "start_word": 0,
+            "score": 8.2914
+          },
+          {
+            "id": "f82c88dcc0f96024",
+            "source": "catalogue.csv",
+            "locator": "row 3",
+            "text": "sku: CT-10C; description: Conductivity probe cable 3m; supplier: Estuary Instruments; unit_price_inr: 650; unit: each; lead_time_working_days: 4; compatibility: CT-10 only",
+            "start_word": 0,
+            "score": 5.80579
+          },
+          {
+            "id": "d29a76c561009d19",
+            "source": "delta.md",
+            "locator": "text",
+            "text": "# Delta Field Supply supplier conditions Synthetic supplier for a demonstration. Effective 1 October 2026. ## Pricing and ordering Catalogue unit prices are in INR, excluding tax and shipping. Delta Field Supply has no minimum order subtotal. Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise. Ask for clarification if a quantity could mean individual seals or packs. Written order acceptance starts the quoted lead time. The supplier operates Monday to Friday; its holiday calendar is not supplied. ## Handling and returns Unopened standard items may be returned within 14 calendar days of delivery with prior return authorization. Opened calibration buffers cannot be returned unless defective. A defective item must be reported within seven calendar days of delivery. Send the SKU, batch or serial number, and a description of the defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear",
+            "start_word": 0,
+            "score": 5.45613
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "csv_lookup",
+            "arguments": {
+              "column": "sku",
+              "value": "CT-10C"
+            },
+            "result": {
+              "source": "catalogue.csv",
+              "source_resolution": "only_csv_in_corpus",
+              "rows": [
+                {
+                  "sku": "CT-10C",
+                  "description": "Conductivity probe cable 3m",
+                  "supplier": "Estuary Instruments",
+                  "unit_price_inr": "650",
+                  "unit": "each",
+                  "lead_time_working_days": "4",
+                  "compatibility": "CT-10 only"
+                }
+              ],
+              "total_matches": 1
+            }
+          },
+          {
+            "name": "calculator",
+            "arguments": {
+              "expression": "650 * 3"
+            },
+            "result": {
+              "expression": "650 * 3",
+              "value": 1950
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "E06",
+      "kind": "answerable",
+      "split": "development",
+      "passed": true,
+      "category": null,
+      "evidence_valid": true,
+      "status_correct": true,
+      "retrieval_hit": true,
+      "judge": {
+        "reason": "The candidate answer correctly states that the manufacturing-defect warranty period for cables is three months, which is directly supported by the quoted text in estuary.md (chunk_id: 60039c1b40998528). The fact is explicitly mentioned in the source text: 'Cables carry a three-month manufacturing-defect warranty.' There are no contradictions, unsupported additions, or missing qualifiers. The answer matches the expected facts and is grounded in the cited evidence.",
+        "correct": true,
+        "grounded": true,
+        "behavior": true
+      },
+      "execution": {
+        "response": {
+          "status": "answered",
+          "answer": "The manufacturing-defect warranty period for cables is three months, as stated in the estuary.md document.",
+          "evidence": [
+            {
+              "chunk_id": "60039c1b40998528",
+              "quote": "Cables carry a three-month manufacturing-defect warranty."
+            }
+          ]
+        },
+        "raw_response": {
+          "status": "answered",
+          "answer": "The manufacturing-defect warranty period for cables is three months, as stated in the estuary.md document.",
+          "evidence": [
+            {
+              "chunk_id": "60039c1b40998528",
+              "quote": "Cables carry a three-month manufacturing-defect warranty."
+            }
+          ]
+        },
+        "guard_errors": [],
+        "retrieved_ids": [
+          "60039c1b40998528",
+          "9f8b4d23b1a800a9",
+          "8c3fea60d5f19727"
+        ],
+        "retrieved": [
+          {
+            "id": "60039c1b40998528",
+            "source": "estuary.md",
+            "locator": "text",
+            "text": "mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry a six-month manufacturing-defect warranty. Cables carry a three-month manufacturing-defect warranty. Warranty excludes corrosion caused by damaged seals, accidental damage and unauthorized modifications. A claim needs the serial number and purchase-order reference. Contact support@estuary.example for a return authorization before sending equipment back. ## Compatibility Use only the compatibility entries explicitly listed in the catalogue. A shared connector shape does not establish electrical or firmware compatibility. The supplier does not authorize adapters or substitutions in these documents.",
+            "start_word": 150,
+            "score": 9.14251
+          },
+          {
+            "id": "9f8b4d23b1a800a9",
+            "source": "delta.md",
+            "locator": "text",
+            "text": "defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear of consumable seals and damage caused by incompatible connections. Calibration buffers have an expiry printed on each bottle; no universal expiry date is provided here. The assistant must not infer an expiry from the purchase date. ## Inventory and delivery Catalogue entries describe products, not current availability. No live inventory feed is provided. Lead-time values are estimates in working days and exclude transit time. Do not promise arrival on a specific date. No expedited delivery or substitution policy is included in these documents.",
+            "start_word": 150,
+            "score": 5.05477
+          },
+          {
+            "id": "8c3fea60d5f19727",
+            "source": "estuary.md",
+            "locator": "text",
+            "text": "# Estuary Instruments supplier conditions Synthetic supplier for a demonstration. Prices and conditions are fictional. Effective 1 October 2026. ## Quotations and dispatch Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals. Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. The holiday calendar is not provided. Lead times are estimates, not guaranteed arrival dates. Live stock is not provided in the catalogue. ## Order process The minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping. Orders must include an SKU, quantity, delivery address and purchase-order reference. The assistant can prepare an informational item subtotal but cannot place an order, reserve inventory or issue a purchase order. A mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry",
+            "start_word": 0,
+            "score": 4.31814
+          }
+        ],
+        "tool_results": []
+      }
+    },
+    {
+      "case_id": "E07",
+      "kind": "answerable",
+      "split": "development",
+      "passed": true,
+      "category": null,
+      "evidence_valid": true,
+      "status_correct": true,
+      "retrieval_hit": true,
+      "judge": {
+        "reason": "The candidate answer correctly states the lead time as 7 working days for the conductivity probe with SKU CT-10 supplied by Estuary Instruments, which is directly supported by the cited evidence from the catalogue.csv entry. The factual claim is entailed by the source data and matches the expected facts without contradictions or unsupported additions.",
+        "correct": true,
+        "grounded": true,
+        "behavior": true
+      },
+      "execution": {
+        "response": {
+          "status": "answered",
+          "answer": "The lead time for the conductivity probe with SKU CT-10 supplied by Estuary Instruments is 7 working days.",
+          "evidence": [
+            {
+              "chunk_id": "e287666eb662355b",
+              "quote": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only"
+            }
+          ]
+        },
+        "raw_response": {
+          "status": "answered",
+          "answer": "The lead time for the conductivity probe with SKU CT-10 supplied by Estuary Instruments is 7 working days.",
+          "evidence": [
+            {
+              "chunk_id": "e287666eb662355b",
+              "quote": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only"
+            }
+          ]
+        },
+        "guard_errors": [],
+        "retrieved_ids": [
+          "f82c88dcc0f96024",
+          "e287666eb662355b",
+          "9f8b4d23b1a800a9"
+        ],
+        "retrieved": [
+          {
+            "id": "f82c88dcc0f96024",
+            "source": "catalogue.csv",
+            "locator": "row 3",
+            "text": "sku: CT-10C; description: Conductivity probe cable 3m; supplier: Estuary Instruments; unit_price_inr: 650; unit: each; lead_time_working_days: 4; compatibility: CT-10 only",
+            "start_word": 0,
+            "score": 10.1228
+          },
+          {
+            "id": "e287666eb662355b",
+            "source": "catalogue.csv",
+            "locator": "row 2",
+            "text": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only",
+            "start_word": 0,
+            "score": 9.79873
+          },
+          {
+            "id": "9f8b4d23b1a800a9",
+            "source": "delta.md",
+            "locator": "text",
+            "text": "defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear of consumable seals and damage caused by incompatible connections. Calibration buffers have an expiry printed on each bottle; no universal expiry date is provided here. The assistant must not infer an expiry from the purchase date. ## Inventory and delivery Catalogue entries describe products, not current availability. No live inventory feed is provided. Lead-time values are estimates in working days and exclude transit time. Do not promise arrival on a specific date. No expedited delivery or substitution policy is included in these documents.",
+            "start_word": 150,
+            "score": 7.64056
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "csv_lookup",
+            "arguments": {
+              "column": "sku",
+              "value": "CT-10"
+            },
+            "result": {
+              "source": "catalogue.csv",
+              "source_resolution": "only_csv_in_corpus",
+              "rows": [
+                {
+                  "sku": "CT-10",
+                  "description": "Conductivity probe",
+                  "supplier": "Estuary Instruments",
+                  "unit_price_inr": "4800",
+                  "unit": "each",
+                  "lead_time_working_days": "7",
+                  "compatibility": "Logger L2 only"
+                }
+              ],
+              "total_matches": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "E08",
+      "kind": "answerable",
+      "split": "development",
+      "passed": true,
+      "category": null,
+      "evidence_valid": true,
+      "status_correct": true,
+      "retrieval_hit": true,
+      "judge": {
+        "reason": "The candidate answer correctly states that calibration buffers are sold as 500 ml bottles and seal kits as packs of four, which aligns with the expected fact from chunk_id \"d29a76c561009d19\". It also accurately reflects the supplier's specification that requested quantities refer to the catalogue sales unit unless otherwise stated. Additional details such as SKUs (PH-B4 and OR-12), unit prices, and lead times are supported by the cited evidence (specifically from catalogue.csv entries), and are consistent with the provided tool results. These details are not required by the original question, but since the question only asks about how the items are sold according to unit specifications, and the core factual claims are fully supported and correct, the answer is both correct and grounded.",
+        "correct": true,
+        "grounded": true,
+        "behavior": true
+      },
+      "execution": {
+        "response": {
+          "status": "answered",
+          "answer": "Calibration buffers and seal kits are sold according to the supplier's unit specifications as follows: pH calibration buffers are sold in 500 ml bottles (SKU: PH-B4), and probe seal kits are sold as packs of four (SKU: OR-12). The supplier specifies that requested quantities refer to the catalogue sales unit unless explicitly stated otherwise. For seal kits, individual seals are not sold; only packs of four are available. The unit prices are INR 450 per 500 ml bottle for calibration buffers and INR 320 per pack of four for seal kits. Lead times are 3 working days for both items, and the supplier operates Monday to Friday.",
+          "evidence": [
+            {
+              "chunk_id": "d29a76c561009d19",
+              "quote": "Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise. Ask for clarification if a quantity could mean individual seals or packs."
+            },
+            {
+              "chunk_id": "c028afad48e02477",
+              "quote": "sku: OR-12; description: Probe seal kit; supplier: Delta Field Supply; unit_price_inr: 320; unit: pack of 4; lead_time_working_days: 3; compatibility: PH-30 only"
+            },
+            {
+              "chunk_id": "03c3070c8411300e",
+              "quote": "sku: PH-B4; description: pH calibration buffer 4; supplier: Delta Field Supply; unit_price_inr: 450; unit: 500ml bottle; lead_time_working_days: 3; compatibility: pH calibration use only"
+            }
+          ]
+        },
+        "raw_response": {
+          "status": "answered",
+          "answer": "Calibration buffers and seal kits are sold according to the supplier's unit specifications as follows: pH calibration buffers are sold in 500 ml bottles (SKU: PH-B4), and probe seal kits are sold as packs of four (SKU: OR-12). The supplier specifies that requested quantities refer to the catalogue sales unit unless explicitly stated otherwise. For seal kits, individual seals are not sold; only packs of four are available. The unit prices are INR 450 per 500 ml bottle for calibration buffers and INR 320 per pack of four for seal kits. Lead times are 3 working days for both items, and the supplier operates Monday to Friday.",
+          "evidence": [
+            {
+              "chunk_id": "d29a76c561009d19",
+              "quote": "Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise. Ask for clarification if a quantity could mean individual seals or packs."
+            },
+            {
+              "chunk_id": "c028afad48e02477",
+              "quote": "sku: OR-12; description: Probe seal kit; supplier: Delta Field Supply; unit_price_inr: 320; unit: pack of 4; lead_time_working_days: 3; compatibility: PH-30 only"
+            },
+            {
+              "chunk_id": "03c3070c8411300e",
+              "quote": "sku: PH-B4; description: pH calibration buffer 4; supplier: Delta Field Supply; unit_price_inr: 450; unit: 500ml bottle; lead_time_working_days: 3; compatibility: pH calibration use only"
+            }
+          ]
+        },
+        "guard_errors": [],
+        "retrieved_ids": [
+          "d29a76c561009d19",
+          "c028afad48e02477",
+          "03c3070c8411300e"
+        ],
+        "retrieved": [
+          {
+            "id": "d29a76c561009d19",
+            "source": "delta.md",
+            "locator": "text",
+            "text": "# Delta Field Supply supplier conditions Synthetic supplier for a demonstration. Effective 1 October 2026. ## Pricing and ordering Catalogue unit prices are in INR, excluding tax and shipping. Delta Field Supply has no minimum order subtotal. Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise. Ask for clarification if a quantity could mean individual seals or packs. Written order acceptance starts the quoted lead time. The supplier operates Monday to Friday; its holiday calendar is not supplied. ## Handling and returns Unopened standard items may be returned within 14 calendar days of delivery with prior return authorization. Opened calibration buffers cannot be returned unless defective. A defective item must be reported within seven calendar days of delivery. Send the SKU, batch or serial number, and a description of the defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear",
+            "start_word": 0,
+            "score": 6.84708
+          },
+          {
+            "id": "c028afad48e02477",
+            "source": "catalogue.csv",
+            "locator": "row 8",
+            "text": "sku: OR-12; description: Probe seal kit; supplier: Delta Field Supply; unit_price_inr: 320; unit: pack of 4; lead_time_working_days: 3; compatibility: PH-30 only",
+            "start_word": 0,
+            "score": 2.86803
+          },
+          {
+            "id": "03c3070c8411300e",
+            "source": "catalogue.csv",
+            "locator": "row 6",
+            "text": "sku: PH-B4; description: pH calibration buffer 4; supplier: Delta Field Supply; unit_price_inr: 450; unit: 500ml bottle; lead_time_working_days: 3; compatibility: pH calibration use only",
+            "start_word": 0,
+            "score": 2.52123
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "csv_lookup",
+            "arguments": {
+              "column": "sku",
+              "value": "OR-12"
+            },
+            "result": {
+              "source": "catalogue.csv",
+              "source_resolution": "only_csv_in_corpus",
+              "rows": [
+                {
+                  "sku": "OR-12",
+                  "description": "Probe seal kit",
+                  "supplier": "Delta Field Supply",
+                  "unit_price_inr": "320",
+                  "unit": "pack of 4",
+                  "lead_time_working_days": "3",
+                  "compatibility": "PH-30 only"
+                }
+              ],
+              "total_matches": 1
+            }
+          },
+          {
+            "name": "csv_lookup",
+            "arguments": {
+              "column": "sku",
+              "value": "PH-B4"
+            },
+            "result": {
+              "source": "catalogue.csv",
+              "source_resolution": "only_csv_in_corpus",
+              "rows": [
+                {
+                  "sku": "PH-B4",
+                  "description": "pH calibration buffer 4",
+                  "supplier": "Delta Field Supply",
+                  "unit_price_inr": "450",
+                  "unit": "500ml bottle",
+                  "lead_time_working_days": "3",
+                  "compatibility": "pH calibration use only"
+                }
+              ],
+              "total_matches": 1
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "complete": false
+}

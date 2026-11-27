@@ -1,0 +1,13 @@
+sku,description,supplier,unit_price_inr,unit,lead_time_working_days,compatibility
+CT-10,Conductivity probe,Estuary Instruments,4800,each,7,Logger L2 only
+CT-10C,Conductivity probe cable 3m,Estuary Instruments,650,each,4,CT-10 only
+TP-20,Temperature probe,Estuary Instruments,2100,each,5,Logger L2 and L3
+PH-30,pH probe,Delta Field Supply,6200,each,10,Logger L3 only
+PH-B4,pH calibration buffer 4,Delta Field Supply,450,500ml bottle,3,pH calibration use only
+PH-B7,pH calibration buffer 7,Delta Field Supply,450,500ml bottle,3,pH calibration use only
+OR-12,Probe seal kit,Delta Field Supply,320,pack of 4,3,PH-30 only
+LG-L2,Logger L2,Estuary Instruments,12500,each,14,CT-10 and TP-20
+LG-L3,Logger L3,Delta Field Supply,16800,each,18,TP-20 and PH-30
+BAT-6,Logger battery pack,Estuary Instruments,1800,each,6,Logger L2 only
+CB-USB,Logger USB cable,Delta Field Supply,280,each,2,Logger L2 and L3
+CASE-2,Transit case,Delta Field Supply,2400,each,5,Up to two probes
