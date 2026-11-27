@@ -23,6 +23,16 @@ class StubModel:
 
 
 class CoreTests(unittest.TestCase):
+    def test_csv_source_defaults_only_when_unambiguous_and_reports_resolution(self):
+        with tempfile.TemporaryDirectory() as root:
+            Path(root, 'items.csv').write_text('sku,price\nA1,25\n', encoding='utf-8')
+            result = execute('csv_lookup', {'column': 'sku', 'value': 'A1'}, ['csv_lookup'], root)
+            self.assertEqual(result['rows'][0]['price'], '25')
+            self.assertEqual(result['source_resolution'], 'only_csv_in_corpus')
+            Path(root, 'other.csv').write_text('sku,price\nA1,40\n', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'Specify source'):
+                execute('csv_lookup', {'column': 'sku', 'value': 'A1'}, ['csv_lookup'], root)
+
     def test_coverage_checks_an_alternative_before_rejecting_available_data(self):
         policy = {'id': 'p', 'source': 'policy.md', 'text': 'An item subtotal is not a final payable total.'}
         row = {'id': 'r', 'source': 'items.csv', 'text': 'sku: X1; unit_price: 25; currency: INR'}

@@ -1,0 +1,5 @@
+{
+  "source_attempt": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\coastal-tool-filter-audit",
+  "copied_prefix_calls": 48,
+  "purpose": "Reuse unchanged intake, definition and frozen evaluations. All tool-planning and scoring calls will execute again with the clarified generic tool contract."
+}

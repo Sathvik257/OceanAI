@@ -1,0 +1,135 @@
+{
+  "chunks": [
+    {
+      "id": "e287666eb662355b",
+      "source": "catalogue.csv",
+      "locator": "row 2",
+      "text": "sku: CT-10; description: Conductivity probe; supplier: Estuary Instruments; unit_price_inr: 4800; unit: each; lead_time_working_days: 7; compatibility: Logger L2 only",
+      "start_word": 0
+    },
+    {
+      "id": "f82c88dcc0f96024",
+      "source": "catalogue.csv",
+      "locator": "row 3",
+      "text": "sku: CT-10C; description: Conductivity probe cable 3m; supplier: Estuary Instruments; unit_price_inr: 650; unit: each; lead_time_working_days: 4; compatibility: CT-10 only",
+      "start_word": 0
+    },
+    {
+      "id": "a0bbef001b390bd9",
+      "source": "catalogue.csv",
+      "locator": "row 4",
+      "text": "sku: TP-20; description: Temperature probe; supplier: Estuary Instruments; unit_price_inr: 2100; unit: each; lead_time_working_days: 5; compatibility: Logger L2 and L3",
+      "start_word": 0
+    },
+    {
+      "id": "e9495e1d4ba3e2ae",
+      "source": "catalogue.csv",
+      "locator": "row 5",
+      "text": "sku: PH-30; description: pH probe; supplier: Delta Field Supply; unit_price_inr: 6200; unit: each; lead_time_working_days: 10; compatibility: Logger L3 only",
+      "start_word": 0
+    },
+    {
+      "id": "03c3070c8411300e",
+      "source": "catalogue.csv",
+      "locator": "row 6",
+      "text": "sku: PH-B4; description: pH calibration buffer 4; supplier: Delta Field Supply; unit_price_inr: 450; unit: 500ml bottle; lead_time_working_days: 3; compatibility: pH calibration use only",
+      "start_word": 0
+    },
+    {
+      "id": "add4135bcbcf10ec",
+      "source": "catalogue.csv",
+      "locator": "row 7",
+      "text": "sku: PH-B7; description: pH calibration buffer 7; supplier: Delta Field Supply; unit_price_inr: 450; unit: 500ml bottle; lead_time_working_days: 3; compatibility: pH calibration use only",
+      "start_word": 0
+    },
+    {
+      "id": "c028afad48e02477",
+      "source": "catalogue.csv",
+      "locator": "row 8",
+      "text": "sku: OR-12; description: Probe seal kit; supplier: Delta Field Supply; unit_price_inr: 320; unit: pack of 4; lead_time_working_days: 3; compatibility: PH-30 only",
+      "start_word": 0
+    },
+    {
+      "id": "dacfa2f52898cff5",
+      "source": "catalogue.csv",
+      "locator": "row 9",
+      "text": "sku: LG-L2; description: Logger L2; supplier: Estuary Instruments; unit_price_inr: 12500; unit: each; lead_time_working_days: 14; compatibility: CT-10 and TP-20",
+      "start_word": 0
+    },
+    {
+      "id": "6b3df1cb96507295",
+      "source": "catalogue.csv",
+      "locator": "row 10",
+      "text": "sku: LG-L3; description: Logger L3; supplier: Delta Field Supply; unit_price_inr: 16800; unit: each; lead_time_working_days: 18; compatibility: TP-20 and PH-30",
+      "start_word": 0
+    },
+    {
+      "id": "e054ed36f9e465d4",
+      "source": "catalogue.csv",
+      "locator": "row 11",
+      "text": "sku: BAT-6; description: Logger battery pack; supplier: Estuary Instruments; unit_price_inr: 1800; unit: each; lead_time_working_days: 6; compatibility: Logger L2 only",
+      "start_word": 0
+    },
+    {
+      "id": "286befb052fa1a18",
+      "source": "catalogue.csv",
+      "locator": "row 12",
+      "text": "sku: CB-USB; description: Logger USB cable; supplier: Delta Field Supply; unit_price_inr: 280; unit: each; lead_time_working_days: 2; compatibility: Logger L2 and L3",
+      "start_word": 0
+    },
+    {
+      "id": "6fe195e55ad290b0",
+      "source": "catalogue.csv",
+      "locator": "row 13",
+      "text": "sku: CASE-2; description: Transit case; supplier: Delta Field Supply; unit_price_inr: 2400; unit: each; lead_time_working_days: 5; compatibility: Up to two probes",
+      "start_word": 0
+    },
+    {
+      "id": "d29a76c561009d19",
+      "source": "delta.md",
+      "locator": "text",
+      "text": "# Delta Field Supply supplier conditions Synthetic supplier for a demonstration. Effective 1 October 2026. ## Pricing and ordering Catalogue unit prices are in INR, excluding tax and shipping. Delta Field Supply has no minimum order subtotal. Calibration buffers are sold as 500 ml bottles and seal kits as packs of four; requested quantities refer to the catalogue sales unit unless the requester explicitly says otherwise. Ask for clarification if a quantity could mean individual seals or packs. Written order acceptance starts the quoted lead time. The supplier operates Monday to Friday; its holiday calendar is not supplied. ## Handling and returns Unopened standard items may be returned within 14 calendar days of delivery with prior return authorization. Opened calibration buffers cannot be returned unless defective. A defective item must be reported within seven calendar days of delivery. Send the SKU, batch or serial number, and a description of the defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear",
+      "start_word": 0
+    },
+    {
+      "id": "9f8b4d23b1a800a9",
+      "source": "delta.md",
+      "locator": "text",
+      "text": "defect to returns@delta.example. The documents do not specify return shipping charges. ## Warranty The PH-30 probe and Logger L3 have an 18-month manufacturing-defect warranty from dispatch. The warranty excludes wear of consumable seals and damage caused by incompatible connections. Calibration buffers have an expiry printed on each bottle; no universal expiry date is provided here. The assistant must not infer an expiry from the purchase date. ## Inventory and delivery Catalogue entries describe products, not current availability. No live inventory feed is provided. Lead-time values are estimates in working days and exclude transit time. Do not promise arrival on a specific date. No expedited delivery or substitution policy is included in these documents.",
+      "start_word": 150
+    },
+    {
+      "id": "8c3fea60d5f19727",
+      "source": "estuary.md",
+      "locator": "text",
+      "text": "# Estuary Instruments supplier conditions Synthetic supplier for a demonstration. Prices and conditions are fictional. Effective 1 October 2026. ## Quotations and dispatch Catalogue prices are in INR and exclude tax and shipping. The documents do not specify tax rates or shipping charges. Item subtotals therefore cannot be presented as final payable totals. Quoted lead times are working days from written order acceptance, not calendar days from a user query. The supplier operates Monday to Friday, excluding supplier holidays. The holiday calendar is not provided. Lead times are estimates, not guaranteed arrival dates. Live stock is not provided in the catalogue. ## Order process The minimum order subtotal for Estuary Instruments is INR 3000 before tax and shipping. Orders must include an SKU, quantity, delivery address and purchase-order reference. The assistant can prepare an informational item subtotal but cannot place an order, reserve inventory or issue a purchase order. A mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry",
+      "start_word": 0
+    },
+    {
+      "id": "60039c1b40998528",
+      "source": "estuary.md",
+      "locator": "text",
+      "text": "mixed-supplier request is handled as separate orders; one supplier's subtotal cannot satisfy another supplier's minimum. ## Warranty Estuary probes and loggers carry a 12-month manufacturing-defect warranty from dispatch. Batteries carry a six-month manufacturing-defect warranty. Cables carry a three-month manufacturing-defect warranty. Warranty excludes corrosion caused by damaged seals, accidental damage and unauthorized modifications. A claim needs the serial number and purchase-order reference. Contact support@estuary.example for a return authorization before sending equipment back. ## Compatibility Use only the compatibility entries explicitly listed in the catalogue. A shared connector shape does not establish electrical or firmware compatibility. The supplier does not authorize adapters or substitutions in these documents.",
+      "start_word": 150
+    }
+  ],
+  "manifest": [
+    {
+      "source": "catalogue.csv",
+      "sha256": "fa164705286f641d93fadbdd98bccb3fd370b2243c7051dd5387048595e8cfeb"
+    },
+    {
+      "source": "delta.md",
+      "sha256": "c12ef4d1bc866b2914cf16ab7aee2151299798ab4e48574062511e1a72ac7164"
+    },
+    {
+      "source": "estuary.md",
+      "sha256": "4b4eebd9d1d59276366d3c7ff29888a40d3a2fa77309112f311816b5247886d7"
+    }
+  ],
+  "warnings": [],
+  "chunking": {
+    "words": 180,
+    "overlap": 30
+  }
+}

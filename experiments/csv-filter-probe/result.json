@@ -1,0 +1,30 @@
+{
+  "calls": [
+    {
+      "name": "csv_lookup",
+      "arguments": [
+        {
+          "key": "source",
+          "value": "catalogue.csv"
+        },
+        {
+          "key": "column",
+          "value": "sku"
+        },
+        {
+          "key": "value",
+          "value": "CT-10C"
+        }
+      ]
+    },
+    {
+      "name": "calculator",
+      "arguments": [
+        {
+          "key": "expression",
+          "value": "650 * 3"
+        }
+      ]
+    }
+  ]
+}

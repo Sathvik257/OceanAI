@@ -1,0 +1,9 @@
+{
+  "source_run": "C:\\Users\\sweth\\Downloads\\ocean-ai\\experiments\\coastal-evaluation-prefix",
+  "recorded_prefix_calls": 48,
+  "unrecorded_token_reservation": 30000,
+  "unrecorded_seconds_reservation": 1800,
+  "original_inference_seconds": 865.034,
+  "note": "Exact request-prefix replay of actual saved inference. Replayed calls are not new model executions. A mismatch stops recovery. Budgets include prior usage and a conservative allowance for the lost in-flight request.",
+  "frozen_evals_sha256": "e6f6a22b6e8491511880c7abefada05e0b2ff20768763cca95f791392b65b751"
+}

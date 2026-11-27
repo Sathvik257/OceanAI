@@ -44,7 +44,16 @@ def execute(name, args, allowed, corpus_root):
     if name == 'current_date':
         return {'date': datetime.now(timezone.utc).date().isoformat(), 'timezone': 'UTC'}
     root = Path(corpus_root).resolve()
-    source = (root / args['source']).resolve()
+    requested_source = args.get('source')
+    if requested_source:
+        source = (root / requested_source).resolve()
+        source_resolution = 'explicit'
+    else:
+        candidates = [p for p in root.rglob('*') if p.is_file() and p.suffix.lower() == '.csv']
+        if len(candidates) != 1:
+            raise ValueError('Specify source: the corpus does not contain exactly one CSV')
+        source = candidates[0].resolve()
+        source_resolution = 'only_csv_in_corpus'
     if not source.is_relative_to(root) or source.suffix.lower() != '.csv':
         raise ValueError('CSV source must be inside the packaged corpus')
     with source.open(encoding='utf-8-sig', newline='') as f:
@@ -52,4 +61,5 @@ def execute(name, args, allowed, corpus_root):
         if args['column'] not in (reader.fieldnames or []):
             raise ValueError('Unknown CSV column')
         rows = [row for row in reader if str(row[args['column']]).casefold() == str(args['value']).casefold()]
-    return {'source': args['source'], 'rows': rows[:20], 'total_matches': len(rows)}
+    return {'source': source.relative_to(root).as_posix(), 'source_resolution': source_resolution,
+            'rows': rows[:20], 'total_matches': len(rows)}

@@ -1,0 +1,16 @@
+{
+  "source": "catalogue.csv",
+  "source_resolution": "only_csv_in_corpus",
+  "rows": [
+    {
+      "sku": "CT-10C",
+      "description": "Conductivity probe cable 3m",
+      "supplier": "Estuary Instruments",
+      "unit_price_inr": "650",
+      "unit": "each",
+      "lead_time_working_days": "4",
+      "compatibility": "CT-10 only"
+    }
+  ],
+  "total_matches": 1
+}

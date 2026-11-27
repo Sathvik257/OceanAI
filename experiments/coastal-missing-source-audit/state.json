@@ -1,0 +1,6 @@
+{
+  "status": "interrupted",
+  "stage": "iteration_1",
+  "started_utc": "2026-11-27T06:54:17.664180+00:00",
+  "error": "Stopped to make omitted CSV source safe and explicit when exactly one CSV exists; ambiguous multi-CSV inputs still reject omissions."
+}

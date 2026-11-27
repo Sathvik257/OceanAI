@@ -37,3 +37,5 @@ Maximum three evaluated versions, including the initial definition. One targeted
 ## Security and portability
 
 Definitions are data, not executable Python. The calculator uses a bounded AST allowlist. CSV paths stay inside the packaged source directory. Tool calls are checked against attached permissions. The agent package includes its source snapshot and checks hashes on load. There is no shell tool, arbitrary HTTP tool, or generated code execution. Documents remain untrusted model input; prompt injection cannot be claimed solved by wording alone.
+
+If a CSV call omits its source filename, the runner resolves it only when exactly one CSV exists in the packaged corpus. The result records `source_resolution=only_csv_in_corpus`; the original arguments remain in the trace. Multiple CSVs require an explicit source, and supplied column/value filters are never silently changed.
